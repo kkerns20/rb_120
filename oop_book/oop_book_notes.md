@@ -4,7 +4,7 @@
   - [Classes Define Objects](#classes-define-objects)
   - [Modules](#modules)
   - [Method Lookup](#method-lookup)
-  - [Exercises 1](#exercises-1)
+  - [Exercises](#exercises-1)
 - [Classes and Objects - Part I](#classes-and-objects-i)
   - [States and Behaviors](#states-and-behaviors)
   - [Initializing a New Object](#initializing-a-new-object)
@@ -18,7 +18,7 @@
   - [Constants](#constants)
   - [The to_s Method](#the-tos-method)
   - [More About self](#more-about-self)
-  - [Exercises 3](#exercises-3)
+  - [Exercises](#exercises-3)
 - [Inheritance](#inheritance)
   - [Class Inheritance](#class-inheritance)
   - [super](#super)
@@ -28,7 +28,7 @@
   - [More Modules](#more-modules)
   - [Private, Protected, and Public](#private-protected-and-public)
   - [Accidental Method Overriding](#accidental-method-overriding)
-  - [Exercises 4](#exercises-4)
+  - [Exercises](#exercises-4)
 
 
 
