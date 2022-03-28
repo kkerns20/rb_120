@@ -201,6 +201,35 @@ We call the `new` method when we create an object, and that eventually leads us 
 
 ### Instance Variables ###
 
+Let's now create a new object and instantiate it with some state, like a name.
+
+```ruby
+class GoodDog
+  def initialize(name)
+    @name = name
+  end
+end
+```
+
+We have just used an **instance variable** for `@name`
+
+**instance variable**
+: a variable that exists as long as the object instance exists. It is one of the ways we tie data to objects.
+
+It does does not "die" after the initialize method is run, but rather it "lives on", to be referenced, until the object instance is destroyed.
+
+In the example above, our `initialize` method take a parameter called `name`. You can pass arguments into the `initialize` method throgh the `new` method.
+
+```ruby
+sparky = GoodDog.new("Sparky")
+```
+
+Here, the string "Sparky" is being passed from the `new` method through the `initialize` method and is assigned to the local variable `name`. Within the constructor (i.e., the `initialize` method), we then set teh instance variable `@name` to `name`, which results in assigning the string "Sparky" to the `@name` instance variable.
+
+Instance variable are responsible for keeping track of information about the *state* of an object. Above, the name fo the `sparky` object is the string "Sparky". This state for the object is tracked in the instance variable, `@name`. We could create another `GoodDog` object with `fido = GoodDog.new('Fido')`, then the `@name` instance variable for the fido object would contain the string "Fido"
+
+Every object's state is unique, and instance variables are how we keep track.
+
 ### Instance Methods ###
 
 ### Accessor Methods ###
