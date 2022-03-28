@@ -173,9 +173,31 @@ the_world.trees
 
 ### States and Behaviors ###
 
+We use classes to create objects. When defining a class, we typically focus on two things: *states* and *behaviors*.
 
+*states*
+:track attributes for individual objects
+
+*behaviors*
+:exactly what objects are capable of doing
+
+Instance variable keep track of state, and instance methods expose behavior for objects.
 
 ### Initiailizing a New Object ###
+
+Using the `GoodDog` class from before, let's add an `initialize` method that will be called everytime a new object is created from the `GoodDog` class.
+
+```ruby
+class GoodDog
+  def initialize
+    puts "This object was initialized!"
+  end
+end
+
+sparky = GoodDog.new      # => "This object was initialized!"
+```
+
+We call the `new` method when we create an object, and that eventually leads us to the `initialize` method. In this example above, initializating a new `GoodDog` object triggered the `initialize` method and resulted from the string being outputted. We refer to the `initialize` method as a *constructor*, because it gets triggered whenever we create a new object.
 
 ### Instance Variables ###
 
