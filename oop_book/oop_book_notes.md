@@ -628,10 +628,11 @@ puts armada.info
 # Your car is a Black 2019 Nissan Armada
 ```
 
-
 ## Classes and Objects II ## 
 
 ### Class Methods ###
+
+
 
 ### Class Variables ###
 
