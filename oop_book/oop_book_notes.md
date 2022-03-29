@@ -649,9 +649,35 @@ We can then call the class method by using the class name followed by the method
 GoodDog.what_am_i          # => I'm a GoodDog class!
 ```
 
-Why? Class methods are where we can put functionality that does not pertain to individual objects.
+Why? Class methods are where we can put functionality that does not pertain to individual objects.  Objects contain state, and if we have a method that does not need to deal with states, then we can just use a class method, like the simple example above.
 
 ### Class Variables ###
+
+**class variables**
+: variables that capture information related to the entire class, created using two `@` symbols: `@@`
+
+```ruby
+class GoodDog
+  @@number_of_dogs = 0
+
+  def initialize
+    @@number_of_dogs += 1
+  end
+
+  def self.total_number_of_dogs
+    @@number_of_dogs
+  end
+end
+
+puts GoodDog.total_number_of_dogs   # => 0
+
+dog1 = GoodDog.new
+dog2 = GoodDog.new
+
+puts GoodDog.total_number_of_dogs   # => 2
+```
+
+This is an example of using a clas variable and a class method to keep track of a class level detail that pertains only to the class, and not to individual objects
 
 ### Constants ###
 
