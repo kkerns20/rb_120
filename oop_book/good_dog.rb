@@ -30,7 +30,7 @@ class GoodDog
   #instance method, describes behavior available to all GoodDog objects
   def speak
     # access value referenced by @name with getter method and using self
-    "#{self.name} say arf!"
+    "#{name} say arf!"
     # instance methods have access to instance variable
   end
 
@@ -43,8 +43,11 @@ class GoodDog
     self.weight = w
   end
 
-  def info
-    "#{self.name} weighs #{self.weight} and is #{self.height} tall."
+  # override the default behavior of to_s by defining a custom instance method
+  def to_s
+    # access states saved in instance variables wit respective getter methods
+    "This is a GoodDog named #{name} who is #{age} years old in dog years. " \
+    "#{name} weighs #{weight} and is #{height} tall."
   end
 
   # creates a class method with the keyword `self` prepended to the method name

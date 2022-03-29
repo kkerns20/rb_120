@@ -704,6 +704,46 @@ It is possible to reassign a new value to constants but Ruby will throw a warnin
 
 ### The to_s Method ###
 
+`to_s` instance method comes built in to every class in Ruby.
+
+Using the code above, if we ran `puts sparky` it returns `#<GoodDog:0x007fe542323320>`.
+What happends is that the puts method automatically calls `to_s` on its argument, which is the `sparky` object.
+
+Basically, `puts sparky` is equivalent to `puts sparky.to_s`
+
+By defalut, `to_s` method returns the name of the object's class and an encoding of the object id.
+
+>Note: `puts` method calls `to_s` for any argument that is not an array. For an array, it writes on separate lines the result of calling `to_s` on each element of the array.
+
+```ruby
+class GoodDog
+  DOG_YEARS = 7
+
+  attr_accessor :name, :age
+
+  def initialize(n, a)
+    @name = n
+    @age  = a * DOG_YEARS
+  end
+
+  def to_s
+    "This dog's name is #{name} and it is #{age} in dog years."
+  end
+end
+
+puts sparky      # => This dog's name is Sparky and is 28 in dog years.
+```
+
+We overrode the `to_s` instance method
+
+`p` method is similar to `puts` but calls `inspect` instead of object id. `inspect` is very helpful for debugging purposes, so we don't want to override it.
+
+```ruby
+p sparky         # => #<GoodDog:0x007fe54229b358 @name="Sparky", @age=28>
+```
+
+Another important attribute of the `to_s` method is that it's automatically called in string interpolation
+
 ### More About self ###
 
 ### Exercises 3 ###

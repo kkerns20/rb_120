@@ -1,18 +1,14 @@
 class GoodDog
-  @@number_of_dogs = 0
+  DOG_YEARS = 7
 
-  def initialize
-    @@number_of_dogs += 1
-  end
+  attr_accessor :name, :age
 
-  def self.total_number_of_dogs
-    @@number_of_dogs
+  def initialize(n, a)
+    self.name = n
+    self.age  = a * DOG_YEARS
   end
 end
 
-puts GoodDog.total_number_of_dogs   # => 0
-
-dog1 = GoodDog.new
-dog2 = GoodDog.new
-
-puts GoodDog.total_number_of_dogs   # => 2
+sparky = GoodDog.new("Sparky", 4)
+puts sparky.age             # => 28
+puts sparky      # => #<GoodDog:0x007fe542323320>
