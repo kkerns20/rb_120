@@ -681,6 +681,27 @@ This is an example of using a clas variable and a class method to keep track of 
 
 ### Constants ###
 
+**constants**
+: technically defined by using a single uppercase letter at the beginning of the variable name, but most Rubyists will make the entire variable uppercase
+
+```ruby
+class GoodDog
+  DOG_YEARS = 7
+
+  attr_accessor :name, :age
+
+  def initialize(n, a)
+    self.name = n
+    self.age  = a * DOG_YEARS
+  end
+end
+
+sparky = GoodDog.new("Sparky", 4)
+puts sparky.age             # => 28
+```
+
+It is possible to reassign a new value to constants but Ruby will throw a warning
+
 ### The to_s Method ###
 
 ### More About self ###

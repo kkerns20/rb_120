@@ -1,14 +1,18 @@
 # class definition
 class GoodDog
 
+  # initialize a constant for a conversion value that never changes
+  DOG_YEARS = 7
+  # Doesn't have to be fully upcased, technically
+
   #initialize class variable (available through the class definition)
   @@number_of_dogs = 0
 
   # creates 6 getter/setter (accessor) methods and 3 instance variables
-  attr_accessor :name, :height, :weight
+  attr_accessor :name, :height, :weight, :age
 
   # constructor method, triggered when a new GoodDog object is created (.new)
-  def initialize(n, h, w)
+  def initialize(n, h, w, a)
     #define instance variables upon creation of a new object
     # ties specific and individual data to created object (state)
     @name = n
@@ -18,6 +22,9 @@ class GoodDog
     # increment number of dos each time a new GoodDog object is initialized
     @@number_of_dogs += 1
     # class variable avaiable throughout class definition
+
+    # use a constant to calculate age in dog years when object is initialized
+    self.age = a * DOG_YEARS
   end
 
   #instance method, describes behavior available to all GoodDog objects
@@ -81,3 +88,7 @@ GoodDog.what_am_i
 # Class variables track data that pertains to class as a whole, not individuals
 GoodDog.total_number_of_dogs 
 # => 1 (the object referenced by sparky)
+
+# Use `age` getter method to retrieve converted value for the object
+puts sparky.age
+# => 28 (convereted to dog years using constant)
