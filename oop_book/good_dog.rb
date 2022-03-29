@@ -15,9 +15,9 @@ class GoodDog
   def initialize(n, h, w, a)
     #define instance variables upon creation of a new object
     # ties specific and individual data to created object (state)
-    @name = n
-    @height = h
-    @weight = w
+    self.name   = n
+    self.height = h
+    self.weight = w
 
     # increment number of dos each time a new GoodDog object is initialized
     @@number_of_dogs += 1
@@ -38,7 +38,7 @@ class GoodDog
     # reassign instance variables with setter methods
     # must prefix 'self.' to disambiguate from local variable assignment
     # using self inside an instance method references the instance (object)
-    self.name = n
+    self.name   = n
     self.height = h
     self.weight = w
   end

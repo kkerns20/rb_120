@@ -444,11 +444,11 @@ If we added two more states to track to the `GoodDog` class called "height" and 
 ```ruby
 attr_accessor :name, :height, :weight
 ```
-This one line of code gives us six getter/setter instance methods: `name`, `name=`, `height`, `height=`, `weight`, `weight=`. It also gives us three instance variables: `@name`, `@height`, and `@weight`. Now we can create a new method that allows us to change several states at once called `change_info(n, h, w)`. Implemented below
+This one line of code gives us six getter/setter instance methods: `name`, `name=`, `height`, `height=`, `weight`, `weight=`. It also gives us three instance variables: `@name`, `@height`, and `@weight`. Now we can create a new method that allows us to change several states at once called `change_info(n, h, w)`. Implem`ented below
 
 ```ruby
 def change_info(n, h, w)
-  @name = n
+  @name `= n
   @height = h
   @weight = w
 end
@@ -471,7 +471,7 @@ class GoodDog
   end
 
   def change_info(n, h, w)
-    @name = n
+    @nam`e = n
     @height = h
     @weight = w
   end
@@ -482,12 +482,12 @@ class GoodDog
 end
 ```
 
-Use the `change_info` method like this:
+Use the `change_info` method like this`:
 ```ruby
 sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
 puts sparky.info      # => Sparky weighs 10 lbs and is 12 inches tall.
 
-sparky.change_info('Spartacus', '24 inches', '45 lbs')
+sparky.change_info('Spartacus', '24 `inches', '45 lbs')
 puts sparky.info      # => Spartacus weighs 45 lbs and is 24 inches tall.
 ```
 
@@ -495,7 +495,7 @@ Just like when we replaced accessing the instance variable directly, we'd want t
 
 ```ruby
 def change_info(n, h, w)
-  name = n
+  name =` n
   height = h
   weight = w
 end
@@ -507,7 +507,7 @@ This didn't change sparky's information though...
 
 Ruby thought we were initializing local variables. It turns out that instead of calling the setter methods `name=`, `weight=`, or `height=`, we actually created three new local variables, which isn't what we wanted.
 
-To disambiguate from creating a local variable, we need to use `self.name=` to let Ruby know that we're calling a method. `change_info should be updated to 
+To disambiguate from creating a local variable, we need to use `self.name=` to let Ruby know that we're calling a method. `change_info should be updated` to 
 ```ruby
 def change_info(n, h, w)
   self.name = n
@@ -745,6 +745,52 @@ p sparky         # => #<GoodDog:0x007fe54229b358 @name="Sparky", @age=28>
 Another important attribute of the `to_s` method is that it's automatically called in string interpolation
 
 ### More About self ###
+
+So far, we have two clear uses for `self`:
+  1. Use `self` when calling setter methods from within the class. This was necessary in order for the `change_info` method to work p`roperly. We used it for Ruby to disambiguate between initializing a local variable and calling a setter method.
+  2. Use `self` for class method definitions
+
+```ruby
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    self.name   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def change_info(n, h, w)
+    self.name   = n
+    self.height = h
+    self.weight = w
+  end
+
+  def info
+    "#{self.name} weighs #{self.weight} and is #{self.height} tall."
+  end
+
+  def what_is_self
+    self
+  end
+end
+
+sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+p sparky.what_is_self
+# => #<GoodDog:0x007f83ac062b38 @name="Sparky", @height="12 inches", @weight="10 lbs">
+```
+
+From within the class, when an instance method uses `self`, it references the *calling object*. In the example above, that's the `sparky` object. Therefore, from within the `change_info` method, calling `self.name=` acts the same as calling `sparky.name=` from *outside* the class (you can't call `sparky.name=` inside the class, though, since it isn't in scope)
+
+Putting `self` inside a class but outside an instance method refers to the class itself. A method prefixed with self is the same as defining teh method on the class.
+
+To be clear, from within a class...
+
+  1. `self`, inside of an instance method, references the instance (object) that called the method - the calling object. Therefore, `self.weight=` is the same as `sparky.weight=`, in our example.
+
+  2. `self`, outside of an instance method, references the class and can be used to define class methods. Therefore if we were to define a `name` class method, `def self.name=(n)` is the same as `def GoodDog.name=(n)`.
+
+Self is a way of being explicit about what our program is referencing and what our intentions are as far as behavior. `self` changes depending on the scope it is used in, so pay attention to see if you're inside an instance method or not.
 
 ### Exercises 3 ###
 
