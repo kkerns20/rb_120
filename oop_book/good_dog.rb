@@ -32,6 +32,13 @@ class GoodDog
   def info
     "#{self.name} weighs #{self.weight} and is #{self.height} tall."
   end
+
+
+  # creates a class method with the keyword `self` prepended to the method name
+  # using self outside an instance method references the class itself
+  def self.what_am_i
+    "I'm a GoodDog class!"
+  end
 end
 
 # Initialize new instance (object) of GoodDog class
@@ -54,3 +61,7 @@ sparky.change_info('Spartacus', '24 inches', '45 lbs', 7)
 puts sparky
 # => This is a GoodDog named Spartacus who is 49 years old in dog years.
 #    Spartacus weighs 45 lbs and is 24 inches tall.
+
+# Invoke a class method without a calling object
+GoodDog.what_am_i
+# => "I'm a GoodDog class!"

@@ -632,7 +632,24 @@ puts armada.info
 
 ### Class Methods ###
 
+**class methods**
+: methods we can call directly on the class itself, without having to instantiate any objects.
 
+When defining a class method, prepend the method name with the reserved word `self.`
+```ruby
+# ... rest of code ommitted for brevity
+
+def self.what_am_i         # Class method definition
+  "I'm a GoodDog class!"
+end
+```
+
+We can then call the class method by using the class name followed by the method name without having to instantiate any objects.
+```ruby
+GoodDog.what_am_i          # => I'm a GoodDog class!
+```
+
+Why? Class methods are where we can put functionality that does not pertain to individual objects.
 
 ### Class Variables ###
 
