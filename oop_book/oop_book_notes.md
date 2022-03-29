@@ -454,7 +454,180 @@ def change_info(n, h, w)
 end
 ```
 
+To get caught up with out `GoodDog` class
+
+```ruby
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def speak
+    "#{name} say arf!"
+  end
+
+  def change_info(n, h, w)
+    @name = n
+    @height = h
+    @weight = w
+  end
+
+  def info
+    "#{name} weighs #{weight} and is #{height} tall."
+  end
+end
+```
+
+Use the `change_info` method like this:
+```ruby
+sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
+puts sparky.info      # => Sparky weighs 10 lbs and is 12 inches tall.
+
+sparky.change_info('Spartacus', '24 inches', '45 lbs')
+puts sparky.info      # => Spartacus weighs 45 lbs and is 24 inches tall.
+```
+
+Just like when we replaced accessing the instance variable directly, we'd want to do the same with out setter method.
+
+```ruby
+def change_info(n, h, w)
+  name = n
+  height = h
+  weight = w
+end
+```
+
+This didn't change sparky's information though...
+
+#### Calling Methods With self ####
+
+Ruby thought we were initializing local variables. It turns out that instead of calling the setter methods `name=`, `weight=`, or `height=`, we actually created three new local variables, which isn't what we wanted.
+
+To disambiguate from creating a local variable, we need to use `self.name=` to let Ruby know that we're calling a method. `change_info should be updated to 
+```ruby
+def change_info(n, h, w)
+  self.name = n
+  self.height = h
+  self.weight = w
+end
+```
+This tells Ruby that we're calling a setter method, not creating a local variable. For consistency, adopt this syntax for the getter methods as well
+```ruby
+def info
+  "#{self.name} weighs #{self.weight} and is #{self.height} tall."
+end
+```
+
+> Note that prefixing `self`. is not restricted to just the accessor methods; you can use it with any instance method. For example, the `info` method is not a method given to us by `attr_accessor`, but we can still call it using `self.info`:
+
+```ruby
+class GoodDog
+  # ... rest of code omitted for brevity
+  def some_method
+    self.info
+  end
+end
+```
+
 ### Exercises 2 ###
+
+```ruby
+=begin
+1. 
+  - Create a class called MyCar. 
+  - When you initialize a new instance or object of the class, allow the user 
+  to define some instance variables that tell us the year, color, and model of the car. 
+  - Create an instance variable that is set to 0 during instantiation of the  
+  object to track the current speed of the car as well. 
+  - Create instance methods that allow the car to speed up, brake, and shut the car off.
+2.
+  - Add an accessor method to your MyCar class to change and view the color of your car. 
+  - Add an accessor method that allows you to view, but not modify, the year of your car.
+3.
+  - Create a method called spray_paint that can be called on an object and will 
+  modify the color of the car.
+=end
+
+class MyCar
+  attr_accessor :color, :model, :current_speed
+  attr_reader :year
+
+  def initialize(y, c, m)
+    @year = y
+    @color = c 
+    @model = m 
+    @current_speed = 0
+  end
+
+  def spray_paint(color)
+    self.color = color
+    "Your new #{color} paint job looks great!"
+  end
+
+  def info
+    "Your car is a #{self.color} #{self.year} #{self.model}"
+  end
+
+  def speed_up(mph)
+    self.current_speed += mph
+    "You accelerate #{mph} mph."
+  end
+
+  def brake(mph)
+    self.current_speed -= mph
+    "You brake and decelerate #{mph} mph."
+  end
+
+  def turn_off
+    self.current_speed = 0
+    "You have just turned off your car."
+  end
+
+  def current
+    "You are now going #{self.current_speed} mph"
+  end
+end
+
+armada = MyCar.new(2019, 'Silver', 'Nissan Armada')
+
+puts '---ex 1---'
+puts armada.speed_up(75)
+puts armada.current
+puts armada.speed_up(10)
+puts armada.current
+puts armada.brake(55)
+puts armada.current
+puts armada.brake(20)
+puts armada.current
+puts armada.turn_off
+puts armada.current
+puts '---ex2---'
+puts armada.info
+puts armada.spray_paint('Black')
+puts armada.info
+
+# Output
+# ---ex 1---
+# You accelerate 75 mph.
+# You are now going 75 mph
+# You accelerate 10 mph.
+# You are now going 85 mph
+# You brake and decelerate 55 mph.
+# You are now going 30 mph
+# You brake and decelerate 20 mph.
+# You are now going 10 mph
+# You have just turned off your car.
+# You are now going 0 mph
+# ---ex2---
+# Your car is a Silver 2019 Nissan Armada
+# Your new Black paint job looks great!
+# Your car is a Black 2019 Nissan Armada
+```
+
 
 ## Classes and Objects II ## 
 
