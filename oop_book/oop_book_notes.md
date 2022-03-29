@@ -1,4 +1,4 @@
-# OOP Book Notes
+# OOP Book Notes #
 
 - [The Object Model](#the-object-model)
   - [Classes Define Objects](#classes-define-objects)
@@ -226,11 +226,42 @@ sparky = GoodDog.new("Sparky")
 
 Here, the string "Sparky" is being passed from the `new` method through the `initialize` method and is assigned to the local variable `name`. Within the constructor (i.e., the `initialize` method), we then set teh instance variable `@name` to `name`, which results in assigning the string "Sparky" to the `@name` instance variable.
 
-Instance variable are responsible for keeping track of information about the *state* of an object. Above, the name fo the `sparky` object is the string "Sparky". This state for the object is tracked in the instance variable, `@name`. We could create another `GoodDog` object with `fido = GoodDog.new('Fido')`, then the `@name` instance variable for the fido object would contain the string "Fido"
+Instance variable are responsible for keeping track of information about the *state* of an object. Above, the name of the `sparky` object is the string "Sparky". This state for the object is tracked in the instance variable, `@name`. We could create another `GoodDog` object with `fido = GoodDog.new('Fido')`, then the `@name` instance variable for the fido object would contain the string "Fido"
 
 Every object's state is unique, and instance variables are how we keep track.
 
 ### Instance Methods ###
+
+```ruby 
+class GoodDog
+  def initialize(name)
+    @name = name
+  end
+  
+  def speak
+    "Arf!"
+  end
+end
+
+sparky = GoodDog.new("Sparky")
+puts sparky.speak           # => Arf!
+
+fido = GoodDog.new("Fido")
+puts fido.speak             # => Arf!
+```
+
+Each of these objects perform the same `GoodDog` behaviors. All objects of the same class have the same behaviors, though they contain different states; here, the differing state is the name.
+
+If we wanted to say "Sparky says arf!", then in our instance method(which are what all methods are so far), we have to access our instance variable. We can use string interpolation to accomplish this...
+
+```ruby
+def speak
+  "#{@name} says arf!"
+end
+
+puts sparky.speak           # => "Sparky says arf!"
+puts fido.speak             # => "Fido says arf!"
+```
 
 ### Accessor Methods ###
 
