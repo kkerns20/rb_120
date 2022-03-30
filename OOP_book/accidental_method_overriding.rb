@@ -11,11 +11,15 @@ class Child < Parent
   end
 
   # Overriding method send from superclass Object
+  # Object send serves as a way to call a method by passing it a symbol 
+  # or a string which represents the method you want to call.
   def send
     puts "send from Child"
   end
 
   # Overriding method instance_of? from super class Object
+  # returns `true` if an object is an instance of a given class
+  # false otherwise
   def instance_of?
     puts "I'm a fake instance"
   end
