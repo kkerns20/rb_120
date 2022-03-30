@@ -1111,6 +1111,50 @@ puts GoodDog.ancestors
 
 ### More Modules ###
 
+**namespacing**
+: organizing similar classes under a module. Use modules to group related classes.
+  - It beomces easy for us ot recognize related classes in our code
+  - It reduces the likelihood of our classes colliding with other similarly named classes in our codebase
+
+```ruby
+module Mammal
+  class Dog
+    def speak(sound)
+      p "#{sound}"
+    end
+  end
+
+  class Cat
+    def say_name(name)
+      p "#{name}"
+    end
+  end
+end
+
+# We call classes in a module by appending the class name to the module name with two colons(::)
+buddy = Mammal::Dog.new
+kitty = Mammal::Cat.new
+buddy.speak('Arf!')           # => "Arf!"
+kitty.say_name('kitty')       # => "kitty"
+```
+The second use is using modules as a ** container** for methods, called module methods. Use modules to house other methods.
+
+```ruby
+module Mammal
+  ...
+
+  def self.some_out_of_place_method(num)
+    num ** 2
+  end
+end
+
+# We can call them directly from the module in two ways
+value = Mammal.some_out_of_place_method(4) # < Preferred way
+# OR
+value = Mammal::some_out_of_place_method(4)
+```
+
+
 ### Private, Protected, and Public ###
 
 ### Accidental Method Overriding ###
