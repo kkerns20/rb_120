@@ -990,6 +990,8 @@ bear = Bear.new("black")        # => #<Bear:0x007fb40b1e6718 @color="black">
 
 ### Mixing in Modules ###
 
+The goal is to put the right behavior (i.e. methods) in the right class so we don't need ot repeat code in multiple classes.
+
 ### Inheritance vs Modules ###
 
 ### Method Lookup Path ###
