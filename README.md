@@ -4,6 +4,10 @@ My work and notes working through Launch School's RB_120 course
 - [ ] Lesson 1: OOP Readings
   - [x] Finish OOP Book and take meticulous notes
   - [ ] Read ALL Other OO Resources
+    - [ ] [tutorialspoint](http://www.tutorialspoint.com/ruby/ruby_object_oriented.htm)
+    - [ ] [Codecademy OOP](https://www.codecademy.com/learn/learn-ruby)
+    - [ ] [ZetCode OOP: Part 1](https://zetcode.com/lang/rubytutorial/oop/)
+    - [ ] [ZetCode OOP: Part 2](https://zetcode.com/lang/rubytutorial/oop2/)
   - [ ] Take Quiz
 - [ ] Lesson 2: OOP
 - [ ] Lesson 3: More OO Ruby
