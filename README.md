@@ -2,7 +2,7 @@
 My work and notes working through Launch School's RB_120 course
 
 - [ ] Lesson 1: OOP Readings
-  - [ ] Finish OOP Book and take meticulous notes
+  - [x] Finish OOP Book and take meticulous notes
   - [ ] Read ALL Other OO Resources
   - [ ] Take Quiz
 - [ ] Lesson 2: OOP
