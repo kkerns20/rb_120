@@ -1029,6 +1029,14 @@ paws.swim                   # => NoMethodError: undefined method `swim' for #<Ca
 
 ### Inheritance vs Modules ###
 
+**interface inheritance**
+: where mixin modules come into play. The class doesn't inherit from another type, but instead inherits the interface provided by the mixin module.
+
+When to use class inheritance vs mixins:
+  - You can only subclass (class inheritance) from one class. You can mix in as many modules (interface inheritance) as you'd like.
+  - If there's an "is-a" relationship, class inheritance is usually the correct choice. If there's a "has-a" relationship, interface inheritance is generally a better choice. For example, a dog "is an" animal and it "has an" ability to swim.
+  -You cannot instantiate modules (i.e., no object can be created from a module). Modules are used only for namespacing and grouping common methods together
+
 ### Method Lookup Path ###
 
 ### More Modules ###
