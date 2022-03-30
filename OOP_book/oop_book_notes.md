@@ -992,6 +992,41 @@ bear = Bear.new("black")        # => #<Bear:0x007fb40b1e6718 @color="black">
 
 The goal is to put the right behavior (i.e. methods) in the right class so we don't need ot repeat code in multiple classes.
 
+```ruby
+module Swimmable
+  def swim
+    "I'm swimming!"
+  end
+end
+
+class Animal; end
+
+class Fish < Animal
+  include Swimmable         # mixing in Swimmable module
+end
+
+class Mammal < Animal
+end
+
+class Cat < Mammal
+end
+
+class Dog < Mammal
+  include Swimmable         # mixing in Swimmable module
+end
+
+# Now Fish and Dog objects can swim, but obejects of other classes cannot
+sparky = Dog.new
+neemo  = Fish.new
+paws   = Cat.new
+
+sparky.swim                 # => I'm swimming!
+neemo.swim                  # => I'm swimming!
+paws.swim                   # => NoMethodError: undefined method `swim' for #<Cat:0x007fc453152308>
+```
+
+>Note: A common naming convention for Ruby is to use the "able" suffix on whatever verb describes the behavior that the module is modeling. You can see this convention with our Swimmable module. Likewise, we could name a module that describes "walking" as Walkable. Not all modules are named in this manner, however, it is quite common.
+
 ### Inheritance vs Modules ###
 
 ### Method Lookup Path ###
