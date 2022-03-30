@@ -1437,5 +1437,59 @@ armada.display_age
 # This vehicle is 3 years old.
 mighty_whitey.calc_age
 # NoMethodError: undefined method `calc_age' for #<MyTruck: ...
+```
+```ruby
+=begin
+7.
+  - Create a class called Studetn with attributes name and grade
+  - Do not make the getter public
+  - Create a better_grade_than? method
+=end
 
+class Student
+  attr_accessor :name
+  attr_writer :grade
+
+  def initialize(name, grade)
+    self.name = name
+    self.grade = grade 
+  end
+
+  def better_grade_than?(other_student)
+    grade > other_student.grade
+  end
+
+  protected
+
+  attr_reader :grade
+  
+  def grade
+    @grade
+  end
+end
+
+joe = Student.new("Joe", 98)
+bob = Student.new("Bob", 79)
+
+puts 'Well done!' if joe.better_grade_than?(bob) # => "Well done!"
+puts joe.grade # => NoMethodError
+```
+```ruby
+# 8. 
+# Given the following code...
+bob = Person.new
+bob.hi
+# And the corresponding error message...
+# NoMethodError: private method `hi' called for #<Person:0x007ff61dbb79f0>
+# from (irb):8
+# from /usr/local/rvm/rubies/ruby-2.0.0-rc2/bin/irb:16:in `<main>'
+
+# What is the problem and how do you fix it?
+
+=begin
+based on the error message, it appears that we are trying
+ to access the Person#hi method that is set to private. If the 
+ method were brought above the private method call then it would be
+ accessible.
+=end
 ```
