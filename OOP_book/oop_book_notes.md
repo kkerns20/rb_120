@@ -795,14 +795,198 @@ Self is a way of being explicit about what our program is referencing and what o
 ### Exercises 3 ###
 
 ```ruby
+#exs_3_1-2.rb
+=begin
+1. Add a class method to MyCar that calculates the gas mileage of any car
+2. Override the to_s method to create a user friendly printout of an instance
+=end
 
+class MyCar
+  attr_accessor :color, :model, :current_speed
+  attr_reader :year
+
+  def initialize(y, c, m)
+    @year = y
+    @color = c 
+    @model = m 
+    @current_speed = 0
+  end
+
+  def spray_paint(color)
+    self.color = color
+    "Your new #{color} paint job looks great!"
+  end
+
+  def to_s
+    "Your car is a #{self.color}, #{self.year} #{self.model}"
+  end
+
+  def speed_up(mph)
+    self.current_speed += mph
+    "You accelerate #{mph} mph."
+  end
+
+  def brake(mph)
+    self.current_speed -= mph
+    "You brake and decelerate #{mph} mph."
+  end
+
+  def turn_off
+    self.current_speed = 0
+    "You have just turned off your car."
+  end
+
+  def current
+    "You are now going #{self.current_speed} mph"
+  end
+  # use a class method because no matter what car you have, gas mileage is
+  # calculated the same way
+  def self.gas_mileage(gas, mileage)
+    "You are getting #{mileage / gas} miles to the gallon of gas"
+  end
+end
+
+armada = MyCar.new(2019, 'Silver', 'Nissan Armada')
+whitey = MyCar.new(2016, 'White', 'Toyota Tundra')
+
+puts armada
+puts MyCar.gas_mileage(19, 240)
+puts "#{whitey}"
+puts MyCar.gas_mileage(24, 330)
+
+# 3. When we run the following code...
+
+class Person
+  attr_reader :name
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Steve")
+bob.name = "Bob"
+
+#  We get the following error...
+# test.rb:9:in `<main>': undefined method `name=' for
+  #<Person:0x007fef41838a28 @name="Steve"> (NoMethodError)
+
+#  Why and how do we fix it?
+=begin
+The class definition is solid. We create a new instance(object)
+of bob and its name attribute is assigned to "Steve".
+
+When we go to reassign that name attribute, we run into the error.
+This is because the name instance variable is set to a 'getter' method.
+We can fix it by changing line 4 to `attr_writer` (setter method) or 
+`attr_accessor` (both getter and setter method) and the code will run.
+=end
 ```
 
 ## Inheritance ##
 
+**Inheritance**
+: when a class **inherit** behavior from another class. The class that is inheriting behavior is call the subclass and the class it inherits from is called the superclass.
+
 ### Class Inheritance ###
 
+We can extrract the `speak` method to a superclass `animal` and use inheritance to make that behavior available to `GoodDog` and `Cat` classes.
+
+```ruby
+class Animal
+  def speak
+    "Hello!"
+  end
+end
+
+# the `<` symbol signifies that the GoodDog class is inheriting from the Animal class. All methods of Animal class are available to GoodDog.
+class GoodDog < Animal
+end
+# Same goes for Cat class
+class Cat < Animal
+end
+
+sparky = GoodDog.new
+paws = Cat.new
+puts sparky.speak           # => Hello!
+puts paws.speak             # => Hello!
+```
+
+If instead we added the speak method back to `GoodDog`, then Ruby will first check the object's class first for the method before it looks to the superclass. This is called **overriding**.
+
+Inheritance can be a great way to remove duplication in your code base. The acronym to follow in the Ruby community is "DRY" -- "Don't Repeat Yourself!"
+
+If you find yourself reusing the same logic over and over again, there are ways to extract that logic in one place for reuse.
+
 ### super ###
+
+```ruby
+class Animal
+  def speak
+    "Hello!"
+  end
+end
+
+class GoodDog < Animal
+  def speak
+  # We call super from within a method and the lookup path will search for a method of the same name and invoke it
+    super + " from GoodDog class"
+  end
+end
+
+sparky = GoodDog.new
+puts sparky.speak        # => "Hello! from GoodDog class"
+```
+In `GoodDog`, we override the speak method from the superclass, but we use `super` to invoke the `speak` method from the superclass and extend the funtionality by appending some text to the return value.
+
+A more common way of using `super` is with `initialize`
+```ruby
+class Animal
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+class GoodDog < Animal
+  def initialize(color)
+    super
+    @color = color
+  end
+end
+
+bruno = GoodDog.new("brown")        # => #<GoodDog:0x007fb40b1e6718 @color="brown", @name="brown">
+```
+What's interesting above is that we call `super` without any arguments; however, since we see brown assigneds to name and color for GoodDog, `super` automatically forwards the arguments that were passed to the method from with `super` is called. 
+
+If super is called with specific arguments, the specified arguments will be sent up the method lookup chain.
+
+```ruby
+class BadDog < Animal
+  def initialize(age, name)
+    super(name)
+    @age = age
+  end
+end
+
+BadDog.new(2, "bear")        # => #<BadDog:0x007fb40b2beb68 @age=2, @name="bear">
+```
+If you call `super()` exactly as shown -- with parentheses -- it calls the method in the superclass with no arguments at all.
+```ruby
+class Animal
+  def initialize
+  end
+end
+
+class Bear < Animal
+  def initialize(color)
+    super()
+    @color = color
+  end
+end
+
+bear = Bear.new("black")        # => #<Bear:0x007fb40b1e6718 @color="black">
+```
 
 ### Mixing in Modules ###
 
