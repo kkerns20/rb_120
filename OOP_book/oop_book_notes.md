@@ -1153,10 +1153,84 @@ value = Mammal.some_out_of_place_method(4) # < Preferred way
 # OR
 value = Mammal::some_out_of_place_method(4)
 ```
-
-
 ### Private, Protected, and Public ###
 
+**Method Access Control**
+Generally impletmented through the use of *access modifiers*. Their purpose is to allow or restrict access to a partricular thing. In Ruby, we're concerned about restricting access to the methods defined in a class.
+
+There are `public`, `private`, and `protected` access modifiers.
+
+**public method**
+: a method that is available to anyone who knows either the calss name or the object's name. These methods are readily available fo rthe rest of the program to use and comprise the class's *interface* (that's how other classes and object will interact with this class and its objects).
+
+**private methods**
+: methods that do work in the class but don't need to be available to the rest of the program.
+
+How do we define private methods?
+We use the `private` method call in our program and anything below it is private (unless another method, like `protected`, is called after it to negate it).
+
+```ruby
+class GoodDog
+  DOG_YEARS = 7
+
+  attr_accessor :name, :age
+
+  def initialize(n, a)
+    self.name = n
+    self.age = a
+  end
+
+  private
+
+  def human_years
+    age * DOG_YEARS
+  end
+end
+
+sparky = GoodDog.new("Sparky", 4)
+sparky.human_years
+# This will throw an exceptiong of NoMethodError
+# NoMethodError: private method `human_years' called for
+  #<GoodDog:0x007f8f431441f8 @name="Sparky", @age=4>
+
+# assume the method definition below is above the "private" method
+
+def public_disclosure
+  "#{self.name} in human years is #{human_years}"
+end
+```
+Notes that we can *not* use `self.human_years` because the `human_years` method is private (recall that `self.human_years` is equivalent to `sparky.human_years`)
+
+ In summary, private methods are not accessible outside of the class definition at all, and are only accessible from inside the class when called without `self`.
+ 
+ >As of Ruby 2.7, it is now legal to call private methods with a literal `self` as the caller. Note that this does **not** mean that we can call a private method with any other object, not even one of the same type. We can only call a private method with the current object.
+
+ Public and private methods are the most common. We can use an in-between approach for **protected** methods, which we would use the `protected` method.
+  - from inside the class, `protected` methods are accessible just like `public` methods
+  - from outside the class, `protected` methods act just like `private` methods.
+
+```ruby
+class Animal
+  def a_public_method
+    "Will this work? " + self.a_protected_method
+  end
+
+  protected
+
+  def a_protected_method
+    "Yes, I'm protected!"
+  end
+end
+
+fido = Animal.new
+# from inside the class, protected methods are accessible just like public methods.
+fido.a_public_method        # => Will this work? Yes, I'm protected!
+
+# from outside the class, protected methods act just like private methods.
+fido.a_protected_method
+  # => NoMethodError: protected method `a_protected_method' called for
+    #<Animal:0x007fb174157110>
+```
 ### Accidental Method Overriding ###
 
 ### Exercises 4
