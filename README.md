@@ -11,8 +11,10 @@ My work and notes working through Launch School's RB_120 course
     - [x] [ZetCode OOP: Part 2](https://zetcode.com/lang/rubytutorial/oop2/)
   - [x] Take Quiz - 14/17 <- silly mistakes
 - [ ] Lesson 2: OOP
-  - [ ] Classes and Objects
-  - [ ] Inheritance
+  - [x] Classes and Objects Lecture and Exercises
+  - [x] Inheritance Lecture and Exercises
+  - [ ] Accessor Methods Exercises
+    - [x] Polymorphism and Encapsulation Lecture
   - [ ] RPS
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
