@@ -58,3 +58,93 @@ Output:
   
 =end
 ```
+
+## Ruby attribute accessors
+
+`attr_reader` 
+: creates getter methods
+`attr_writer`
+:creates setter methods and instance variables
+```ruby
+class Car
+
+    attr_reader :name, :price
+    # Here we create two instance methods named name and price. Note that the attr_reader takes symbols of methods as parameters.
+    attr_writer :name, :price
+    # The attr_writer creates two setter methods named name and price and two instance variables, @name and @price.
+    def to_s
+        "#{@name}: #{@price}"
+    end
+
+end
+
+
+c1 = Car.new
+c2 = Car.new
+
+c1.name = "Porsche"
+c1.price = 23500
+# In this context, two setter methods are called to fill instance variables with some data.
+c2.name = "Volkswagen"
+c2.price = 9500
+
+puts "The #{c1.name} costs #{c1.price}"
+# Here two getter methods are called to get data from the instance variables of the c1 object.
+puts c1
+puts c2
+
+=begin
+The Porsche costs 23500
+Porsche: 23500
+Volkswagen: 9500
+=end
+```
+
+`attr_accessor`
+: creates both getter, setter methods and their instance variables
+
+```ruby
+class Car
+
+    attr_reader :name, :price
+    attr_writer :name, :price
+
+    def to_s
+        "#{@name}: #{@price}"
+    end
+
+end
+
+
+c1 = Car.new
+c2 = Car.new
+
+c1.name = "Porsche"
+c1.price = 23500
+
+c2.name = "Volkswagen"
+c2.price = 9500
+
+puts "The #{c1.name} costs #{c1.price}"
+
+puts c1
+puts c2
+```
+
+## to_s method
+
+The reason we override the `to_s` method is to provide a human-readabl description of our object.
+
+```ruby
+class Being
+
+    def to_s
+        "This is Being class"
+    end
+end
+
+b = Being.new
+puts b.to_s
+puts b
+# We create a Being class and call the to_s method twice. The first time explicitly, the second time implicitly.
+```
