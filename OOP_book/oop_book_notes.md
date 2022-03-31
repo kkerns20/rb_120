@@ -1,6 +1,8 @@
 # OOP Book Notes #
 
+- [Object Oriented Programming](#object-oriented-programming-oop)
 - [The Object Model](#the-object-model)
+  - [Relationship between Classes and Objects](#relationship-between-classes-and-objects)
   - [Classes Define Objects](#classes-define-objects)
   - [Modules](#modules)
   - [Method Lookup](#method-lookup)
@@ -20,6 +22,7 @@
   - [More About self](#more-about-self)
   - [Exercises](#exercises-3)
 - [Inheritance](#inheritance)
+  - [Inheritance Benefits](#inheritance-benefits)
   - [Class Inheritance](#class-inheritance)
   - [super](#super)
   - [Mixing in Modules](#mixing-in-modules)
@@ -30,7 +33,37 @@
   - [Accidental Method Overriding](#accidental-method-overriding)
   - [Exercises](#exercises-4)
 
+## Object Oriented Programming (OOP) ##
 
+OOP
+: a programming paradigm created to deal with problems experienced by developers when creating large, complex programs.
+
+*Object-oreinted programming (OOP)*
+: a programming paradigm that uses objects and their interactions to design applications and computer programs.
+
+The basic programming concepts in OOP are:
+  - Abstraction
+  - Polymorphism
+  - Encapsulation
+  - Inheritance
+
+*abstraction*
+: simplifying complex reality by modeling classes appropriate to the problem
+
+*polymorphism* 
+: the process of using an operator or function in differnt ways for different data input. Polymorphism is the ability of different types to respond to the same method invocation, often, but not always, in different ways. Method overriding is one way in which Ruby implements polymorphism.
+
+*encapsulation*
+: hides the implementation details of a class from other objects. Ruby accomplishes encapsulation by creating objects and exposing interfaces (i.e. methods) to interact with those objects. 
+Encapsulation hides functionality and makes it unavailable to the rest of the code base.
+
+*inheritance*
+: a way to form new classes using classes that have already been defined
+
+What led to the creation of OOP?
+  - Large, complex programs can be difficult to maintain due to dependencies throughout the program. OOP lets programmers write programs in which the different parts of the program interact, thus reducing dependencies and facilitating maintenance.
+  - Coding in a non-OO way often means writing code that is useful solely within a single context. Defining basic classes and leveraging concepts like inheritance to introduce more detailed behaviors provides a greater level of reusability and flexibility.
+  - Complex coding problems are often difficult to break down and solve in a clear and systematic way. Using OOP to model classes appropriate to the problem, and using real-world nouns to represent objects, lets programmers think at a higher level of abstraction that helps them break down and solve problems.
 
 ## The Object Model ##
 
@@ -39,7 +72,15 @@
 *classes*
 : the attributes and behaviors of its objects
 
-Classes are basic outlinbes of what an object should be made of and what it should be able to do.
+Classes are basic outlines of what an object should be made of and what it should be able to do.
+
+### Relationship between Classes and Objects ###
+
+The relationship between classes and object in Ruby are:
+  - An object *inherits* methods from its class.
+  - Classes act as *molds* or *templates* for objects.
+  - An object's class determines its *behaviors* and *attributes*.
+  - Objects are *instances* of a class.
 
 Defining a class has syntax similar to defining a method. We replace the `def` with `class` and use the CamelCase naming convention to create the name. We then use the reserved word `end` to finish the definition. Ruby file names should be `snake_case`, and reflect the class name.
 
@@ -886,6 +927,13 @@ We can fix it by changing line 4 to `attr_writer` (setter method) or
 
 **Inheritance**
 : when a class **inherit** behavior from another class. The class that is inheriting behavior is call the subclass and the class it inherits from is called the superclass.
+
+### Inheritance Benefits ###
+
+What are the benefits of inheritance in Ruby?
+  - Class inheritance lets us subclass from more than one class.
+  - Class inheritance lets us extract common behaviors from multiple classes into a super class.
+  - Class inheritance lets us model concepts that are naturally hierarchical.
 
 ### Class Inheritance ###
 

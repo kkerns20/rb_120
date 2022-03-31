@@ -1,14 +1,15 @@
-class Animal
-  def speak
-    "Hello!"
+class MeMyselfAndI
+  self
+
+  def self.me
+    p self
+  end
+
+  def myself
+    p self
   end
 end
 
-class GoodDog < Animal
-  def speak
-    super + " from GoodDog class"
-  end
-end
-
-sparky = GoodDog.new
-puts sparky.speak        # => "Hello! from GoodDog class"
+i = MeMyselfAndI.new
+MeMyselfAndI.me
+i.myself

@@ -8,7 +8,7 @@ My work and notes working through Launch School's RB_120 course
     - [x] [Codecademy OOP](https://www.codecademy.com/learn/learn-ruby)
     - [x] [ZetCode OOP: Part 1](https://zetcode.com/lang/rubytutorial/oop/)
     - [x] [ZetCode OOP: Part 2](https://zetcode.com/lang/rubytutorial/oop2/)
-  - [ ] Take Quiz
+  - [x] Take Quiz - 14/17 <- silly mistakes
 - [ ] Lesson 2: OOP
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
