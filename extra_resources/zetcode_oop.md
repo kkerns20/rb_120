@@ -148,3 +148,73 @@ puts b.to_s
 puts b
 # We create a Being class and call the to_s method twice. The first time explicitly, the second time implicitly.
 ```
+
+## Ruby operator overloading ##
+
+Operator overloading
+: a situation where different operators have different implementations depending on thier arguments
+
+```ruby
+class Circle
+
+    attr_accessor :radius
+
+    def initialize r
+        @radius = r
+    end
+
+    #  We overload the + operator in the class. We use it to add two circle objects.
+    def +(other)
+        # We define a method with a + name. The method adds the radiuses of two circle objects.
+        Circle.new @radius + other.radius
+    end
+
+    def to_s
+        "Circle with radius: #{@radius}"
+    end
+end
+
+
+c1 = Circle.new 5
+c2 = Circle.new 6
+c3 = c1 + c2
+
+puts c3
+```
+
+## Class methods ##
+
+There are three ways to create a class method in Ruby.
+```ruby
+class Wood
+    # Class methods may start with a self keyword.
+    def self.info
+       "This is a Wood class"
+    end
+end
+
+class Brick
+    # Another way is to put a method definition after the class << self construct.
+    class << self
+        def info
+           "This is a Brick class"
+        end
+    end
+end
+
+class Rock
+
+end
+# Third way is to call the method name after the class
+def Rock.info
+   "This is a Rock class"
+end
+
+
+p Wood.info
+# => "This is a Wood class"
+p Brick.info
+# => "This is a Brick class"
+p Rock.info
+# => "This is a Rock class"
+```
