@@ -15,7 +15,9 @@ My work and notes working through Launch School's RB_120 course
   - [x] Inheritance Lecture and Exercises
   - [x] Accessor Methods Exercises
     - [x] Polymorphism and Encapsulation Lecture
-  - [x] [Towards a Conceptual Model](https://medium.com/launch-school/towards-a-conceptual-model-of-object-oriented-programming-118eb971659f)
+  - [ ] Extra Readings
+    - [x] [Towards a Conceptual Model](https://medium.com/launch-school/towards-a-conceptual-model-of-object-oriented-programming-118eb971659f)
+    - [ ] [No object is an island](https://medium.com/launch-school/no-object-is-an-island-707e59ffedb4)
   - [ ] RPS
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
