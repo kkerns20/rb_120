@@ -25,6 +25,11 @@ puts banner
 |  |
 +--+
 
+Further Exploration:
+Modify this class so new will optionally let you specify a fixed banner 
+width at the time the Banner object is created. The message in the 
+banner should be centered within the banner of that width. Decide for 
+yourself how you want to handle widths that are either too narrow or too wide.
 =end
 
 class Banner
