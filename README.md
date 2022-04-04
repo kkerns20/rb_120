@@ -18,7 +18,7 @@ My work and notes working through Launch School's RB_120 course
   - [ ] Exercises
     - [x] Easy 1
     - [ ] Easy 2 
-  - [ ] RPS
+  - [ ] OO RPS
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
 - [ ] Lesson 5: Slightly Larger OO Programs
