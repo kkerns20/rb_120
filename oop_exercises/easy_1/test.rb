@@ -1,88 +1,84 @@
-=begin
-- Complete the class such that the test cases work as intended
-- Add any methods and instance variables required
-- Do not make implementation details public
-- Assume that input will always fit in the terminal window
+# Write the classes and methods needed to print the expected output
+class Pet
+  attr_reader :name, :animal
 
-# Test Cases:
-banner = Banner.new('To boldly go where no one has gone before.')
-puts banner
-+--------------------------------------------+
-|                                            |
-| To boldly go where no one has gone before. |
-|                                            |
-+--------------------------------------------+
-
-banner = Banner.new('')
-puts banner
-+--+
-|  |
-|  |
-|  |
-+--+
-
-- We have three instance methods that make up the banner shape:
-  #horizontal_rule, #empty_line, #message_line
-  - Each should return a string representation of one 'line' of the Banner obj
-- #horizontal_rule = '+' + ('-' * size of message + 2) + '+'
-- #empty_line = '|' + (' ' * size of message + 2) + '|'
-- #message_line = already defined
-- We override to_s method with an array of 'lines' and calling join with a newline
-  which will be output when we pass a Banner instance to `puts`
-
-# Further exploration:
-- Modify the class so that initializing a new object gives the option to
-  specify a fixed banner width
-  - Create an additional parameter banner_width in #initialize
-  - Assign default value to 2 + message size (fits message in banner)
-- When output, the message in the banner should be centered within the banner
-  - Change each 'line' instance method to center message on given width
-- How to handle cases where width is too narrow / message is too wide?
-=end
-
-require 'io/console'
-
-class Banner
-  ROWS, COLUMNS = IO.console.winsize
-
-  attr_accessor :message, :width
-
-  def initialize(message, width = (COLUMNS-2))
-    self.message = message
-    if message.size < width
-      @width = width
-    else
-      puts "Your message is too long for the specified width."
-    end
+  def initialize(animal, name)
+    @animal = animal
+    @name = name
   end
 
   def to_s
-    [horizontal_rule, empty_line, message_line, empty_line, horizontal_rule].join("\n")
-  end
-
-  private
-
-  def horizontal_rule
-    "+#{'-' * width}+"
-  end
-
-  def empty_line
-    "|#{' ' * width}|"
-  end
-
-  def message_line
-    "|#{message.center(width)}|"
+    "a #{animal} named #{name}"
   end
 end
 
-banner1 = Banner.new('To boldly go where no one has gone before.')
-puts banner1
-puts ''
-banner2 = Banner.new('')
-puts banner2
+class Owner
+  attr_accessor :number_of_pets
+  attr_reader :name
 
-# further exploration tests
-banner3 = Banner.new('To boldly go where no one has gone before.', 60)
-puts banner3
-puts ''
-banner4 = Banner.new('To boldly go where no one has gone before.', 40)
+  def initialize(name)
+    @name = name
+    @number_of_pets = 0
+  end
+end
+
+class Shelter
+  attr_accessor :adoptions
+
+  def initialize
+    @adoptions = Hash.new([])
+  end
+
+  def adopt(owner, pet)
+    owner.number_of_pets += 1
+    adoptions[owner] += [pet]
+  end
+
+  def print_adoptions
+    adoptions.each do |owner, pets|
+      puts "#{owner.name} has adopted the following pets:"
+      pets.each { |pet| puts pet }
+      puts ""
+    end
+  end
+end
+
+butterscotch = Pet.new('cat', 'Butterscotch')
+pudding      = Pet.new('cat', 'Pudding')
+darwin       = Pet.new('bearded dragon', 'Darwin')
+kennedy      = Pet.new('dog', 'Kennedy')
+sweetie      = Pet.new('parakeet', 'Sweetie Pie')
+molly        = Pet.new('dog', 'Molly')
+chester      = Pet.new('fish', 'Chester')
+
+phanson = Owner.new('P Hanson')
+bholmes = Owner.new('B Holmes')
+
+shelter = Shelter.new
+shelter.adopt(phanson, butterscotch)
+shelter.adopt(phanson, pudding)
+shelter.adopt(phanson, darwin)
+shelter.adopt(bholmes, kennedy)
+shelter.adopt(bholmes, sweetie)
+shelter.adopt(bholmes, molly)
+shelter.adopt(bholmes, chester)
+shelter.print_adoptions
+puts "#{phanson.name} has #{phanson.number_of_pets} adopted pets."
+puts "#{bholmes.name} has #{bholmes.number_of_pets} adopted pets."
+
+=begin
+Expected Output:
+=> P Hanson has adopted the following pets:
+=> a cat named Butterscotch
+=> a cat named Pudding
+=> a bearded dragon named Darwin
+
+=> B Holmes has adopted the following pets:
+=> a dog named Molly
+=> a parakeet named Sweetie Pie
+=> a dog named Kennedy
+=> a fish named Chester
+
+=> P Hanson has 3 adopted pets.
+=> B Holmes has 4 adopted pets.
+=end
