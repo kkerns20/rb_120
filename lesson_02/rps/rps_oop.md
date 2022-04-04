@@ -50,3 +50,6 @@ This code demonstrates polymorphism because `Player` and `Computer` respond to t
 
 > what is the primary drawback of this new design?
 More classes to keep track of.
+
+## Design Choice 2
+
