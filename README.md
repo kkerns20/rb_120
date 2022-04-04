@@ -15,9 +15,9 @@ My work and notes working through Launch School's RB_120 course
     - [x] [Towards a Conceptual Model](https://medium.com/launch-school/towards-a-conceptual-model-of-object-oriented-programming-118eb971659f)
     - [x] [No object is an island](https://medium.com/launch-school/no-object-is-an-island-707e59ffedb4)
   - [x] Modules
-  - [ ] Exercises
+  - [x] Exercises
     - [x] Easy 1
-    - [ ] Easy 2 
+    - [x] Easy 2 
   - [ ] OO RPS
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
