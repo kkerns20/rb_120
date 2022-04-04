@@ -16,7 +16,7 @@ My work and notes working through Launch School's RB_120 course
     - [x] [No object is an island](https://medium.com/launch-school/no-object-is-an-island-707e59ffedb4)
   - [x] Modules
   - [ ] Exercises
-    - [ ] Easy 1
+    - [x] Easy 1
     - [ ] Easy 2 
   - [ ] RPS
 - [ ] Lesson 3: More OO Ruby
