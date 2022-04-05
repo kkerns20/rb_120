@@ -53,3 +53,17 @@ More classes to keep track of.
 
 ## Design Choice 2
 
+The `case` statement does not belong in the `display_winner` method and should be extracted into its own method.
+
+Turn instance variable `move` into a custom object so that its possible values (`'rock'`, `'paper'`, `'scissors'`) can be compared with each other using comparison operators.
+
+Create predicate methods `rock?`, `paper?`, `scissors?` to compare move values.
+
+Create `to_s` method to return a string representation of `Move` objects.
+
+> what is the primary improvement of this new design?
+Creating a `Move` class makes the logic of comparing moves more readable. It would be easier to add other types of moves.
+
+> what is the primary drawback of this new design?
+The amount of code increases. Since `Move` objects are now collaborator objects of `Human` and `Computer`, this increases the level of indirection and potentially complexity.
+
