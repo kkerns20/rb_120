@@ -21,7 +21,7 @@ My work and notes working through Launch School's RB_120 course
   - [ ] OO RPS
     - [x] Walkthrough
     - [x] Design 1
-    - [ ] Design 2
+    - [x] Design 2
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
 - [ ] Lesson 5: Slightly Larger OO Programs

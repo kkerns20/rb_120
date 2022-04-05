@@ -19,29 +19,15 @@ class Move
   end
 
   def >(other_move)
-    if rock?
-      return true if other_move.scissors?
-      return false
-    elsif paper?
-      return true if other_move.rock?
-      return false
-    elsif scissors?
-      return true if other_move.paper?
-      return false
-    end
+    (rock? && other_move.scissors?) ||
+      (paper? && other_move.rock?) ||
+      (scissors? && other_move.paper?)
   end
-  
+
   def <(other_move)
-    if rock?
-      return true if other_move.paper?
-      return false
-    elsif paper?
-      return true if other_move.scissors?
-      return false
-    elsif scissors?
-      return true if other_move.rock?
-      return false
-    end
+    (rock? && other_move.paper?) ||
+      (paper? && other_move.scissors?) ||
+      (scissors? && other_move.rock?)
   end
 
   def to_s
@@ -79,14 +65,13 @@ class Human < Player
     end
     self.move = Move.new(choice)
   end
-
 end
 
 class Computer < Player
   def set_name
     self.name = ['R2D2', 'Hal', 'Chappie', 'Sonny', 'Android 17'].sample
   end
-  
+
   def choose
     self.move = Move.new(Move::VALUES.sample)
   end
@@ -156,7 +141,7 @@ class RPSGame
       display_winner
       break unless play_again?
     end
-      display_goodbye_message
+    display_goodbye_message
   end
 end
 
