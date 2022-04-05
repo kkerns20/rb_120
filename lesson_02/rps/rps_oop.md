@@ -81,7 +81,7 @@ Verbs:
 
 Score should be checked after 'display_winner' (round_winner) to determine if there is a game winner. The play again check should be moved out of the loop, probably into another surrounding loop
 
-Make Score a new class in order to spearatee its logic from the `RPSGame` class. Score belongs to the game itself instead of an being an inherent attribute of Player.
+- [x] Make Score a new class in order to spearatee its logic from the `RPSGame` class. Score belongs to the game itself instead of an being an inherent attribute of Player.
   - Score data can be stored in instance variables `:human` and `:computer`, intitialize at `0` at the start of the game.There should be a method to `reset` the scores to zero if the player wishers to start a new game.
   - `increment(player)` is performed after each round, to update the running score.
   - `game_over?` returns a boolean indicating if either player has reached the wining score.
@@ -89,7 +89,7 @@ Make Score a new class in order to spearatee its logic from the `RPSGame` class.
   - Override `to_s` to return a string that shows both scores.
   - Do not expose accessors for the scores; keep them in `private`
 
-Modifications to the `RPSGame` class:
+- [x] Modifications to the `RPSGame` class:
   - Update the wecome message wwith the number of points needed ot win.
   - Add a method `display_score` to print the current score.
   - Add a method `update_score` to increment the score if it is not a tie.
@@ -101,7 +101,7 @@ Modifications to the `RPSGame` class:
 
 This is a variation on the normal Rock Paper Scissors game by adding two more options - Lizard and Spock.
 
-Added more logic into `Move` class
+- [x] Added more logic into `Move` class
 
 ## Add a class for each move
 
