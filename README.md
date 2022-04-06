@@ -6,7 +6,7 @@ My work and notes working through Launch School's RB_120 course
   - [x] Finish OOP Book and take meticulous [notes](./OOP_book/oop_book_notes.md)
   - [x] [Read ALL Other OO Resources](./extra_resources/)
   - [x] Take Quiz - 14/17 <- silly mistakes
-- [ ] Lesson 2: OOP
+- [x] Lesson 2: OOP
   - [x] Classes and Objects Lecture and Exercises
   - [x] Inheritance Lecture and Exercises
   - [x] Polymorphism and Encapsulation Lecture
@@ -18,10 +18,11 @@ My work and notes working through Launch School's RB_120 course
   - [x] Exercises
     - [x] Easy 1
     - [x] Easy 2 
-  - [ ] OO RPS
+  - [x] OO RPS
     - [x] Walkthrough
     - [x] Design 1
     - [x] Design 2
+  - [x] Quiz <- 10/14
 - [ ] Lesson 3: More OO Ruby
 - [ ] Lesson 4: OO Practice Problems
 - [ ] Lesson 5: Slightly Larger OO Programs
