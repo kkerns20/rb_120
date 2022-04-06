@@ -1,5 +1,7 @@
 require 'io/console'
 
+# BUGGED!
+
 module Printable
   def clear_screen
     system("clear") || system("cls")
