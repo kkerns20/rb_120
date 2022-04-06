@@ -44,6 +44,14 @@ class Team
     temp_team.members = members + other_team.members
     temp_team
   end
+
+  def [](idx)
+    members[idx]
+  end
+
+  def []=(idx, obj)
+    members[idx] = obj
+  end
 end
 
 # cowboys = Team.new("Dallas Cowboys")
@@ -67,3 +75,16 @@ niners << Person.new("Deion Sanders", 47)
 
 dream_team = niners + cowboys # without rewriting the Team#+ method, we would have an array, not a new Team object
 puts dream_team.inspect                     # => #<Team:0x007fac3b9eb878 @name="Temporary Team" ...
+
+my_array = %w(first second third fourth)    # ["first", "second", "third", "fourth"]
+
+# element reference
+my_array[2]                 # => "third"
+my_array.[](2)              # => "third"
+
+# element assignment
+my_array[4] = "fifth"
+puts my_array.inspect       # => ["first", "second", "third", "fourth", "fifth"]
+
+my_array.[]=(5, "sixth")
+puts my_array.inspect       # => ["first", "second", "third", "fourth", "fifth", "sixth"]
