@@ -17,14 +17,19 @@ My work and notes working through Launch School's RB_120 course
   - [x] Modules
   - [x] Exercises
     - [x] Easy 1
-    - [x] Easy 2 
+    - [x] Easy 2
   - [x] OO RPS
     - [x] Walkthrough
     - [x] Design 1
     - [x] Design 2
   - [x] Quiz <- 10/14
-- [ ] Lesson 3: More OO Ruby
+- [x] Lesson 3: More OO Ruby --> focus here on 2nd pass
 - [ ] Lesson 4: OO Practice Problems
+  - [ ] Easy 1
+  - [ ] Easy 2
+  - [ ] Easy 3
+  - [ ] Medium 1
+  - [ ] Hard 1
 - [ ] Lesson 5: Slightly Larger OO Programs
 - [ ] Review OO Material and find assessment docs to practice with
 - [ ] Take RB_109 Assessments
