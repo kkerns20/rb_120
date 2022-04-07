@@ -7,15 +7,19 @@ class KrispyKreme
   end
 
   def to_s
-    if filling_type && glazing
-      "#{filling_type} with #{glazing}"
-    elsif filling_type && !glazing
-      "#{filling_type}"
-    elsif !filling_type && glazing
-      "Plain with #{glazing}"
-    else
-      "Plain"
-    end
+    # if filling_type && glazing
+    #   "#{filling_type} with #{glazing}"
+    # elsif filling_type && !glazing
+    #   "#{filling_type}"
+    # elsif !filling_type && glazing
+    #   "Plain with #{glazing}"
+    # else
+    #   "Plain"
+    # end
+    # LS Solution
+    filling_string = @filling_type ? @filling_type : "Plain"
+    glazing_string = @glazing ? " with #{@glazing}" : ''
+    filling_string + glazing_string
   end
 end
 
