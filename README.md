@@ -25,8 +25,8 @@ My work and notes working through Launch School's RB_120 course
   - [x] Quiz <- 10/14
 - [x] Lesson 3: More OO Ruby --> focus here on 2nd pass
 - [ ] Lesson 4: OO Practice Problems
-  - [ ] Easy 1
-  - [ ] Easy 2
+  - [x] Easy 1
+  - [x] Easy 2
   - [ ] Easy 3
   - [ ] Medium 1
   - [ ] Hard 1
