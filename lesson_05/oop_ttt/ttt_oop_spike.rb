@@ -1,15 +1,23 @@
 class Board
+  INITIAL_MARKER = ' '
+
   def initialize
-    # we need some way to model the 3x3 grid. Maybe "squares"?
-    # what data structure should we use?
-    # - array/hash of Square objects?
-    # - array/hash of strings or integers?
+    @squares = {}
+    (1..9).each { |key| @squares[key] = Square.new(INITIAL_MARKER) }
+  end
+
+  def get_square_at(key)
+    @squares[key]
   end
 end
 
 class Square
-  def initialize
-    # maybe a "status" to keep track of this square's mark?
+  def initialize(marker)
+    @marker = marker
+  end
+
+  def to_s
+    @marker
   end
 end
 
@@ -29,6 +37,12 @@ end
 
 # Game Orchestration Engine
 class TTTGame
+  attr_reader :board
+  
+  def initialize
+    @board = Board.new
+  end
+
   def display_welcome_message
     puts "Welcome to Tic Tac Toe!"
     puts ''
@@ -41,15 +55,15 @@ class TTTGame
   def display_board
     puts ""
     puts "     |     |"
-    puts "     |     |"
-    puts "     |     |"
-    puts "-----+-----+-----"
-    puts "     |     |"
-    puts "     |     |"
+    puts "  #{board.get_square_at(1)}  |  #{board.get_square_at(2)}  |  #{board.get_square_at(3)}"
     puts "     |     |"
     puts "-----+-----+-----"
     puts "     |     |"
+    puts "  #{board.get_square_at(4)}  |  #{board.get_square_at(5)}  |  #{board.get_square_at(6)}"
     puts "     |     |"
+    puts "-----+-----+-----"
+    puts "     |     |"
+    puts "  #{board.get_square_at(7)}  |  #{board.get_square_at(8)}  |  #{board.get_square_at(9)}"
     puts "     |     |"
     puts ''
   end
