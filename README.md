@@ -24,13 +24,19 @@ My work and notes working through Launch School's RB_120 course
     - [x] Design 2
   - [x] Quiz <- 10/14
 - [x] Lesson 3: More OO Ruby --> focus here on 2nd pass
-- [ ] Lesson 4: OO Practice Problems
+- [x] Lesson 4: OO Practice Problems
   - [x] Easy 1
   - [x] Easy 2
   - [x] Easy 3
   - [x] Medium 1
-  - [ ] Hard 1
+  - [x] Hard 1
 - [ ] Lesson 5: Slightly Larger OO Programs
+  - [ ] OO Tic Tac Toe
+    - [ ] Walkthrough and Improvments
+    = [ ] OO TTT
+  - [ ] OO Twenty-One
+    - [ ] Walkthrough and Improvments
+    = [ ] OO 21
 - [ ] Review OO Material and find assessment docs to practice with
 - [ ] Take RB_109 Assessments
   - [ ] Pass the Written
