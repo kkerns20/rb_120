@@ -28,7 +28,7 @@ My work and notes working through Launch School's RB_120 course
   - [x] Easy 1
   - [x] Easy 2
   - [x] Easy 3
-  - [ ] Medium 1
+  - [x] Medium 1
   - [ ] Hard 1
 - [ ] Lesson 5: Slightly Larger OO Programs
 - [ ] Review OO Material and find assessment docs to practice with
