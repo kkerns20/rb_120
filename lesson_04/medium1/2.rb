@@ -28,7 +28,6 @@ change attr_reader to attr_accessor and then use the setter method with:
 
 OR
 
-reference teh instance variable directly within the update_quantity method:
+reference the instance variable directly within the update_quantity method:
 `@quantity = updated_count if updated_count >= 0`
-
 =end
