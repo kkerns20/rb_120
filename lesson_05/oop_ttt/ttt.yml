@@ -1,0 +1,19 @@
+:welcome:               Welcome to Tic Tac Toe!
+:goal:                  Your goal is to beat the computer.
+:way_to_win:            Get three markers in a row, column, or diagonal.
+:end_goal:              The first play to win 2 games wins the tournament.
+:press_any_key:         Press any key to continue...
+:invalid:               Please enter a valid selection.
+:thank_you:             Thank you for playing Tic Tac Toe!!
+:lets_go:               Let's play again!
+:quote:                 "Don't cry because it's over, smile because it happened! \n
+                        -Dr. Seuss"
+:choose_marker:         "Choose any letter (A-Z, a-z) as your marker"
+:choose_human_name:     What is your gamertag for Tic Tac Toe?
+:invaid_number:         Invalid input. Choose 1, 2, or 3.
+:you_won_match:         You won the match!
+:computer_won_match:    Android 17 won the match...
+:tie:                   It's a tie!
+:you_won_round:         You won this round!
+:computer_won_round:    Android 17 won this round...
+:keep_playing:          Would you like to keep playing? Enter 'y' or 'n'

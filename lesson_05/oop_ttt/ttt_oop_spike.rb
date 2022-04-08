@@ -34,6 +34,37 @@ class Board
     nil
   end
 
+  def line_almost_full?(line, marker)
+    line_markers = squares.values_at(*line).map(&:marker)
+    line_markers.count(marker) == 2 &&
+      line_markers.count(Square::INITIAL_MARKER) == 1
+  end
+
+  def find_square_to_complete_line(marker)
+    square = nil
+    WINNING_LINES.each do |line|
+      if line_almost_full?(line, marker)
+        square = line.select do |sq|
+          squares[sq].marker == Square::INITIAL_MARKER
+        end.first
+        break
+      end
+    end
+    square
+  end
+
+  def find_at_risk_square(opponent_marker)
+    find_square_to_complete_line(opponent_marker)
+  end
+
+  def find_winning_square(own_marker)
+    find_square_to_complete_line(own_marker)
+  end
+
+  def center_square_if_available
+    unmarked_keys.include?(5) ? 5 : nil
+  end
+
   def reset
     (1..9).each { |key| @squares[key] = Square.new }
   end
@@ -57,6 +88,8 @@ class Board
   # rubocop:enable Metrics/MethodLength
 
   private
+
+  attr_reader :squares
 
   def three_identical_markers?(squares)
     markers = squares.select(&:marked?).collect(&:marker)
