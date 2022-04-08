@@ -32,8 +32,8 @@ My work and notes working through Launch School's RB_120 course
   - [x] Hard 1
 - [ ] Lesson 5: Slightly Larger OO Programs
   - [ ] OO Tic Tac Toe
-    - [ ] Walkthrough and Improvments
-    - [ ] OO TTT
+    - [x] Walkthrough and Improvments
+    - [ ] OO TTT Bonus Features
   - [ ] OO Twenty-One
     - [ ] Walkthrough and Improvments
     - [ ] OO 21
