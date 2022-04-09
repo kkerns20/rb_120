@@ -2,7 +2,7 @@ require 'io/console'
 require 'pry-byebug'
 
 module Printable
-  SUIT_SYMBOLS = "\u2663 \u2660 \u2665 \u2666"
+  SUIT_SYMBOLS = "\u2660 \u2663 \u2665 \u2666"
   @@rows, @@columns = IO.console.winsize
 
   def clear
@@ -103,7 +103,7 @@ class Card
   end
 
   def face_card?
-    %w(J W K).include?(rank)
+    %w(J Q K).include?(rank)
   end
 
   def suit_symbol
@@ -131,7 +131,7 @@ class Gambler
 
   def hit(card)
     hand << card
-    calulate_total
+    calculate_total
   end
 
   def busted?
@@ -142,6 +142,15 @@ class Gambler
     self.total = 0
     hand.each { |card| self.total += card.points }
     correct_for_aces
+  end
+
+  def display_hand
+    print_centered "======> #{name} <======"
+    hand.each(&:display_visible)
+    Card.display_full_hand
+    print_empty_line
+    print_centered "Hand Total: #{total}"
+    print_empty_line
   end
 
   private
@@ -157,14 +166,14 @@ end
 
 class Dealer < Gambler
   DEALER_STAYS = 17
-  DEALERS = ['Android 17', 'Terminator', 'R2-D2', 'BB8', 'David 8']
+  DEALERS = ['Android 17', 'Baymax', 'R2-D2', 'BB-8', 'David-8']
 
   def set_name
     self.name = DEALERS.sample
   end
 
-  def display_hand
-    print_centered "===> #{name} <==="
+  def display_hidden_hand
+    print_centered "======> #{name} <======"
     hand.each_with_index do |card, index|
       if index == 0
         card.display_hidden
@@ -197,14 +206,6 @@ class Player < Gambler
       break if !name.empty?
       print_centered "Please enter an ID."
     end
-  end
-
-  def display_hand
-    print_centered "===> #{name} <==="
-    hand.each(&:display_visible)
-    Card.display_full_hand
-    print_empty_line
-    print_centered "Hand Total: #{total}"
   end
 end
 
@@ -262,6 +263,7 @@ class TwentyOneGame
     print_centered SUIT_SYMBOLS
     print_empty_line
     print_centered "Hit enter to begin. Good luck!"
+    gets
   end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
@@ -270,8 +272,9 @@ class TwentyOneGame
     loop do
       clear
       deal_initial_cards
-      show_cards
+      show_hidden_cards
       turn_cycle
+      show_all_cards
       update_score
       show_result
       break if someone_won_tourney?
@@ -290,14 +293,26 @@ class TwentyOneGame
     player.calculate_total
   end
 
-  def show_cards
+  def show_hidden_cards
     print_centered "===> SCORE <==="
     print_empty_line
-    print_centered "#{player.name} - #{player.score}" \
-                   "#{dealer.name} - #{dealer.score}"
+    print_centered "#{player.name} - #{player.score} " \
+      "| #{dealer.name} - #{dealer.score}"
+    print_empty_line
+    dealer.display_hidden_hand
+    player.display_hand
+    print_empty_line
+  end
+
+  def show_all_cards
+    print_centered "===> SCORE <==="
+    print_empty_line
+    print_centered "#{player.name} - #{player.score} " \
+      "| #{dealer.name} - #{dealer.score}"
     print_empty_line
     dealer.display_hand
     player.display_hand
+    print_empty_line
   end
 
   def turn_cycle
@@ -313,16 +328,17 @@ class TwentyOneGame
       when 's' then break
       end
       clear
-      show_cards
+      show_hidden_cards
     end
     print_centered "BUST!!!" if player.busted?
   end
   
   def dealer_turn
     while dealer.total < Dealer::DEALER_STAYS
+      sleep 0.5
       dealer.hit(deck.deal_single_card!)
       clear
-      show_cards
+      show_all_cards
       sleep 1
       if dealer.busted?
         print_centered "#{dealer.name.upcase} BUSTS!!!"
@@ -362,16 +378,16 @@ class TwentyOneGame
       show_stay_result
     end
     print_empty_line
-    print_centered "The score is now: #{player.name} - #{dealer.name} " \
-        "#{dealer.name} - #{dealer.score}"
+    print_centered "The score is now: #{player.name} - #{player.score} " \
+      "| #{dealer.name} - #{dealer.score}"
     print_empty_line
   end
 
   def show_stay_result
     print_centered "Both players have stayed."
     print_empty_line
-    print_centered "#{player.name} - #{player.score}" \
-                   "#{dealer.name} - #{dealer.score}"
+    print_centered "#{player.name} has #{player.total} " \
+      "| #{dealer.name} has #{dealer.total}"
     display_winner
   end
 
@@ -385,9 +401,9 @@ class TwentyOneGame
 
   def display_winner
     case find_winner
-    when player then print_centered "#{dealer.name} wins!"
-    when dealer then print_centered "#{player.name} wins!"
-    else                            "It's a tie!"
+    when player then print_centered "#{player.name} wins!"
+    when dealer then print_centered "#{dealer.name} wins!"
+    else             print_centered "It's a tie!"
     end
   end
 
