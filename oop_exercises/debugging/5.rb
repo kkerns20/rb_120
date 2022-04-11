@@ -15,6 +15,11 @@ class File
     target_file
   end
 
+  # this would allow us to just use #{name}.#{format} within `to_s`
+  def format
+    self.class::FORMAT
+  end
+
   def to_s
     # with a defined constant,it can only be called with class::FORMAT
     # so we needed to include that
