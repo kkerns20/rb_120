@@ -42,28 +42,30 @@ OOP
 : a programming paradigm that uses objects and their interactions to design applications and computer programs.
 
 The basic programming concepts in OOP are:
-  - Abstraction
-  - Polymorphism
-  - Encapsulation
-  - Inheritance
+
+- Abstraction
+- Polymorphism
+- Encapsulation
+- Inheritance
 
 *abstraction*
 : simplifying complex reality by modeling classes appropriate to the problem
 
-*polymorphism* 
+*polymorphism*
 : the process of using an operator or function in differnt ways for different data input. Polymorphism is the ability of different types to respond to the same method invocation, often, but not always, in different ways. Method overriding is one way in which Ruby implements polymorphism.
 
 *encapsulation*
-: hides the implementation details of a class from other objects. Ruby accomplishes encapsulation by creating objects and exposing interfaces (i.e. methods) to interact with those objects. 
+: hides the implementation details of a class from other objects. Ruby accomplishes encapsulation by creating objects and exposing interfaces (i.e. methods) to interact with those objects.
 Encapsulation hides functionality and makes it unavailable to the rest of the code base.
 
 *inheritance*
 : a way to form new classes using classes that have already been defined
 
 What led to the creation of OOP?
-  - Large, complex programs can be difficult to maintain due to dependencies throughout the program. OOP lets programmers write programs in which the different parts of the program interact, thus reducing dependencies and facilitating maintenance.
-  - Coding in a non-OO way often means writing code that is useful solely within a single context. Defining basic classes and leveraging concepts like inheritance to introduce more detailed behaviors provides a greater level of reusability and flexibility.
-  - Complex coding problems are often difficult to break down and solve in a clear and systematic way. Using OOP to model classes appropriate to the problem, and using real-world nouns to represent objects, lets programmers think at a higher level of abstraction that helps them break down and solve problems.
+
+- Large, complex programs can be difficult to maintain due to dependencies throughout the program. OOP lets programmers write programs in which the different parts of the program interact, thus reducing dependencies and facilitating maintenance.
+- Coding in a non-OO way often means writing code that is useful solely within a single context. Defining basic classes and leveraging concepts like inheritance to introduce more detailed behaviors provides a greater level of reusability and flexibility.
+- Complex coding problems are often difficult to break down and solve in a clear and systematic way. Using OOP to model classes appropriate to the problem, and using real-world nouns to represent objects, lets programmers think at a higher level of abstraction that helps them break down and solve problems.
 
 ## The Object Model ##
 
@@ -77,10 +79,11 @@ Classes are basic outlines of what an object should be made of and what it shoul
 ### Relationship between Classes and Objects ###
 
 The relationship between classes and object in Ruby are:
-  - An object *inherits* methods from its class.
-  - Classes act as *molds* or *templates* for objects.
-  - An object's class determines its *behaviors* and *attributes*.
-  - Objects are *instances* of a class.
+
+- An object *inherits* methods from its class.
+- Classes act as *molds* or *templates* for objects.
+- An object's class determines its *behaviors* and *attributes*.
+- Objects are *instances* of a class.
 
 Defining a class has syntax similar to defining a method. We replace the `def` with `class` and use the CamelCase naming convention to create the name. We then use the reserved word `end` to finish the definition. Ruby file names should be `snake_case`, and reflect the class name.
 
@@ -91,6 +94,7 @@ end
 
 sparky = GoodDog.new
 ```
+
 In the above example, we created an instance of our `GoodDog` class and stored it in the variable `sparky`. We cna now say that `sparky` is an object or instance of class `GoodDog`. This entire workflow of creating a new object or instance from a class is called **instantiation**, so we can also say that we've instantiated an object called `sparky` from the class `GoodDog`
 
 A visual for what we're doing...
@@ -180,18 +184,18 @@ This means that since the `speak` method is not defined in the `GoodDog` class, 
 
 ### Exercises 1 ###
 
-1. How do we create an object in Ruby? Give an example of the creation of an object.
+How do we create an object in Ruby? Give an example of the creation of an object.
 
-> We create an object by defining a class and instantiating it by using the `.new` method to create an instance, also known as an object.
+  > We create an object by defining a class and instantiating it by using the `.new` method to create an instance, also known as an object.
 
-```ruby
-class Creation
-end
+  ```ruby
+  class Creation
+  end
 
-the_world = Creation.new
+  the_world = Creation.new
 ```
 
-2. What is a module? What is its purpose? How do we use them with our classes? Create a module for the clsas you created in exercise 1 and include it properly
+What is a module? What is its purpose? How do we use them with our classes? Create a module for the clsas you created in exercise 1 and include it properly
 
 > A module is a collection of behaviors that are usable in other classes via **mixins**. It allows us to use behaviors that can be used by multiple differenct classes. Any class could have access to the trees instance method if they mixed-in Foliage through the `include` method within their class definition
 
@@ -210,7 +214,7 @@ the_world = Creation.new
 the_world.trees
 ```
 
-## Classes and Objects I ## 
+## Classes and Objects I ##
 
 ### States and Behaviors ###
 
@@ -273,7 +277,7 @@ Every object's state is unique, and instance variables are how we keep track.
 
 ### Instance Methods ###
 
-```ruby 
+```ruby
 class GoodDog
   def initialize(name)
     @name = name
@@ -399,7 +403,7 @@ puts sparky.name            # => "Spartacus"
 
 *Setter* methods will always return the value that is passed in as an argument, regardless of what happens inside of the method. It'll just ignore the code.
 
-```ruby 
+```ruby
 class Dog
   def name=(n)
     @name = n   
@@ -482,9 +486,11 @@ end
 Now we can use the `ssn` instance method throughout our class to retrieve the social security number.
 
 If we added two more states to track to the `GoodDog` class called "height" and "weight":
+
 ```ruby
 attr_accessor :name, :height, :weight
 ```
+
 This one line of code gives us six getter/setter instance methods: `name`, `name=`, `height`, `height=`, `weight`, `weight=`. It also gives us three instance variables: `@name`, `@height`, and `@weight`. Now we can create a new method that allows us to change several states at once called `change_info(n, h, w)`. Implem`ented below
 
 ```ruby
@@ -512,7 +518,7 @@ class GoodDog
   end
 
   def change_info(n, h, w)
-    @nam`e = n
+    @name = n
     @height = h
     @weight = w
   end
@@ -524,6 +530,7 @@ end
 ```
 
 Use the `change_info` method like this`:
+
 ```ruby
 sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
 puts sparky.info      # => Sparky weighs 10 lbs and is 12 inches tall.
@@ -536,7 +543,7 @@ Just like when we replaced accessing the instance variable directly, we'd want t
 
 ```ruby
 def change_info(n, h, w)
-  name =` n
+  name = n
   height = h
   weight = w
 end
@@ -548,7 +555,8 @@ This didn't change sparky's information though...
 
 Ruby thought we were initializing local variables. It turns out that instead of calling the setter methods `name=`, `weight=`, or `height=`, we actually created three new local variables, which isn't what we wanted.
 
-To disambiguate from creating a local variable, we need to use `self.name=` to let Ruby know that we're calling a method. `change_info should be updated` to 
+To disambiguate from creating a local variable, we need to use `self.name=` to let Ruby know that we're calling a method. `change_info should be updated` to
+
 ```ruby
 def change_info(n, h, w)
   self.name = n
@@ -556,7 +564,9 @@ def change_info(n, h, w)
   self.weight = w
 end
 ```
+
 This tells Ruby that we're calling a setter method, not creating a local variable. For consistency, adopt this syntax for the getter methods as well
+
 ```ruby
 def info
   "#{self.name} weighs #{self.weight} and is #{self.height} tall."
@@ -669,7 +679,7 @@ puts armada.info
 # Your car is a Black 2019 Nissan Armada
 ```
 
-## Classes and Objects II ## 
+## Classes and Objects II ##
 
 ### Class Methods ###
 
@@ -677,6 +687,7 @@ puts armada.info
 : methods we can call directly on the class itself, without having to instantiate any objects.
 
 When defining a class method, prepend the method name with the reserved word `self.`
+
 ```ruby
 # ... rest of code ommitted for brevity
 
@@ -686,6 +697,7 @@ end
 ```
 
 We can then call the class method by using the class name followed by the method name without having to instantiate any objects.
+
 ```ruby
 GoodDog.what_am_i          # => I'm a GoodDog class!
 ```
@@ -788,6 +800,7 @@ Another important attribute of the `to_s` method is that it's automatically call
 ### More About self ###
 
 So far, we have two clear uses for `self`:
+
   1. Use `self` when calling setter methods from within the class. This was necessary in order for the `change_info` method to work p`roperly. We used it for Ruby to disambiguate between initializing a local variable and calling a setter method.
   2. Use `self` for class method definitions
 
@@ -931,9 +944,10 @@ We can fix it by changing line 4 to `attr_writer` (setter method) or
 ### Inheritance Benefits ###
 
 What are the benefits of inheritance in Ruby?
-  - Class inheritance lets us subclass from more than one class.
-  - Class inheritance lets us extract common behaviors from multiple classes into a super class.
-  - Class inheritance lets us model concepts that are naturally hierarchical.
+
+- Class inheritance lets us subclass from more than one class.
+- Class inheritance lets us extract common behaviors from multiple classes into a super class.
+- Class inheritance lets us model concepts that are naturally hierarchical.
 
 ### Class Inheritance ###
 
@@ -984,9 +998,11 @@ end
 sparky = GoodDog.new
 puts sparky.speak        # => "Hello! from GoodDog class"
 ```
+
 In `GoodDog`, we override the speak method from the superclass, but we use `super` to invoke the `speak` method from the superclass and extend the funtionality by appending some text to the return value.
 
 A more common way of using `super` is with `initialize`
+
 ```ruby
 class Animal
   attr_accessor :name
@@ -1005,7 +1021,8 @@ end
 
 bruno = GoodDog.new("brown")        # => #<GoodDog:0x007fb40b1e6718 @color="brown", @name="brown">
 ```
-What's interesting above is that we call `super` without any arguments; however, since we see brown assigneds to name and color for GoodDog, `super` automatically forwards the arguments that were passed to the method from with `super` is called. 
+
+What's interesting above is that we call `super` without any arguments; however, since we see brown assigneds to name and color for GoodDog, `super` automatically forwards the arguments that were passed to the method from with `super` is called.
 
 If super is called with specific arguments, the specified arguments will be sent up the method lookup chain.
 
@@ -1019,7 +1036,9 @@ end
 
 BadDog.new(2, "bear")        # => #<BadDog:0x007fb40b2beb68 @age=2, @name="bear">
 ```
+
 If you call `super()` exactly as shown -- with parentheses -- it calls the method in the superclass with no arguments at all.
+
 ```ruby
 class Animal
   def initialize
@@ -1081,8 +1100,9 @@ paws.swim                   # => NoMethodError: undefined method `swim' for #<Ca
 : where mixin modules come into play. The class doesn't inherit from another type, but instead inherits the interface provided by the mixin module.
 
 When to use class inheritance vs mixins:
-  - You can only subclass (class inheritance) from one class. You can mix in as many modules (interface inheritance) as you'd like.
-  - If there's an "is-a" relationship, class inheritance is usually the correct choice. If there's a "has-a" relationship, interface inheritance is generally a better choice. For example, a dog "is an" animal and it "has an" ability to swim.
+
+- You can only subclass (class inheritance) from one class. You can mix in as many modules (interface inheritance) as you'd like.
+- If there's an "is-a" relationship, class inheritance is usually the correct choice. If there's a "has-a" relationship, interface inheritance is generally a better choice. For example, a dog "is an" animal and it "has an" ability to swim.
   -You cannot instantiate modules (i.e., no object can be created from a module). Modules are used only for namespacing and grouping common methods together
 
 ### Method Lookup Path ###
@@ -1161,8 +1181,9 @@ puts GoodDog.ancestors
 
 **namespacing**
 : organizing similar classes under a module. Use modules to group related classes.
-  - It beomces easy for us ot recognize related classes in our code
-  - It reduces the likelihood of our classes colliding with other similarly named classes in our codebase
+
+- It beomces easy for us ot recognize related classes in our code
+- It reduces the likelihood of our classes colliding with other similarly named classes in our codebase
 
 ```ruby
 module Mammal
@@ -1185,7 +1206,8 @@ kitty = Mammal::Cat.new
 buddy.speak('Arf!')           # => "Arf!"
 kitty.say_name('kitty')       # => "kitty"
 ```
-The second use is using modules as a ** container** for methods, called module methods. Use modules to house other methods.
+
+The second use is using modules as a **container** for methods, called module methods. Use modules to house other methods.
 
 ```ruby
 module Mammal
@@ -1201,6 +1223,7 @@ value = Mammal.some_out_of_place_method(4) # < Preferred way
 # OR
 value = Mammal::some_out_of_place_method(4)
 ```
+
 ### Private, Protected, and Public ###
 
 **Method Access Control**
@@ -1247,15 +1270,17 @@ def public_disclosure
   "#{self.name} in human years is #{human_years}"
 end
 ```
+
 Notes that we can *not* use `self.human_years` because the `human_years` method is private (recall that `self.human_years` is equivalent to `sparky.human_years`)
 
  In summary, private methods are not accessible outside of the class definition at all, and are only accessible from inside the class when called without `self`.
- 
+
  >As of Ruby 2.7, it is now legal to call private methods with a literal `self` as the caller. Note that this does **not** mean that we can call a private method with any other object, not even one of the same type. We can only call a private method with the current object.
 
  Public and private methods are the most common. We can use an in-between approach for **protected** methods, which we would use the `protected` method.
-  - from inside the class, `protected` methods are accessible just like `public` methods
-  - from outside the class, `protected` methods act just like `private` methods.
+
+- from inside the class, `protected` methods are accessible just like `public` methods
+- from outside the class, `protected` methods act just like `private` methods.
 
 ```ruby
 class Animal
@@ -1279,6 +1304,7 @@ fido.a_protected_method
   # => NoMethodError: protected method `a_protected_method' called for
     #<Animal:0x007fb174157110>
 ```
+
 ### Accidental Method Overriding ###
 
 ```ruby
@@ -1317,9 +1343,10 @@ son = Child.new
 puts son.instance_of? Child   # => Exception: wrong number of arguments
 puts son.instance_of? Parent  # => Exception: wrong number of arguments
 ```
+
 Overall, it’s important to familiarize yourself with some of the common Object methods and make sure to not accidentally override them as this can have devastating consequences for your application.
 
-### Exercises 4
+### Exercises 4 ###
 
 ```ruby
 #exs_4_1-6.rb
@@ -1486,6 +1513,7 @@ armada.display_age
 mighty_whitey.calc_age
 # NoMethodError: undefined method `calc_age' for #<MyTruck: ...
 ```
+
 ```ruby
 =begin
 7.
@@ -1522,6 +1550,7 @@ bob = Student.new("Bob", 79)
 puts 'Well done!' if joe.better_grade_than?(bob) # => "Well done!"
 puts joe.grade # => NoMethodError
 ```
+
 ```ruby
 # 8. 
 # Given the following code...

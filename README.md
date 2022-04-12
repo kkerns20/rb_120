@@ -38,8 +38,8 @@ My work and notes working through Launch School's RB_120 course
     - [x] Walkthrough and Improvements
     - [x] OO 21
   - [ ] OOP Exercises
-    - [ ] Debugging
-    - [ ] Medium1
+    - [x] Debugging
+    - [ ] Medium_1
 - [ ] Review OO Material and find assessment docs to practice with
 - [ ] Take RB_109 Assessments
   - [ ] Pass the Written
