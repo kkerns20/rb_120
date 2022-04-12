@@ -5,7 +5,12 @@
 - Needs the following:
   - Initialize with one argument, an integer representing the length of hte array
   - Array should be initialized with all elements set to nil
-  - Be able to 
+  - Be able to reference individual elements in the array with FixedArray#[] method
+    - Accepts integer as argument, representing the index of hte element to return
+    - Should also accept negative integer as argument, representing negative index
+  - Define a FixedArray#to_a method that return an array of all elements withing FixedArray
+  - Define a FixedArray#[]=() setter method that allows reassignmnent of individual elements within the array
+  - Define a FixedArray#to_s method that returns a string representation of the array
 =end
 
 # class FixedArray
