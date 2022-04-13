@@ -62,9 +62,9 @@ You have no more guesses. You lost!
 
 # Algo
 initialize class Guess
-- set constant of guess limit to 7
-- set number range to 1..100
 - use constructor
+  - set guess limit to Math.log2(size_of_range).to_i + 1
+  - set number range to from intiailization input
   - instance variable of guesses remaining to guess limit
   - secretu number to a random number from the integer range
   - initialize guess
@@ -78,17 +78,15 @@ initialize class Guess
 =end
 
 class Guess
-  GUESS_LIMIT = 7
-  NUMBER_RANGE = 1..100
-
-  def initialize
-    @guesses = GUESS_LIMIT
-    @secret_number = rand(NUMBER_RANGE)
+  def initialize(lower_limit, upper_limit)
+    @number_range = lower_limit..upper_limit
+    @guesses = Math.log2(upper_limit - lower_limit).to_i + 1
+    @secret_number = rand(@number_range)
     @guess
   end
 
   attr_accessor :guess, :guesses
-  attr_reader :secret_number
+  attr_reader :secret_number, :number_range
 
   def play
     clear
@@ -121,7 +119,7 @@ class Guess
     @guess = ''
     loop do
       print\
-        "Enter a number between #{NUMBER_RANGE.first} and #{NUMBER_RANGE.last}: "
+        "Enter a number between #{@number_range.first} and #{@number_range.last}: "
       @guess = gets.chomp
       break if valid_guess?
       print "Invalid guess. "
@@ -131,7 +129,7 @@ class Guess
 
   def valid_guess?
     @guess == @guess.to_i.to_s &&
-    NUMBER_RANGE.include?(@guess.to_i)
+    @number_range.include?(@guess.to_i)
   end
 
   def number_guessed?
@@ -141,8 +139,10 @@ class Guess
   def show_low_high
     if @guess > @secret_number
       puts 'Your guess is too high.'
+      puts
     else
       puts 'Your guess is too low.'
+      puts
     end
   end
 
@@ -163,12 +163,17 @@ class Guess
 
   def display_winning_message
     puts 'You won!'
+    puts
+    puts "Thanks for playing!"
   end
 
   def display_losing_message
     puts "You have no more guesses. You lost!"
+    puts
+    puts "The secret number was #{@secret_number}."
+    puts "Thanks for playing!"
   end
 end
 
-game = Guess.new
+game = Guess.new(501, 1500)
 game.play
