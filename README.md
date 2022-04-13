@@ -10,6 +10,18 @@
 
 ## Study Guide ##
 
+- [Classes and Objects](./study_guide/classes_object.md)
+- [Setter/Getter Methods](./study_guide/setter_getter.md)
+- [Method Access Control](./study_guide/method_access_control.md)
+- [Inheritance](./study_guide/inheritance.md)
+- [Polymorphism & Encapsulation](./study_guide/poly_encaps.md)
+- [Modules](./study_guide/modules.md)
+- [Self](./study_guide/self.md)
+- [Fake Operators](./study_guide/fake_operators.md)
+- [Collaborator Objects](./study_guide/collaborator_objects.md)
+- [Open Ended Questions](./study_guide/open_ended_questions.md)
+- [Interview Practice Questions](./study_guide/interview_practice.md)
+
 ## RB_120 Lessons ##
 
 - [x] Lesson 1: OOP Readings
