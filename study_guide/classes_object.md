@@ -1,12 +1,12 @@
 # Classes and Objects #
 
-[Objects](#objects)
-[Classes](#classes)
-[Object Instantiation](#initializing-a-new-object)
-[Instance Variables](#instance-variables)
-[Instance Methods](#instance-methods)
-[Class Variables](#class-variables)
-[Class Methods](#class-methods)
+- [Objects](#objects)
+- [Classes](#classes)
+- [Object Instantiation](#initializing-a-new-object)
+- [Instance Variables](#instance-variables)
+- [Instance Methods](#instance-methods)
+- [Class Variables](#class-variables)
+- [Class Methods](#class-methods)
 
 ## Objects ##
 
@@ -37,8 +37,10 @@ harry.what_am_i
 ```
 
 Objects are created from **classes** (which are another type of Object)
+
 *Class*
 : a blueprint
+
 *Object*
 : something built from that blueprint
 
