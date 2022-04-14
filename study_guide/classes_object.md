@@ -14,14 +14,14 @@ In Ruby, anything that has a **value** can be considered an **object**. Numbers,
 
 ```ruby
 # objects
-'hi'.is_a?(Object)
-20.is_a?(Object)
-['1', 2, :3, nil].is_a?(Object)
-Hash.new.is_a?(Object)
+'hi'.is_a?(Object)               # => true
+20.is_a?(Object)                 # => true
+['1', 2, :3, nil].is_a?(Object)  # => true
+Hash.new.is_a?(Object)           # => true
 
 module Readable
   def what_am_i
-    puts 'You're a wizard (read: Object), Harry!"
+    puts "You're a wizard (read: Object), Harry!"
   end
 end
 
@@ -29,11 +29,11 @@ class Wizard
   include Readable
 end
 
-Readable.is_a?(Object)
-Wizard.is_a?(Object)
-harry = Wizard.new
-harry.is_a?(Object)
-harry.what_am_i
+Readable.is_a?(Object)           # => true
+Wizard.is_a?(Object)             # => true
+harry = Wizard.new 
+harry.is_a?(Object)              # => true
+harry.what_am_i                  # => "You're a wizard (read: Object), Harry!"
 ```
 
 Objects are created from **classes** (which are another type of Object)
@@ -50,10 +50,10 @@ Individual object can contain different information, but can still be instances 
 str1 = "I am a String object"
 str2 = "I am a different String object"
 
-puts str1.class
-puts str2.class
-puts str1
-puts str2
+puts str1.class                         # => String
+puts str2.class                         # => String
+puts str1                               # => "I am a String object"
+puts str2                               # => I am a different String object"
 ```
 
 ## Classes ##
