@@ -58,6 +58,72 @@ puts str2                               # => I am a different String object"
 
 ## Classes ##
 
+**class**
+: the basic outline of *attributes* and *behaviors* belonging to a particular kind of object.
+
+Attributes represent the *state* of an object, such as the different values and data that make up that individual object. Behaviors describe what objects of that class should be able to do, that is the **methods* they can invoke
+
+[A note on terms](#a-note-on-terms)
+
+Use a **class definition** to define a custom class. These are contructed with teh keywords `class...end`. Class names use the CamelCase naming convention (they are technically constants, so it's important to capitalize them). Files that contain your custom class definition should be named with snake_case and reflect their contents.
+
+```ruby
+class Person
+  # initialization behavior for class instance (object)
+  # constructor method
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  # appropriate behavior for class instance (object)
+  def introduce
+    puts "Hello, my name is #{@name}"
+  end
+end
+
+# Creates a new instance of Person and stores it in a variable
+slim_shady = Person.new('Eminem', 43)
+slim_shady.introduce    # => "Hello, my name is Eminem"
+```
+
+Within a class, we define [instance variable](#instance-variables) to keep track of different attributes of each object that is created. [Instance methods](#instance-methods) expose the behavior available to *all* objects of a class.
+
+Below, we create two different Fish objects. They both have an instance variable `@type`, and each points to a different value. In the case of `nemo` it references the string `"clownfish"`, and in the case of `bruce` it references the string `'shark'`. However,both fish objects have access to the behavior defin3ed by the instance method `#swim`. When we invoke `#swim` on any given `Fish` instance, it will display that object's attribute `@#type`.
+
+```ruby
+class Fish
+  def initialize(type)
+    # instance variable stores data pertaining to particular instance
+    @type = type
+  end
+
+  # instance method defines behavior available to all objects of that class
+  def swim
+    puts "The #{@type} is swimming!"
+  end
+end
+
+nemo = Fish.new('clownfish')    # => #<Fish:0x0000563bc8206b38 @type="clownfish">
+bruce = Fish.new('shark')       # => #<Fish:0x0000563bc823dd68 @type="shark">
+nemo.swim                       # => The clownfish is swimming!
+bruce.swim                      # => The shark is swimming!
+```
+
+Use the `.class` method to return the class name of any object.
+
+```ruby
+'string'.class      # => String
+4.class             # => Integer
+[1, 2, 3].class     # => Array
+nil.class           # => NilClass
+true.class          # => TrueClass
+
+# using Person class from above
+bob = Person.new('Bob', 42)
+bob.class           # => Person
+```
+
 ## Object Instantiation ##
 
 ## Instance Variables ##
