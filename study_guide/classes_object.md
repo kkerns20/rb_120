@@ -126,6 +126,60 @@ bob.class           # => Person
 
 ## Object Instantiation ##
 
+*Instantiation*
+: creating a new object or instance from a class
+
+We instantiate abn object from a class by calling the class method `::new`. This invokes the `#intialize` instance method for hte calling class, which defined the behavior we want to execute when a new object is initialized.
+
+```ruby
+Hash.new          # => {}
+String.new        # => ''
+
+# Person#initialize is defined to take an argument
+class Person
+  def initialize(name)
+    @name = name
+  end
+
+  def introduce
+    puts "Hi, my name is #{@name}"
+  end
+end
+
+# when we call Person::new, we must pass the argument #intialize expects
+ken = Person.new("Ken")  # => #<Person:0x00007fcb3dca88b0 @name="Ken"> 
+ken.introduce            # => Hi, my name is Ken (returns nil)
+
+# Or we could defined intialize to supply a default argument
+class Person
+  def initialize(name='John Doe')
+    @name = name
+  end
+
+  def introduce
+    puts "Hi, my name is #{@name}"
+  end
+end
+
+# No argument is supplied but the default value is assigned to @name
+anon = Person.new         # => #<Person:0x000055e2d01e8968 @name="John Doe">
+anon.introduce            # => "Hi, my name is John Doe"
+```
+
+The `#initialize` instance method that gets invoked each time we create a new object is know as a **constructor**, because it is triggered upon creation and it helps us to create that new object in the desired way.
+
+We can put any kind of code within the `#intialize` method that we want, but it's best to keep it to what is strictly necessary for the object's construction.
+
+```ruby
+class Thing
+  def intialize
+    puts "A thing has been intialized!"
+  end
+end
+
+Thing.new     # => "A thing has been intialized!"
+```
+
 ## Instance Variables ##
 
 ## Instance Methods ##
