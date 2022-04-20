@@ -274,6 +274,12 @@ tibber
 tibber.speak      # => hissss
 ```
 
+In the above code, we defined the Cat class such that the instance variable `@personality` is not initialized until we call the `#assign_personality` instance method. Therefore, when we instantiate a new `Cat` object and assign it to the variable `tibber`, it will not contain a value for `@personality` as shown with the object returned by `::new`
+
+We might expect that calling the instance method `#speak` would result in a `NameError` being thrown, since it relies on the value referenced by `@personality` to determine its output. However, when we run the code, no `NameError` will be thrown. Rather, referencing the unitialized `@personality` returns a `nil` value. When the case statement is evaluated, the `else` will execute and we see the output of `meow`
+
+We then invoke the `#assign_personality` instance method, which assigns a value selected at random from an array to `@personality`. We can see by examining the `fluffy` object that `@personality` now references a value of `'grouchy'`. Calling the `#speak` method again, we see the output of `'hissss'` showing htat the value referenced by `@personality` has indeed changed.
+
 ## Instance Methods ##
 
 ## Class Variables ##
