@@ -182,6 +182,98 @@ Thing.new     # => "A thing has been intialized!"
 
 ## Instance Variables ##
 
+**Instance variables** are used to tie data to an individual object. They track the individual attributes and states for that specific instance of a class. They are useful for tracking the unique state of particular objects, outside of any commonalities gained from shared class.
+
+We differentiate instance variables by adding an `@` to the beginning of their name.
+
+In the code below, we initialize two new `Person` objects and assign them to the variable `jack` and `jill`. When hte objects are initialized, we pass each the string `'Jill'` and `'Jack'` respectively. `'Jill'` is assigned to the `@name` instance variable for the `Person` object referenced by `jill`, and `'Jack'` is assigned to the `@name` instance variable for the `Person` object referenced by `jack`. This is demonstrated when we call the `#introduce` method on both objects, and each individual `@name` value is output.
+
+```ruby
+class Person
+  def initialize(n)
+    @name = n
+  end
+
+  def introduce
+    puts "Hi! My name is #{@name}"
+  end 
+end
+
+jill = Person.new("Jill")
+jack = Person.new("Jack")
+jill.introduce
+jack.introduce
+```
+
+Because instance variables track individual object state, they are scoped at the object level. That is, they *cannot* cross over between different objects, but the *are* available throughout the instance methods for any particular object.
+
+This means that for any given object, you can access an instance variable within an instance method *without passing it in*, even if it was initialized outside of that particular instance method.
+
+Looking at the example above, we can see this demonstrated by the fact that the `#introduce` method has access to the `@name` value for both `jack` and `jill`, despite the fact that we never pass it into the method and it is initialized in the constructor method for `Person`.
+
+This works across all instance methods, as long as we are dealing with the same particular instance that the instance variable describes.
+
+```ruby
+class Superhero
+  def initialize(n)
+    @name = n
+  end
+
+  def teleport
+    puts "#{@name} teleports behind the enemy"
+  end
+
+  def block
+    puts "#{@name} blocks the enemy's attack"
+  end
+
+  def knockout
+    puts "#{@name} knocks the enemy out cold"
+  end
+end
+
+# instantiate new Superhero object deadpool, assigns "Deadpool" to @name
+deadpool = Superhero.new('Deadpool')
+deadpool.teleport                   # Deadpool teleports behind the enemy
+deadpool.block                      # Deadpool blocks the enemy's attack
+deadpool.knockout                   # Deadpool knocks the enemy out cold
+# notice how all instance methods have access to @name for deadpool
+```
+
+Instance variable are available within instance methods *even if they are not initialized* because their scope is at the object level. Meaning that even if an instance variable has not been initialized, it will be recognized as a variable and Ruby will treat it as if it references the value of `nil`. This means that you can reference uninitialized instance variables without having the program throw an `NameError`
+
+```ruby
+class Cat
+  def initialize(name)
+    @name = name
+    @personality
+  end
+
+  def assign_personality
+    @personality = ['friendly', 'grouchy', 'curious'].sample
+  end
+
+  def speak
+    case @personality
+    when 'friendly' then puts 'purrrr'
+    when 'grouchy'  then puts 'hissss'
+    when 'curious'  then puts 'meow??'
+    else                 puts 'meow'
+    end
+  end
+end
+
+tibber = Cat.new('Mr. Tibbs')
+# => #<Cat:0x000055e2d0232248 @name="Mr. Tibbs">
+
+tibber.speak      # => meow
+tibber.assign_personality
+tibber
+# => #<Cat:0x000055e2d0232248 @name="Fluffy", @personality="grouchy">
+
+tibber.speak      # => hissss
+```
+
 ## Instance Methods ##
 
 ## Class Variables ##
