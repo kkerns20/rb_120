@@ -355,8 +355,63 @@ class Tiger
   end
 end
 
-tony = Tiger.new('bengal')
+tony = Tiger.new('bengal')      # => #<Tiger:0x00007fd7f248a040 @breed="bengal">
+tigger = Tiger.new('sumatran')  # => #<Tiger:0x00007fd7f2489fa0 @breed="sumatran">
 
+tony.what_am_i                  # => I'm a bengal from the panthera tigris species
+tigger.what_am_i                # => I'm a sumatran from the panthera tigris species
+```
+
+Note how in the above code, each instance of Tiger has it's own copy of `@@scientific_name` which can be accessed from within the instance method `#what_am_i`
+
+We can also mutate class variables from within instance methods, which allows us to keep track of class level details that *pertain only* to the class.
+
+```ruby
+class Person
+  @@people_present = 0
+
+  def initialize(name)
+    @name = name
+    @@people_present += 1   # => mutable from instance method
+  end
+
+  def self.total_number_of_people
+    @@people_present
+  end
+end
+
+Person::total_number_of_people  # => 0
+joe = Person.new('Joe')
+billy = Person.new('Billy')
+Person::total_number_of_people  # => 2
+```
+
+Class variables from a superclass are available to subclasses via [inheritance](./inheritance.md). The class variable is loaded when the class is evaluated by Ruby, so class variables do not require methods that explicitly initialize them.
+
+```ruby
+class Dog
+  @@scientific_name = 'canis lupis familiaris'
+
+  def initialize(name)
+    @name = name
+  end
+
+  def what_am_i
+    puts "My name is #{@name} and I am a #{self.class} of the #{@@scientific_name} species."
+  end
+end
+
+class Collie < Dog; end
+class Beagle < Dog; end
+class Lab < Dog; end
+
+lassie = Collie.new('Lassie') # => #<Collie:0x000055da088a6d98 @name="Lassie">
+snoopy = Beagle.new('Snoopy') # => #<Beagle:0x000055da088e5138 @name="Snoopy">
+pablo = Lab.new('Pablo')      # => #<Lab:0x000055da08921e08 @name="Pablo">
+
+lassie.what_am_i  # => My name is Lassie and I am a Collie of the canis lupis familiaris species.
+snoopy.what_am_i  # => My name is Snoopy and I am a Beagle of the canis lupis familiaris species.
+pablo.what_am_i   # => My name is Pablo and I am a Lab of the canis lupis familiaris species.
 ```
 
 ## Class Methods ##
