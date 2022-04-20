@@ -316,4 +316,47 @@ jill.say_goodbye      # => "See you later!"
 
 ## Class Variables ##
 
+**Class variables**
+: variables that are available to *every object in that class*. They contain information that is common across all instances of a class or pertinent to the class as a whole rather than information tied to a specific instance of a class.
+
+Class variables are created by adding `@@` to the beginning of a variable name.
+
+```ruby
+class Tiger
+  # class variable pertinent to all objects across class
+  @@scientific_name = 'panthera tigris'
+
+  def initialize(name)
+    # instance variable pertinent to individual object
+    @name = name
+  end
+end
+```
+
+Class variables are available within all instance methods defined for that particular class. All objects of a class share one copy of the class variable. This means they are **scoped at the class level**. Class methods can also access class variables (regardles of where they are initialized).
+
+```ruby
+class Tiger
+  # class variable pertinent to all objects across class
+  @@scientific_name = 'panthera tigris'
+
+  def self.scientific_name
+    @@scientific_name       # accessible from class method
+  end
+
+  def initialize(breed)
+    # instance variable pertinent to individual object
+    @breed = breed
+  end
+
+  def what_am_i
+    # both instance and class variables accessible from instance methods
+    puts "I'm a #{@breed} from the #{@@scientific_name} species"
+  end
+end
+
+tony = Tiger.new('bengal')
+
+```
+
 ## Class Methods ##
