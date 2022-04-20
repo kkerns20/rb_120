@@ -201,8 +201,8 @@ end
 
 jill = Person.new("Jill")
 jack = Person.new("Jack")
-jill.introduce
-jack.introduce
+jack.introduce        # => 'Hi, my name is Jack!'
+jill.introduce        # => 'Hi, my name is Jill!'
 ```
 
 Because instance variables track individual object state, they are scoped at the object level. That is, they *cannot* cross over between different objects, but the *are* available throughout the instance methods for any particular object.
@@ -281,6 +281,38 @@ We might expect that calling the instance method `#speak` would result in a `Nam
 We then invoke the `#assign_personality` instance method, which assigns a value selected at random from an array to `@personality`. We can see by examining the `fluffy` object that `@personality` now references a value of `'grouchy'`. Calling the `#speak` method again, we see the output of `'hissss'` showing htat the value referenced by `@personality` has indeed changed.
 
 ## Instance Methods ##
+
+**Instance Methods**
+: methods defined within a class that describe the behavior avaialable to *all* instances of that class. Instance methods have access to instance variables due to their scope(see above), so you can use them to track and manipulate data that tracks a particular object's state.
+
+As can be seen in the example below, instance methods that incorporate an individual object's state can have slightly different outputs depending on the object that calls it. On the other hand, instance methods that are defined witout accessing an individual object's attributes will have the same output for all objects across the class.
+
+```ruby
+class Person
+  def initialize(n)
+    @name = n
+  end
+
+  def introduce
+    puts "Hi! My name is #{@name}"
+  end 
+
+  def say_goodbye
+    puts "See you later!"
+  end
+end
+
+jill = Person.new("Jill")
+jack = Person.new("Jack")
+
+# instance method that outputs an object's @name attribute
+jack.introduce        # => 'Hi, my name is Jack!'
+jill.introduce        # => 'Hi, my name is Jill!'
+
+# instance method that does not utilize the particular state of an object
+jack.say_goodbye      # => "See you later!"
+jill.say_goodbye      # => "See you later!"
+```
 
 ## Class Variables ##
 
