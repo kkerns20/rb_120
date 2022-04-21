@@ -79,13 +79,13 @@
 
 ## To-Do ##
 
-[ ] Find Practice Tests
+[x] Find Practice Tests
 [ ] Take Practice Tests
 [ ] Review OOP Excercises
     [ ] Focus on [Medium 1](./oop_exercises/medium_1/)
     [ ] Focus on [Debugging](./oop_exercises/debugging/)
 [ ] Create Study Guide with the following:
-    [ ] Classes and objects
+    [x] Classes and objects
     [ ] Use attr_* to create setter and getter methods
     [ ] How to call setters and getters
     [ ] Instance methods vs. class methods
