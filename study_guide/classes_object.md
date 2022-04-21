@@ -452,3 +452,5 @@ Class mehtods are defined by `::` in the Ruby docs. They *must* be called on the
 - An instance variable is named by the class, but each object created from the class creates its own copy of the instance variable. It's value contributes to the overall state of the object.
   - The instance variable is actually *not* a part of the class and cannot be inherited. The subclass only knows about the variable name, and it uses that name as a reference to the value it points to.
 - An attribute is an instance variable name along with it's value. It only does us any good if there is either an associated getter or setter method or both.
+  - The getter and settter methods are inherited, but the attribute behind these does not get inherited.
+- Every object has a state. This is the collection of all instance variables and their values as defined for an individual object. It is part of the object, not the class, and therefore is not inherited.
