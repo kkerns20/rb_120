@@ -415,3 +415,34 @@ pablo.what_am_i   # => My name is Pablo and I am a Lab of the canis lupis famili
 ```
 
 ## Class Methods ##
+
+**Class methods**
+: a type of method that we *call directly on the class itself*. We do not have ot instantiate any objects to invoke a class method, since they pertain to the class as a whole.
+
+To define a class method, prepend the method name with the keyword `self`. In this case, `self` will refer to the class (upon which the method must be invoked).
+
+```ruby
+class Person
+  @@people = []
+
+  def initialize(name)
+    @name = name
+    @@people << @name
+  end
+
+  def self.show_people
+    @@people.each { |name| puts name }
+  end
+end
+
+jack = Person.new('Jack')
+jill = Person.new('Jill')
+kenny = Person.new('Kenny')
+Person.show_people
+  # => Jack
+  # => Jill
+  # => Jenny
+  # returns ["Jack", "Jill", "Kenny"]
+```
+
+Class mehtods are defined by `::` in the Ruby docs. They *must* be called on teh class name itself (i.e. hsh = Hash.new).
