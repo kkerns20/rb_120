@@ -445,4 +445,10 @@ Person.show_people
   # returns ["Jack", "Jill", "Kenny"]
 ```
 
-Class mehtods are defined by `::` in the Ruby docs. They *must* be called on teh class name itself (i.e. hsh = Hash.new).
+Class mehtods are defined by `::` in the Ruby docs. They *must* be called on the class name itself (i.e. hsh = Hash.new).
+
+## A Note on Terms ##
+
+- An instance variable is named by the class, but each object created from the class creates its own copy of the instance variable. It's value contributes to the overall state of the object.
+  - The instance variable is actually *not* a part of the class and cannot be inherited. The subclass only knows about the variable name, and it uses that name as a reference to the value it points to.
+- An attribute is an instance variable name along with it's value. It only does us any good if there is either an associated getter or setter method or both.
