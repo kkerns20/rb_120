@@ -11,7 +11,17 @@
 ## Study Guide ##
 
 - [Classes and Objects](./study_guide/classes_object.md)
+  - [Objects](./study_guide/classes_object.md#objects)
+  - [Classes](./study_guide/classes_object.md#classes)
+  - [Object Instantiation](./study_guide/classes_object.md#object-instantiation)
+  - [Instance Variables](./study_guide/classes_object.md#instance-variables)
+  - [Instance Methods](./study_guide/classes_object.md#instance-methods)
+  - [Class Variables](./study_guide/classes_object.md#class-variables)
+  - [Class Methods](./study_guide/classes_object.md#class-methods)
 - [Setter/Getter Methods](./study_guide/setter_getter.md)
+  - [Getter Methods](./study_guide/setter_getter.md#getter-methods)
+  - [Setter Methods](./study_guide/setter_getter.md#setter-methods)
+  - [attr_*](./study_guide/setter_getter.md#using-attr)
 - [Method Access Control](./study_guide/method_access_control.md)
 - [Inheritance](./study_guide/inheritance.md)
 - [Polymorphism & Encapsulation](./study_guide/poly_encaps.md)
@@ -19,6 +29,8 @@
 - [Self](./study_guide/self.md)
 - [Fake Operators](./study_guide/fake_operators.md)
 - [Collaborator Objects](./study_guide/collaborator_objects.md)
+  - [Example 1: Library and Book](./study_guide/collaborator_objects.md#example-1)
+  - [Example 1: Deck and Card](./study_guide/collaborator_objects.md#example-2)
 - [Open Ended Questions](./study_guide/open_ended_questions.md)
 - [Interview Practice Questions](./study_guide/interview_practice.md)
 
