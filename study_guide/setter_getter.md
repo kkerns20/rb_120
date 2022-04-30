@@ -1,5 +1,9 @@
 # Accessor Methods #
 
+- [Getter Methods](#getter-methods)
+- [Setter Methods](#setter-methods)
+- [attr_*](#using-attr)
+
 ## What are setters and getters? ##
 
 **Accessor Methods**
