@@ -49,10 +49,10 @@
     - [x] [Towards a Conceptual Model](https://medium.com/launch-school/towards-a-conceptual-model-of-object-oriented-programming-118eb971659f)
     - [x] [No object is an island](https://medium.com/launch-school/no-object-is-an-island-707e59ffedb4)
   - [x] Modules
-  - [x] Exercises
-    - [x] Easy 1
-    - [x] Easy 2
-  - [x] OO RPS
+  - [x] [Exercises](./oop_exercises/)
+    - [x][Easy 1](./oop_exercises/easy_1/)
+    - [x] [Easy 2](./oop_exercises/easy_2/)
+  - [x] [OO RPS](./lesson_02/rps/)
     - [x] Walkthrough
     - [x] Design 1
     - [x] Design 2
@@ -65,16 +65,15 @@
   - [x] [Medium 1](./lesson_04/medium1/)
   - [x] [Hard 1](./lesson_04/hard1/)
 - [x] Lesson 5: Slightly Larger OO Programs
-  - [x] OO Tic Tac Toe
+  - [x] [OO Tic Tac Toe](./lesson_05/oop_ttt/)
     - [x] Walkthrough and Improvements
     - [x] OO TTT Bonus Features
-  - [x] OO Twenty-One
+  - [x] [OO Twenty-One](./lesson_05/oop_twentyone/)
     - [x] Walkthrough and Improvements
     - [x] OO 21
-  - [x] OOP Exercises
-    - [x] Debugging
-    - [x] Medium_1
-  - [x] Quiz - 6/7
+  - [x] [OOP Exercises](./oop_exercises/)
+    - [x] [Debugging](./oop_exercises/debugging/)
+    - [x] [Medium_1](./oop_exercises/medium_1/)
 - [ ] Review OO Material and find assessment docs to practice with
 - [ ] Take RB_109 Assessments
   - [ ] Pass the Written
