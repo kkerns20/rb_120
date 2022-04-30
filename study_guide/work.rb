@@ -1,17 +1,39 @@
-class Superhero
-  def initialize(n)
-    @name = n         # intialize @name
+# this will not work
+class Contact
+  attr_accessor :name, :number
+
+  def initialize(name, number)
+    @name = name
+    @number = number
   end
 
-  def name
-    @name             # define getter method name
-  end
-
-  def introduce       # access @name through getter method #name
-    puts "Sup? It's your friendly neighborhood #{name}!"
+  def change_number(n)
+    number = n                  # Ruby thinks we are initializing local variable
   end
 end
 
-spider_man = Superhero.new("Spider-Man")
-spider_man.name             # => Spider-Man
-spider_man.introduce        # => Sup? It's your friendly, neighborhood Spider-Man!
+kurt = Contact.new('Kurt', '234-2107')
+kurt.number                    # => 234-2107
+
+kurt.change_number('867-5309')
+kurt.number                    # => 234-2107
+
+# this will work
+class Contact
+  attr_accessor :name, :number
+
+  def initialize(name, number)
+    @name = name
+    @number = number
+  end
+
+  def change_number(n)
+    self.number = n                  # call setter method using self.
+  end
+end
+
+kurt = Contact.new('Kurt', '234-2107')
+p kurt.number                    # => 234-2107
+
+kurt.change_number('789-4039')
+p kurt.number                    # => 789-4039

@@ -54,7 +54,7 @@ class Superhero
   end
 
   def name
-    @name             # define getter method name
+    @name             # define getter method #name
   end
 
   def introduce       # access @name through getter method #name
@@ -65,4 +65,88 @@ end
 spider_man = Superhero.new("Spider-Man")
 spider_man.name             # => Spider-Man
 spider_man.introduce        # => Sup? It's your friendly, neighborhood Spider-Man!
+```
+
+## Setter Methods ##
+
+Setter methods allow us to initialize and reassign attributes for a particular object, i.e. change the data stored within an instance variable. They are defined similarly to getter methods, but they include *reassignment* within the method definition. Because of this, we name them with the `=` after the method name, which disambiguates them from our getter methods, as well as allows us to take advantage of Ruby's *syntactical sugar*.
+
+```ruby
+class Superhero
+  def initialize(n)
+    @name = n         # intialize @name
+  end
+
+  def name
+    @name             # define getter method #name
+  end
+
+  def name=(n)
+    @name = n         # define setter method #name=
+  end
+
+  def introduce       # access @name through getter method #name
+    puts "Sup? It's your friendly neighborhood #{name}!"
+  end
+end
+
+spider_man = Superhero.new("Spider-Man")
+spider_man.name             # => Spider-Man
+spider_man.introduce        # => Sup? It's your friendly, neighborhood Spider-Man!
+
+# call #name=() with Ruby's syntactical sugar
+spider_man.name = 'Peter Parker'
+spider_man.introduce        # => Sup? It's your friendly, neighborhood Peter Parker!
+```
+
+Setter methods, like getter methods, can be called from within the class; however, because they use the syntax of `#method_name = argument`, we must distinguish them somehow from local variable initiailization. To do this, we call them with the keyword `self`.
+
+```ruby
+# this will not work
+class Contact
+  attr_accessor :name, :number
+
+  def initialize(name, number)
+    @name = name
+    @number = number
+  end
+
+  def change_number(n)
+    number = n                  # Ruby thinks we are initializing local variable
+  end
+end
+
+kurt = Contact.new('Kurt', '234-2107')
+kurt.number                    # => 234-2107
+
+kurt.change_number('867-5309')
+kurt.number                    # => 234-2107
+
+# this will work
+class Contact
+  attr_accessor :name, :number
+
+  def initialize(name, number)
+    @name = name
+    @number = number
+  end
+
+  def change_number(n)
+    self.number = n                  # call setter method using self.
+  end
+end
+
+kurt = Contact.new('Kurt', '234-2107')
+p kurt.number                    # => 234-2107
+
+kurt.change_number('789-4039')
+p kurt.number                    # => 789-4039
+```
+
+## Using attr_* ##
+
+Because setter and getter methods are so commonplace, Ruby gives us a built-in shorthand to create them: `attr_accessor`. This method takes a *symbol* as an argument, which is used to create the method name for *both* the getter and the setter methods. This is nice because we can now replace long and cumbersome method definitions with a single line.
+
+```ruby
+
 ```
