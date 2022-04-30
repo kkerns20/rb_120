@@ -90,28 +90,28 @@
 
 ## To-Do ##
 
-[x] Find Practice Tests
-[ ] Take Practice Tests
-[ ] Review OOP Excercises
-    [ ] Focus on [Medium 1](./oop_exercises/medium_1/)
-    [ ] Focus on [Debugging](./oop_exercises/debugging/)
-[ ] Create Study Guide with the following:
-    [x] Classes and objects
-    [x] Use attr_* to create setter and getter methods
-    [x] How to call setters and getters
-    [x] Instance methods vs. class methods
-    [ ] Method Access Control
-    [ ] Referencing and setting instance variables vs. using getters and setters
-    [ ] Class inheritance, encapsulation, and polymorphism
-    [ ] Modules
-    [ ] Method lookup path
-    [ ] self
-      [ ] Calling methods with self
-      [ ] More about self
-    [ ] Reading OO code
-    [ ] Fake operators and equality
-    [x] Working with collaborator objects
-[ ] Review all Quizzes - especially [Lesson_03](./lesson_03/)
-[ ] [RB 129 Assessment Practice Problems](https://docs.google.com/document/d/1wB8wuF1nmaR7xkLwe54G_BoGj2yBYxoVTZO1odmyTk8/edit)
-[ ] [OOP Questions - Randomized](https://docs.google.com/document/d/1JiPBbrCNumXNOzwPGC8cnC-jMCX43SKMBBN6r--1m7w/edit)
-[ ] [OOP Questions - Organized](https://docs.google.com/document/d/1dDJQ0O7yrcYa1SYuXHzJRY3tmvgOxHSGdvP8jw4sh2c/edit)
+- [x] Find Practice Tests
+- [ ] Take Practice Tests
+- [ ] Review OOP Excercises
+  - [ ] Focus on [Medium 1](./oop_exercises/medium_1/)
+  - [ ] Focus on [Debugging](./oop_exercises/debugging/)
+- [ ] Create Study Guide with the following:
+  - [x] Classes and objects
+  - [x] Use attr_* to create setter and getter methods
+  - [x] How to call setters and getters
+  - [x] Instance methods vs. class methods
+  - [ ] Method Access Control
+  - [ ] Referencing and setting instance variables vs. using getters and setters
+  - [ ] Class inheritance, encapsulation, and polymorphism
+  - [ ] Modules
+  - [ ] Method lookup path
+  - [ ] self
+    - [ ] Calling methods with self
+    - [ ] More about self
+  - [ ] Reading OO code
+  - [ ] Fake operators and equality
+  - [x] Working with collaborator objects
+- [ ] Review all Quizzes - especially [Lesson_03](./lesson_03/)
+- [ ] [RB 129 Assessment Practice Problems](https://docs.google.com/document/d/1wB8wuF1nmaR7xkLwe54G_BoGj2yBYxoVTZO1odmyTk8/edit)
+- [ ] [OOP Questions - Randomized](https://docs.google.com/document/d/1JiPBbrCNumXNOzwPGC8cnC-jMCX43SKMBBN6r--1m7w/edit)
+- [ ] [OOP Questions - Organized](https://docs.google.com/document/d/1dDJQ0O7yrcYa1SYuXHzJRY3tmvgOxHSGdvP8jw4sh2c/edit)
