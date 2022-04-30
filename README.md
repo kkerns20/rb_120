@@ -86,9 +86,9 @@
     [ ] Focus on [Debugging](./oop_exercises/debugging/)
 [ ] Create Study Guide with the following:
     [x] Classes and objects
-    [ ] Use attr_* to create setter and getter methods
-    [ ] How to call setters and getters
-    [ ] Instance methods vs. class methods
+    [x] Use attr_* to create setter and getter methods
+    [x] How to call setters and getters
+    [x] Instance methods vs. class methods
     [ ] Method Access Control
     [ ] Referencing and setting instance variables vs. using getters and setters
     [ ] Class inheritance, encapsulation, and polymorphism
@@ -99,7 +99,7 @@
       [ ] More about self
     [ ] Reading OO code
     [ ] Fake operators and equality
-    [ ] Working with collaborator objects
+    [x] Working with collaborator objects
 [ ] Review all Quizzes - especially [Lesson_03](./lesson_03/)
 [ ] [RB 129 Assessment Practice Problems](https://docs.google.com/document/d/1wB8wuF1nmaR7xkLwe54G_BoGj2yBYxoVTZO1odmyTk8/edit)
 [ ] [OOP Questions - Randomized](https://docs.google.com/document/d/1JiPBbrCNumXNOzwPGC8cnC-jMCX43SKMBBN6r--1m7w/edit)
