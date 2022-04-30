@@ -152,4 +152,8 @@ hand.each { |card| puts card }
   # cards are randomly selected, output will differ
 ```
 
-In the above code,
+In the above code, we define our `Deck` class to work with the collaborator object `Card`. When a new `Deck` instance is initialized, the `Deck` class relies on the `Card` class constants `SUITS` and `RANKS` to generate a new 52 card deck.
+
+The `Deck` instance in this case is really a vehicle for manipulating and organizing `Card` objects. While it may utilize the `Card` attributes of `suit` and `rank it isn't really concerned with them in the way that a`Card` object might be.
+
+Because the `Card` objects are assigned to tone of the `Deck` attributes (the instance variable `@cards`) we say that the `Card` instances here are *collaborator objects* that work intrinsically with `Deck`.
