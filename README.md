@@ -59,11 +59,11 @@
   - [x] Quiz <- 10/14
 - [x] Lesson 3: More OO Ruby --> focus here on 2nd pass
 - [x] Lesson 4: OO Practice Problems
-  - [x] Easy 1
-  - [x] Easy 2
-  - [x] Easy 3
-  - [x] Medium 1
-  - [x] Hard 1
+  - [x] [Easy 1](./lesson_04/easy1/)
+  - [x] [Easy 2](./lesson_04/easy2/)
+  - [x] [Easy 3](./lesson_04/easy3/)
+  - [x] [Medium 1](./lesson_04/medium1/)
+  - [x] [Hard 1](./lesson_04/hard1/)
 - [x] Lesson 5: Slightly Larger OO Programs
   - [x] OO Tic Tac Toe
     - [x] Walkthrough and Improvements
