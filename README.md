@@ -79,14 +79,16 @@
   - [ ] Pass the Written
   - [ ] Pass the Interview
 
-## Group Notes ##
+## Study Sessions ##
+
+-[x] [Session with Chris Jake Maddy](./study_guide/study_sessions/plan.md)
 
 ## Practice Tests ##
 
-- Practice Test 1
-- Practice Test 2
-- Short Practice Test
-- Practice Questions
+- [Practice Test 1](./study_guide/practice_test1.md)
+- [Practice Test 2](./study_guide/practice_test2.md)
+- [Short Practice Test](./study_guide/short_practice_test.md)
+- [Practice Questions](./study_guide/open_ended_questions.md)
 
 ## To-Do ##
 
