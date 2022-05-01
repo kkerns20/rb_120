@@ -53,3 +53,9 @@ Polymorphism through inheritance works in two ways:
   1. A specific instance of a subclass inherits a more generic method implementation from a superclass.
 
   2. A subclass overrides a more generic method implementation from a superclass with a different, more specific behavior by implementing a method of the same name.
+
+  ```ruby
+class Animal
+
+
+  ```
