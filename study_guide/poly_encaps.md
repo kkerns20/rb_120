@@ -54,8 +54,50 @@ Polymorphism through inheritance works in two ways:
 
   2. A subclass overrides a more generic method implementation from a superclass with a different, more specific behavior by implementing a method of the same name.
 
-  ```ruby
+```ruby
 class Animal
+  def eats
+    puts "feeds on living things"
+  end
+end
 
+class Carnivore < Animal
+  def eats
+    puts "feeds on meat"
+  end
+end
 
-  ```
+class Herbivore < Animal
+  def eats
+    puts "feeds on plants"
+  end
+end
+
+class Omnivore < Animal; end
+
+lion = Carnivore.new
+rabbit = Herbivore.new
+person = Omnivore.new
+
+animals = [lion, rabbit, person]
+animals.each { |animal| animal.eats }
+# => feeds on meat
+# => feeds on plants
+# => feeds on living things
+```
+
+In the code above, we define a more general `eats` method in the superclass `Animal` that is availbale to all `Animal` obje3cts. In the `Carnivore`subclass, we override this method to implement a process that's more specific to the `Carnivore` type. Similarly, in the `Herbivore` subclsas, we override `Animal#eats` for a more specific implementation; however, in the `Omnivore` subclass, no more specific implementation is needed, so we allow it to inherit the generic impletmentation from `Animal`.
+
+Because we have defined more specific types of `eats`, we can work with all the different types of objects in the same way, even though the implementations may be different. This is shown when we create three objects, `lion` from the `Carnivore` class, `rabbit` from the `Herbivore` class, and `person` from the `Omnivore` class, and we place them in an array. We are able to iterate over eeach object in the array and invoke the `eats` method on all of them despite the fact that they are all object of a different type.
+
+This example is the essence of accessing *different implementations* through a *common interface* (in this case, the *client code* `eats`). When we call `eats` on `lion`, the `Carnivore#eats` method is invoked, and we see the appropriate output `'feed on meat'`. When we call `eats` on the `rabbit`, the `Herbivore#eats` method is invoked and again we see the appropriate output `'feeds on plants'`. Finally,  we invoke `eats` on `person` and the inherited `Animal#eats` method is called, which gives us the more generic output of `'feeds on other living things'`.
+
+The above code works because the block `animal.eats` only really cares that each element in teh array has an `eats` method that is called with no arguments, which is the case here. The *interface* (`eats`) is the same for all the objects, despite their different *implementations*.
+
+Polymorphism can also be exhibited when **mixing in a module**. When we mix a module into a class using `include`, all the behaviors declared in the module are available to the class and its objects. This is know as [inteface inheritance](./inheritance.md#interface-inheritance). Two distinct class that include the same module can also be said to exhibit polymorphism, as both instances can access the same interface (defined by the module).
+
+```ruby
+
+```
+
+b
