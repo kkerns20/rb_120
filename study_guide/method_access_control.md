@@ -30,3 +30,39 @@ rhone = Person.new('Rhone')
 rhone.name        # => 'Rhone'
 rhone.introduce   # => "Hi, my name is Rhone"
 ```
+
+## Private ##
+
+Private methods are those that work *within the class* but are not available in the rest of the program. They are *only* accessible from other methods within the class.
+
+Private methods are defined with the `private` method call within a class. Anything that comes after the invocation of `private` will be considered a private method.
+
+```ruby
+class Superhero
+  def initialize(name)
+    @name = name
+  end
+
+  # this method will be part of the puhlic interface for Person
+  def introduce
+    puts "I'm #{name}!"
+  end
+
+  private
+
+  # here, we define our @name getter/setter to be private
+  attr_accessor :name
+end
+
+bruce = Superhero.new('Batman')
+
+# we can call public methods anywhere...
+bruce.introduce         # => I'm Batman!
+
+# however private methods only work inside the class
+bruce.name              # => NoMethodError: private method `name` called...
+```
+
+In the code above, we define the `Person` class such that the setter and getter methods for `@name` are private. We also provide the public instance method `#introduce` as the interface for being able to access the value stored in `@name` outside the class.
+
+When we initialize a new `Person` object, `bruce`, we can only access the value stored within `@name` through teh `#introduce` method. Any call to the `name`getter outside the class wiill result in a `NoMethodError`. We are still able to invoke the `name`getter method within the class, however, as can be seen in the implementation of the `#introduce` method.

@@ -1,19 +1,23 @@
-# a method defined within a class is public by default
-class Person
-  attr_accessor :name
-
+class Superhero
   def initialize(name)
     @name = name
   end
 
+  # this method will be part of the puhlic interface for Person
   def introduce
-    puts "Hi, my name is #{name}"
+    puts "I'm #{name}!"
   end
+
+  private
+
+  # here, we define our @name getter/setter to be private
+  attr_accessor :name
 end
 
-# we can call public methods anywhere within the program
-rhone = Person.new('Rhone')
+bruce = Superhero.new('Batman')
 
-# we can call public methods anywhere within the program
-rhone.name        # => 'Rhone'
-rhone.introduce   # => "Hi, my name is Rhone"
+# we can call public methods anywhere...
+bruce.introduce         # => I'm Batman!
+
+# however private methods only work inside the class
+bruce.name              # => NoMethodError: private method `name` called...
