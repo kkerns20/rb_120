@@ -1,35 +1,19 @@
+# a method defined within a class is public by default
 class Person
-  def initialize(name, age)
+  attr_accessor :name
+
+  def initialize(name)
     @name = name
-    @age = age
-  end
-
-  def has_a_birthday
-    # call private setter method to increment @age within the class
-    self.age += 1
-  end
-
-  def how_old
-    # call private getter method for desired output/protect sensitive info
-    puts "I am #{age - 3} years old"
   end
 
   def introduce
-    # call private getter method to format @name correctly
-    puts "Hi my name is #{name.capitalize}"
+    puts "Hi, my name is #{name}"
   end
-
-  private
-
-  attr_reader :name
-  attr_accessor :age
 end
 
-wit = Person.new('Wit', 0)
+# we can call public methods anywhere within the program
+rhone = Person.new('Rhone')
 
-wit.introduce       # => Hi my name is Wit
-wit.has_a_birthday  # increments @age
-wit.has_a_birthday  # increments @age
-wit.has_a_birthday  # increments @age
-wit.has_a_birthday  # increments @age
-wit.how_old         # => I am 1 years old
+# we can call public methods anywhere within the program
+rhone.name        # => 'Rhone'
+rhone.introduce   # => "Hi, my name is Rhone"
