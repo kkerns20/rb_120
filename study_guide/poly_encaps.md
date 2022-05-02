@@ -126,4 +126,11 @@ nemo.swim       # => I'm swimming
 garfield.swim   # => NoMethodError
 ```
 
-b
+### Polymorphism through Duck Typing
+
+**Duck Typing**
+: when different unrelated types of objects both respond ot the same method name. Here, we want to see that an object has a *particular behavior* rather that if it is a ceratin class/type. Polymorphism through duck typing means that idfferent ytpes of object can have idfferent methods of various implementations, all with the same interface (name + arguments), despite not inheriting these methods.
+
+We can tell when duck typing is in play because it deals with a number of objects that share a common interface, even though they have no relationship via class or module. Duck typing focuses on what an object can *do* rather that what an object *is*.
+
+This of a webpage, which has an assortment of unrelated clickable elements. A link, a button, a checkbox, an image, or a text input field. All these things might have a method that defines the various implementation for each when clicked by the mouse. However, they are not formally *types* thogether as they might be through class inheritance. They simple all exhibit the same behavior.
