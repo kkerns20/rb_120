@@ -204,3 +204,65 @@ Further, when we invoke the specific implementation for that particular preparer
 This ensures that we will have the appropriate implementation for each distinct preparer-type object despite the fact that they all share the same interface, `prepare_wedding(wedding)`. This is shown when we call `prepare` on a `Wedding` instance, which outputs the result of each preparer-type's `prepare_wedding` implementation as we'd expect.
 
 #### Example 2 ####
+
+```ruby
+class BasketballGame
+  def play(attendees)
+    attendees.each do |attendee|
+      attendee.participate
+    end
+  end
+end
+
+class Player
+  def participate
+    play_game
+  end
+
+  def play_game
+    puts "He shoots, he rebounds, he SCORES!!"
+  end
+end
+
+class Coach
+  def participate
+    coach_players
+  end
+
+  def coach_players
+    puts "Get your hands up and BOX OUT!"
+  end
+end
+
+class Referee
+  def participate
+    make_calls
+  end
+
+  def make_calls
+    puts "<whistle!> Over the back on number 23!"
+  end
+end
+
+class Cheerleader
+  def participate
+    cheer_on_team
+  end
+
+  def cheer_on_team
+    puts "Let's go Bobcats!"
+  end
+end
+
+the_game = BasketballGame.new
+
+the_game.play([Player.new, Coach.new, Referee.new, Cheerleader.new])
+# => He shoots, he rebounds, he SCORES!!
+# => Get your hands up and BOX OUT!
+# => <whistle!> Over the back on number 23!
+# => Let's go Bobcats!
+```
+
+The above example also shows polymorphism through duck typing. The various classes have no inheritance (either through class or interface) and yet we can see a distrinct "participant" type that all exhibit the behavior `participate`, which takes one argument.
+
+## Encapsulation ##

@@ -1,53 +1,55 @@
-class Wedding
-  attr_reader :guests, :flowers, :songs
-
-  def initialize(guests, flowers, songs)
-    @guests = guests
-    @flowers = flowers
-    @songs = songs
-  end
-
-  def prepare(preparers)
-    preparers.each do |preparer|
-      preparer.prepare_wedding(self)
+class BasketballGame
+  def play(attendees)
+    attendees.each do |attendee|
+      attendee.participate
     end
   end
 end
 
-class Chef
-  def prepare_wedding(wedding)
-    prepare_food(wedding.guests)
+class Player
+  def participate
+    play_game
   end
 
-  def prepare_food(guests)
-    guests.each { |guest| puts "Dinner for #{guest}" }
-  end
-end
-
-class Decorator
-  def prepare_wedding(wedding)
-    decorate_venue(wedding.flowers)
-  end
-
-  def decorate_venue(flowers)
-    puts "Some #{flowers} here, there, and everywhere!"
+  def play_game
+    puts "He shoots, he rebounds, he SCORES!!"
   end
 end
 
-class Musician
-  def prepare_wedding(wedding)
-    prepare_performance(wedding.songs)
+class Coach
+  def participate
+    coach_players
   end
 
-  def prepare_performance(songs)
-    songs.each { |song| puts "I'm gonna rock #{song}" }
+  def coach_players
+    puts "Get your hands up and BOX OUT!"
   end
 end
 
-wedding = Wedding.new(['bride', 'groom'], 'lillies', ["Can't help falling in love"])
+class Referee
+  def participate
+    make_calls
+  end
 
-wedding.prepare([Chef.new, Decorator.new, Musician.new])
-# => Dinner for bride
-# => Dinner for groom
-# => Some lillies here, there, and everywhere!
-# => I'm gonna rock Can't help falling in love
+  def make_calls
+    puts "<whistle!> Over the back on number 23!"
+  end
+end
+
+class Cheerleader
+  def participate
+    cheer_on_team
+  end
+
+  def cheer_on_team
+    puts "Let's go Bobcats!"
+  end
+end
+
+the_game = BasketballGame.new
+
+the_game.play([Player.new, Coach.new, Referee.new, Cheerleader.new])
+# => He shoots, he rebounds, he SCORES!!
+# => Get your hands up and BOX OUT!
+# => <whistle!> Over the back on number 23!
+# => Let's go Bobcats!
