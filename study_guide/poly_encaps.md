@@ -126,7 +126,7 @@ nemo.swim       # => I'm swimming
 garfield.swim   # => NoMethodError
 ```
 
-### Polymorphism through Duck Typing
+### Polymorphism through Duck Typing ###
 
 **Duck Typing**
 : when different unrelated types of objects both respond ot the same method name. Here, we want to see that an object has a *particular behavior* rather that if it is a ceratin class/type. Polymorphism through duck typing means that idfferent ytpes of object can have idfferent methods of various implementations, all with the same interface (name + arguments), despite not inheriting these methods.
@@ -134,3 +134,61 @@ garfield.swim   # => NoMethodError
 We can tell when duck typing is in play because it deals with a number of objects that share a common interface, even though they have no relationship via class or module. Duck typing focuses on what an object can *do* rather that what an object *is*.
 
 This of a webpage, which has an assortment of unrelated clickable elements. A link, a button, a checkbox, an image, or a text input field. All these things might have a method that defines the various implementation for each when clicked by the mouse. However, they are not formally *types* thogether as they might be through class inheritance. They simple all exhibit the same behavior.
+
+Example 1 (from LS material)
+
+```ruby
+class Wedding
+  attr_reader :guests, :flowers, :songs
+
+  def initialize(guests, flowers, songs)
+    @guests = guests
+    @flowers = flowers
+    @songs = songs
+  end
+
+  def prepare(preparers)
+    preparers.each do |preparer|
+      preparer.prepare_wedding(self)
+    end
+  end
+end
+
+class Chef
+  def prepare_wedding(wedding)
+    prepare_food(wedding.guests)
+  end
+
+  def prepare_food(guests)
+    guests.each { |guest| puts "Dinner for #{guest}" }
+  end
+end
+
+class Decorator
+  def prepare_wedding(wedding)
+    decorate_venue(wedding.flowers)
+  end
+
+  def decorate_venue(flowers)
+    puts "Some #{flowers} here, there, and everywhere!"
+  end
+end
+
+class Musician
+  def prepare_wedding(wedding)
+    prepare_performance(wedding.songs)
+  end
+
+  def prepare_performance(songs)
+    songs.each { |song| puts "I'm gonna rock #{song}" }
+  end
+end
+
+wedding = Wedding.new(['bride', 'groom'], 'lillies', ["Can't help falling in love"])
+
+wedding.prepare([Chef.new, Decorator.new, Musician.new])
+# => Dinner for bride
+# => Dinner for groom
+# => Some lillies here, there, and everywhere!
+# => I'm gonna rock Can't help falling in love
+```
