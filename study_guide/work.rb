@@ -1,42 +1,35 @@
-# this will not work
-class Student
-  attr_reader :name
-
-  def initialize(name, id)
-    @name = name
-    @id = id
+module Speakable
+  def speak(sound)
+    puts sound
   end
-
-  def ==(other_student)
-    id == other_student.id  # #id is private so cannot be called by another instance 
-  end
-
-  private
-  attr_reader :id
 end
 
-wit = Student.new('Wit', 12345)
-rhone = Student.new('Rhone', 23414)
-wit == rhone                        # => NoMethodError: # #id is private so cannot be called by another instance 
-
-# this will work
-class Student
-  attr_reader :name
-
-  def initialize(name, id)
-    @name = name
-    @id = id
+class Animal
+  def eats
+    puts "eats food"
   end
-
-  def ==(other_student)
-    id == other_student.id  # #id is private so cannot be called by another instance 
-  end
-
-  protected
-  attr_reader :id
 end
 
-wit = Student.new('Wit', 12345)
-rhone = Student.new('Rhone', 23414)
-wit == rhone                        # false
-wit = wit                           # true
+class Fish < Animal; end
+
+class Person < Animal
+  include Speakable
+end
+
+class Cat < Animal
+  include Speakable
+end
+
+felix = Cat.new
+bob = Person.new
+nemo = Fish.new
+
+# all objects have access to Animal#eats through class inheritance
+felix.eats          # => "eats food"
+bob.eats            # => "eats food"
+nemo.eats           # => "eats food"
+
+# not all animals speak, but some do, so we mixin a module
+felix.speak('meow') # => "meow"
+bob.speak('hello')  # => "hello"
+nemo.speak('glub')  # => NoMethodError: undefined method `speak'
