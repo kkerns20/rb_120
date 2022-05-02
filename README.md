@@ -102,9 +102,9 @@
   - [x] Use attr_* to create setter and getter methods
   - [x] How to call setters and getters
   - [x] Instance methods vs. class methods
-  - [ ] Method Access Control
+  - [x] Method Access Control
   - [ ] Referencing and setting instance variables vs. using getters and setters
-  - [ ] Class inheritance, encapsulation, and polymorphism
+  - [x] Class inheritance, encapsulation, and polymorphism
   - [ ] Modules
   - [ ] Method lookup path
   - [ ] self
