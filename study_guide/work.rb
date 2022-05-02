@@ -1,23 +1,42 @@
-class Superhero
-  def initialize(name)
+# this will not work
+class Student
+  attr_reader :name
+
+  def initialize(name, id)
     @name = name
+    @id = id
   end
 
-  # this method will be part of the puhlic interface for Person
-  def introduce
-    puts "I'm #{name}!"
+  def ==(other_student)
+    id == other_student.id  # #id is private so cannot be called by another instance 
   end
 
   private
-
-  # here, we define our @name getter/setter to be private
-  attr_accessor :name
+  attr_reader :id
 end
 
-bruce = Superhero.new('Batman')
+wit = Student.new('Wit', 12345)
+rhone = Student.new('Rhone', 23414)
+wit == rhone                        # => NoMethodError: # #id is private so cannot be called by another instance 
 
-# we can call public methods anywhere...
-bruce.introduce         # => I'm Batman!
+# this will work
+class Student
+  attr_reader :name
 
-# however private methods only work inside the class
-bruce.name              # => NoMethodError: private method `name` called...
+  def initialize(name, id)
+    @name = name
+    @id = id
+  end
+
+  def ==(other_student)
+    id == other_student.id  # #id is private so cannot be called by another instance 
+  end
+
+  protected
+  attr_reader :id
+end
+
+wit = Student.new('Wit', 12345)
+rhone = Student.new('Rhone', 23414)
+wit == rhone                        # false
+wit = wit                           # true
