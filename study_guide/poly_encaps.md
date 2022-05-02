@@ -97,7 +97,33 @@ The above code works because the block `animal.eats` only really cares that each
 Polymorphism can also be exhibited when **mixing in a module**. When we mix a module into a class using `include`, all the behaviors declared in the module are available to the class and its objects. This is know as [inteface inheritance](./inheritance.md#interface-inheritance). Two distinct class that include the same module can also be said to exhibit polymorphism, as both instances can access the same interface (defined by the module).
 
 ```ruby
+module Swimmable
+  def swim
+    "I'm swimming"
+  end
+end
 
+class Dog
+  include Swimmable
+end
+
+class Fish
+  include Swimmable
+end
+
+class Cat; end
+
+kirra = Dog.new
+garfield = Cat.new
+nemo = Fish.new
+
+# both the Dog and Fish object can access the included `
+`swim` method (polymorphism)
+fido.swim       # => I'm swimming
+nemo.swim       # => I'm swimming
+
+# but the Cat object cannot (It is not included)
+garfield.swim   # => NoMethodError
 ```
 
 b
