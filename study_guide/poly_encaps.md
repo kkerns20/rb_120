@@ -135,7 +135,7 @@ We can tell when duck typing is in play because it deals with a number of object
 
 This of a webpage, which has an assortment of unrelated clickable elements. A link, a button, a checkbox, an image, or a text input field. All these things might have a method that defines the various implementation for each when clicked by the mouse. However, they are not formally *types* thogether as they might be through class inheritance. They simple all exhibit the same behavior.
 
-Example 1 (from LS material)
+#### Example 1 (from LS material) ####
 
 ```ruby
 class Wedding
@@ -192,3 +192,15 @@ wedding.prepare([Chef.new, Decorator.new, Musician.new])
 # => Some lillies here, there, and everywhere!
 # => I'm gonna rock Can't help falling in love
 ```
+
+The code above exhibits polymorphism through duck typing. Although there is no inheritance, we have a selection of *preparer type* classes (`Chef`, `Decortator`, and `Musician`) which all provide a `prepare_wedding` method that takes one argument. Since each different object responds to the same method call, we can say this is polymorphism.
+
+First, we define our `Wedding` class with instance vairables such that we can pass along the specific data that each preparer type object needs to implement their version of `prepare_wedding`. We pass the `Wedding#prepare` instance method one argument, an array of these duck typed "preparer" objects. Within `Wedding#prepare`, we invoke `prepare_wedding` on each preparer object and pass it the calling `Wedding` object (represented by `self`) as an argument.
+
+When defining each "preparer" type class, we implement a `prepare_wedding` method that takes one argument (presumably a `Wedding` object). Within this method, we call a different instance method that executes the specific impletmentation for that particular preparer-type object. For example, the `Chef#prepare_wedding` method invokes the `Chef#prepare_food` method.
+
+Further, when we invoke the specific implementation for that particular preparer_type object, we use a `Wedding` instance variable getter method to get the specific data required for the specific implementation. The `Chef#prepare_food` instance method accesses the `@guests` `Wedding` attribute, the `Decorator#decorate_venue` instance method access the `@flowers` `Wedding` attribute, etc.
+
+This ensures that we will have the appropriate implementation for each distinct preparer-type object despite the fact that they all share the same interface, `prepare_wedding(wedding)`. This is shown when we call `prepare` on a `Wedding` instance, which outputs the result of each preparer-type's `prepare_wedding` implementation as we'd expect.
+
+#### Example 2 ####
