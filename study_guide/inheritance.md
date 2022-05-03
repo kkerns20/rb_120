@@ -3,7 +3,7 @@
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
 
-**Superclass*
+**Superclass**
 : the parent clasws for a subclass. Contains the more common behaviors for a set of subclasses that may share that behavior.
 
 **Subclass**
@@ -83,3 +83,52 @@ In the code above, we define the `Dog` supercalss with the instance method `#spe
 : describes the inheritance that occurs when we include a *mixin module* with a specific class. This class inherits any behaviors defined in a super class, but *also* inherits the interface provided by the *mixin module*. This does not result in a specialized type, but how thte class can access the methods defined within the module can still be thought of as inheritance.
 
 For more information, see [modules](./modules.md)
+
+## Method Lookup Path ##
+
+The **method lookup path** descirbes the order in which classes are inspected when a method is called to see how that method is defined.
+
+Ruby starts with the nearest method definition (such as the specific subclass) and then moves outward along containers until it finds the method in question. It then executes the code it finds and stops looking. If Ruby never finds the method, it will throw a `NoMethodError` or `NameError`.
+
+We can call the `::ancestors` class method to see the method lookup path for any given class. This returns an array of all the supercalles and modules that have been mixed into the class in which Ruby might search for a method, in order from closest (first searced) to furthest (last searched).
+
+```ruby
+class Animal
+  def characteristics
+    "I am multicellular, obtain energy through consuming food, and have nerve cells, muscles, and/or tissues."
+  end
+end
+
+module Walkable
+  def walk
+    "I'm walking"
+  end
+end
+
+module Swimmable
+  def swim
+    "I'm swimming"
+  end
+end
+
+class Person < Animal
+  include Walkable
+  include Swimmable
+end
+
+class Cat < Animal
+  include Walkable
+end
+
+class Fish < Animal
+  include Swimmable
+end
+
+Cat.ancestors    # => [Cat, Walkable, Animal, Object, Kernel, BasicObject]
+Fish.ancestors   # => [Fish, Swimmable, Animal, Object, Kernel, BasicObject]
+Person.ancestors # => [Person, Swimmable, Walkable, Animal, Object, Kernel, BasicObject]
+```
+
+In the above code, we can see that Ruby will first check the closest class to the class or object that invokes the method. Next, it will check any modules that are included into that class. If more than one module is included, it will check the _last_ included module first. This means that we can override methods from earlier included modules, just as we can override methods from a superclass.
+
+Next, it will check the superclass, and any modules included in the superclass, which are also inherited by the subclass. It will keep moving up along the chain in this outward order until it reaches `BasicObject`, the last superclass for all objects in Ruby.
