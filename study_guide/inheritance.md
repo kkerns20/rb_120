@@ -3,6 +3,7 @@
 - [Interface Inheritance](#interface-inheritance)
 - [Method Lookup Path](#method-lookup-path)
 - [Super](#super)
+- [Object Methods](#object=methods)
 
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
@@ -316,3 +317,56 @@ felix = Pet.new('Felix')
 In the code above, the first `Pet#initialize` defintion has the call to `super` on its own, which by default will pass along the argument `name` to the `Animal#initialize` method. However, the `Animal#initialize` method takes no arguments. Therefore, when we try to instantiate a new `Pet` object `felix`, Ruby will throw an `ArgumentError`.
 
 In the second `Pet` class definition, `Pet#initialize` calls `super` with two parentheses like so `super()`. Called this way, `super` does not pass along any arguments to the `Animal#initialize` method, which is what it expects. Therefore, when we try to instantiate a new `Pet` object `felix`, the code will execute and `new` will return the `Pet` object we expect.
+
+## Object Methods ##
+
+`Object` is the default root of all Ruby objects. That means that every class that is created inherently subclasses from the `Object` class. `Object` is built into Ruby and comes with many critical methods. Because `Object` is the parent of all other created subclasses, its methods are available throughout *all* other classes, including *any* custom class you might create.
+
+```ruby
+class Animal; end
+class Plant; end
+class Fungus; end
+
+# all created classes have Object as defacto parent
+Animal.superclass     # => Object
+Plant.superclass      # => Object
+Fungus.superclass     # => Object
+
+# therefore all objects have access to Object instance methods
+mammal = Animal.new
+flower = Plant.new
+mushroom = Fungus.new
+
+mammal.inspect                  #  => "#<Animal:0x000055f1e7663508>"
+mammal.instance_of?(Animal)     # => true
+mammal.instance_of?(Plant)      # => false
+mammal.instance_of?(Object)     # => false
+mammal.is_a?(Animal)            # => true
+mammal.is_a?(Plant)             # => false
+mammal.is_a?(Object)            # => true
+mammal.object_id                # => 260
+
+flower.inspect                  #  => "#<Plant:0x000055f1e79c1880>"
+flower.instance_of?(Plant)      # => true
+flower.instance_of?(Animal)     # => false
+flower.instance_of?(Object)     # => false
+flower.is_a?(Plant)             # => true
+flower.is_a?(Animal)            # => false
+flower.is_a?(Object)            # => true
+flower.object_id                # => 280
+
+mushroom.inspect                #  => "#<Fungus:0x000055f1e79332d8>"
+mushroom.instance_of?(Fungus)   # => true
+mushroom.instance_of?(Animal)   # => false
+mushroom.instance_of?(Object)   # => false
+mushroom.is_a?(Fungus)          # => true
+mushroom.is_a?(Animal)          # => false
+mushroom.is_a?(Object)          # => true
+mushroom.object_id              # => 300
+```
+
+**Make certain you do not accidentally override important methods that are originally defined in the Object class**. This can have far reaching effects on the code, and cause some basic principles about objects in your program to stop functioning, or function differently.
+
+One such example is the `Object` method `send`. This is ostensibly another way for an object to call a method, in which a symbol or string is passed that represents the method you want to call. Be sure not to name any of your custom defined methods `send`, or use the name of any other particularly useful method defined in the `Object` class.
+
+There are a few exceptions to this, notably `to_s`, which is commonly overridden when we want a different string representation of an object. Other methods that tend to be overridden include methods of equivalence and comparison such as `==` and `<=>`.
