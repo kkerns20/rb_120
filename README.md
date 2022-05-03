@@ -103,10 +103,10 @@
   - [x] How to call setters and getters
   - [x] Instance methods vs. class methods
   - [x] Method Access Control
-  - [ ] Referencing and setting instance variables vs. using getters and setters
+  - [x] Referencing and setting instance variables vs. using getters and setters
   - [x] Class inheritance, encapsulation, and polymorphism
-  - [ ] Modules
-  - [ ] Method lookup path
+  - [x] Modules
+  - [x] Method lookup path
   - [ ] self
     - [ ] Calling methods with self
     - [ ] More about self
