@@ -4,6 +4,7 @@
 - [Method Lookup Path](#method-lookup-path)
 - [Super](#super)
 - [Object Methods](#object=methods)
+- [Variable Scope](#variable-scope)
 
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
