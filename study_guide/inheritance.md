@@ -132,3 +132,29 @@ Person.ancestors # => [Person, Swimmable, Walkable, Animal, Object, Kernel, Basi
 In the above code, we can see that Ruby will first check the closest class to the class or object that invokes the method. Next, it will check any modules that are included into that class. If more than one module is included, it will check the _last_ included module first. This means that we can override methods from earlier included modules, just as we can override methods from a superclass.
 
 Next, it will check the superclass, and any modules included in the superclass, which are also inherited by the subclass. It will keep moving up along the chain in this outward order until it reaches `BasicObject`, the last superclass for all objects in Ruby.
+
+```ruby
+# using code from above
+nemo = Fish.new
+fluffy = Cat.new
+bob = Person.new
+
+# all objects from Animal subclasses inherit Animal methods
+nemo.characteristics    # => "I am multicellular, obtain energy through consuming food, and have nerve cells, muscles, and/or tissues."
+fluffy.characteristics  # => "I am multicellular, obtain energy through consuming food, and have nerve cells, muscles, and/or tissues."
+bob.characteristics     # => "I am multicellular, obtain energy through consuming food, and have nerve cells, muscles, and/or tissues."
+
+# A Person can #walk or #swim
+bob.walk                # => "I'm walking"
+bob.swim                # => "I'm swimming"
+
+# A Cat can #walk, but not #swim
+fluffy.walk             # => "I'm walking"
+fluffy.swim             # => NoMethodError
+
+# A Fish can #swim, but not #walk
+nemo.walk               # => NoMethodError
+nemo.swim               # => "I'm swimming"
+```
+
+From the code above, we can see that a `Person` object inherits behaviors in the `Animal` superclass, as well as all the methods described in the included modules `Walkable` and `Swimmable`. The `Cat` class, on the other hand, does not have the `Swimmable` module in its method lookup chain, so calling the `#swim` method on a `fluffy` throws a `NoMethodError`. Similarly, the `Fish` class does not have the `Walkable` module in its method lookup chain, so calling the `#walk` method on `nemo` results in a `NoMethodError` as well.
