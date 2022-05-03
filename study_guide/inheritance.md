@@ -235,4 +235,84 @@ puts mama   # => "A silver Nissan Armada with 5 doors"
 puts dada   # => "A white Chevrolet Challenger with 2 doors."
 ```
 
+In the above code, we define the `Car` superclass `initialize` method to take three arguments: `make`, `model`, and `color`. These values are each assigned to an instance variable which describes an attribute for the new `Car` object. Further, each subclass (`SportUtilityVehicle` and `SportCar`) invokes that inherited `initialize` method by using the `super` keyword.
 
+By default, `super` will take any arguments passed to the method that calls it and pass them along to the method that it invokes. Therefore, when `super` invokes the `Car#initialize` method for each instantiation, the `make`, `model`, and `color` attributes are assigned to each instance of the `Car` subclass appropriately.
+
+Because the subclasses also differe in the more specific attribute `@doors`, we include this more particular value in the various subclass' `initialize` method. This is shown when we output each subclass' instantiation as a string and the various attributes are all listed.
+
+Be careful, however, when dealing with inherited / overriding methods that contain a different number of arguments. `super` alone will always pass along *all* the arguments passed to the method that invokes it, so sometimes it is necessary to pick and choose which ones you need.
+
+To pass along certain selected arguments with `super`, pass them in explicitly like so: `super(arg1, arg2)`
+
+To call super without passing any arguments, add `()` to the end of the method call like so: `super()`
+
+```ruby
+# passing along only some arguments
+class Pet
+  def initialize(name)
+    @name = name
+  end
+end
+
+# this will not work
+class Cat < Pet
+  def initialize(name, personality)
+    super     # passes two arguments Pet#initialize expects only one
+    @personality = personality
+  end
+end
+
+felix = Cat.new('Felix', 'playful')
+# => ArgumentError (wrong number of arguments (given 2, expected 1))
+
+# this will work
+class Cat < Pet
+  def initialize(name, personality)
+    super(name) # passes only the `name` argument to Pet#initialize
+    @personality = personality
+  end
+end
+
+felix = Cat.new('Felix', 'playful')
+# => #<Cat:0x000055e2ac7e4908 @name="Felix", @personality="playful">
+```
+
+In the code above, the first `Cat` class definition has the `initialize` method call `super` by itself. By default, this means that `super` will pass both arguments `name` and `personality` given to `Cat#initialize` along to `Pet#initialize` when a new `Cat` object is instantiated. However, `Pet#initialize` only expects one argument, `name`. Therefore, when we try to instantiate a new `Cat` object `felix`, this will result in an `ArgumentError`.
+
+The second `Cat` class definition explicitly passes only the argument `name` when `super` is invoked. In this case, `super` will pass `name` to the `Pet#initialize` method, which is what it expects. Therefore, when we instantiate a new `Cat` object `felix`, the object is creates and assigned the `name` `'Felix'` due to the implementation of `super`. It is also assigned the `personality` `'playful'` due to the implementation of `Cat#initialize`.
+
+```ruby
+# calling super with no arguments
+
+class Animal
+  def initialize
+  end
+end
+
+# this will not work
+class Pet < Animal
+  def initialize(name)
+    super   # passes the argument `name` to Animal#initialize
+    @name = name
+  end
+end
+
+felix = Pet.new('Felix')
+# => ArgumentError (wrong number of arguments (given 1, expected 0))
+
+# this will work
+class Pet < Animal
+  def initialize(name)
+    super()
+    @name = name
+  end
+end
+
+felix = Pet.new('Felix')
+# => #<Pet:0x000055f1e7932f18 @name="Felix">
+```
+
+In the code above, the first `Pet#initialize` defintion has the call to `super` on its own, which by default will pass along the argument `name` to the `Animal#initialize` method. However, the `Animal#initialize` method takes no arguments. Therefore, when we try to instantiate a new `Pet` object `felix`, Ruby will throw an `ArgumentError`.
+
+In the second `Pet` class definition, `Pet#initialize` calls `super` with two parentheses like so `super()`. Called this way, `super` does not pass along any arguments to the `Animal#initialize` method, which is what it expects. Therefore, when we try to instantiate a new `Pet` object `felix`, the code will execute and `new` will return the `Pet` object we expect.
