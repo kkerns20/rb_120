@@ -3,7 +3,7 @@
 - [Interface Inheritance](#interface-inheritance)
 - [Method Lookup Path](#method-lookup-path)
 - [Super](#super)
-- [Object Methods](#object=methods)
+- [Object Methods](#object-methods)
 - [Variable Scope](#variable-scope)
 
 **Inheritance**
@@ -135,7 +135,7 @@ Fish.ancestors   # => [Fish, Swimmable, Animal, Object, Kernel, BasicObject]
 Person.ancestors # => [Person, Swimmable, Walkable, Animal, Object, Kernel, BasicObject]
 ```
 
-In the above code, we can see that Ruby will first check the closest class to the class or object that invokes the method. Next, it will check any modules that are included into that class. If more than one module is included, it will check the _last_ included module first. This means that we can override methods from earlier included modules, just as we can override methods from a superclass.
+In the above code, we can see that Ruby will first check the closest class to the class or object that invokes the method. Next, it will check any modules that are included into that class. If more than one module is included, it will check the *last* included module first. This means that we can override methods from earlier included modules, just as we can override methods from a superclass.
 
 Next, it will check the superclass, and any modules included in the superclass, which are also inherited by the subclass. It will keep moving up along the chain in this outward order until it reaches `BasicObject`, the last superclass for all objects in Ruby.
 

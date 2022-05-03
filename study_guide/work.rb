@@ -1,35 +1,32 @@
-module Speakable
-  def speak(sound)
-    puts sound
+module Cuddleable
+  def can_cuddle
+    @cuddles = true
   end
 end
 
-class Animal
-  def eats
-    puts "eats food"
+class Offspring
+  def initialize(name)
+    @name = name
   end
 end
 
-class Fish < Animal; end
+class FirstBorn < Offspring
+  include Cuddleable
 
-class Person < Animal
-  include Speakable
+  def speak
+    puts "Fire trutchs!"
+  end
+
+  def cuddle
+    if @cuddles
+      puts "Tank tu Dadd-dy"
+    else
+      puts "WAAAAHHHH!!! NOOOO!"
+    end
+  end
 end
 
-class Cat < Animal
-  include Speakable
-end
+rhone = FirstBorn.new('Rhone')
 
-felix = Cat.new
-bob = Person.new
-nemo = Fish.new
-
-# all objects have access to Animal#eats through class inheritance
-felix.eats          # => "eats food"
-bob.eats            # => "eats food"
-nemo.eats           # => "eats food"
-
-# not all animals speak, but some do, so we mixin a module
-felix.speak('meow') # => "meow"
-bob.speak('hello')  # => "hello"
-nemo.speak('glub')  # => NoMethodError: undefined method `speak'
+rhone.can_cuddle
+rhone.cuddle        # => Tank tu Dadd-dy
