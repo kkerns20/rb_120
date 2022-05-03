@@ -165,4 +165,74 @@ From the code above, we can see that a `Person` object inherits behaviors in the
 
 ## Super ##
 
-The `super` keyword allows us to call methods that are defined earlier in the [method lookup path](#method-lookup_path). When calsss from withing a method `super` will search the mtethod lookup path for a method of that name and invoke.
+The `super` keyword allows us to call methods that are defined earlier in the [method lookup path](#method-lookup_path). When calsss from within a method `super` will search the mtethod lookup path for a method of that name and invoke.
+
+```ruby
+class Animal
+  def greet
+    "hello"
+  end
+end
+
+def Cat < Animal
+  def greet
+    "meow" + super "meow meow
+  end
+end
+
+def Dog < Animal
+  def greet
+    "ruff" + super + "woof bark!"
+  end
+end
+
+kirree = Dog.new
+tibber = Cat.new
+
+kirree.greet    # => "ruff hello woof bark!"
+tibber.greet    # => "meow hello meow meow"
+```
+
+Above, we have the superclass `Animal` which defines a `#speak` instance method. The `Dog` and `Cat` subclasses both also have a `#speak` method which overrides the inherited `#speak` from `Animal`.
+
+We can still access the `Animal#speak` method from within the overriding `#speak` methods due to the call to `super`. In this case, `super` returns the value from the `Animal#speak` method, the string `"hello"`. We can see how this is concatenated into an appropriate greeting for both our `Dog` object `kirree` and our `Cat` object `tibber`.
+
+`super` is most commonly used with `initialize` and other *constructor* methods. This allows us to extract more generalized code used for teh construction of an object to a superclass, while still completing more specialized logic in the initiailization for an object of a subclass.
+
+```ruby
+class Car
+  attr_reader :make, :model, :color, :doors
+  
+  def intialize(make, model, color)
+      @make = make 
+      @model = model
+      @color = color
+   end
+   
+   def to_s
+    "A #{color} #{make} #{model} with #{doors} doors."
+   end
+end
+
+class SportUtilityVehicle < Car
+  def initialize(make, model, color)
+    super
+    @doors = 5
+  end
+end
+
+class SportsCar < Car
+  def initialize(make, model, color)
+    super
+    @doors = 2
+  end
+end
+
+mama = SportUtilityVehicle.new('Nissan', 'Armada', 'silver')
+dada = SportCar.new('Chevrolet', 'Challenger', 'white')
+
+puts mama   # => "A silver Nissan Armada with 5 doors"
+puts dada   # => "A white Chevrolet Challenger with 2 doors."
+```
+
+
