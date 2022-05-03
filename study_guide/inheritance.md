@@ -1,5 +1,9 @@
 # Inheritance #
 
+- [Interface Inheritance](#interface-inheritance)
+- [Method Lookup Path](#method-lookup-path)
+- [Super](#super)
+
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
 
@@ -158,3 +162,7 @@ nemo.swim               # => "I'm swimming"
 ```
 
 From the code above, we can see that a `Person` object inherits behaviors in the `Animal` superclass, as well as all the methods described in the included modules `Walkable` and `Swimmable`. The `Cat` class, on the other hand, does not have the `Swimmable` module in its method lookup chain, so calling the `#swim` method on a `fluffy` throws a `NoMethodError`. Similarly, the `Fish` class does not have the `Walkable` module in its method lookup chain, so calling the `#walk` method on `nemo` results in a `NoMethodError` as well.
+
+## Super ##
+
+The `super` keyword allows us to call methods that are defined earlier in the [method lookup path](#method-lookup_path). When calsss from withing a method `super` will search the mtethod lookup path for a method of that name and invoke.
