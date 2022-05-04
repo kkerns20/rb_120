@@ -4,7 +4,7 @@
 - [Method Lookup Path](#method-lookup-path)
 - [Super](#super)
 - [Object Methods](#object-methods)
-- [Variable Scope](#variable-scope)
+- [Variable Scope with Inheritance](#variable-scope-with-inheritance)
 
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
@@ -371,3 +371,101 @@ mushroom.object_id              # => 300
 One such example is the `Object` method `send`. This is ostensibly another way for an object to call a method, in which a symbol or string is passed that represents the method you want to call. Be sure not to name any of your custom defined methods `send`, or use the name of any other particularly useful method defined in the `Object` class.
 
 There are a few exceptions to this, notably `to_s`, which is commonly overridden when we want a different string representation of an object. Other methods that tend to be overridden include methods of equivalence and comparison such as `==` and `<=>`.
+
+## Variable Scope with Inheritance ##
+
+### Instance Variables ###
+
+[Instance Variables](./classes_object.md#instance-variables) that are initialized in a superclass are available in instances of a subclass.
+
+```ruby
+class Pet
+  def initialize(name)
+    @name = name
+  end
+end
+
+class Dog < Pet
+  def speak
+    puts "Arr roo roo!!! My name is #{@name}!"
+  end
+end
+
+kirree = Dog.new('Kirra')
+
+kirree.speak    # => Arr roo roo!!! My name is Kirra!
+```
+
+In the above code, we have a superclass `Pet` and a subclass that inherits from it, `Dog`. The `Dog` class inherits the `intialize` method from `Pet` which contains the instance variable `@name`. Therefore, we can access this instance variable through inheritance without ever utilizing the `Pet` class. This is shown with the implementation of the `Dog#speak` method, which accesses the instance variable `@name` to create a unique output for each instance of `Dog`.
+
+We can see this demonstrated when we initialize a new `Dog` object `kirree` and the call the `#speak` method on it. The method outputs the string `'Arr roo roo!!! My name is Kirra!'` so we know that the `Dog` class has access to the instance variable `#name`, which is output using string interpolation in the string; furthermore, notice that we are doing this by accessing the instance variable directly and not relying on an inherited getter method's return value.
+
+IF inherited methods from a superclass that initialize an instance variable are overridden, the variable will never be initialized, and it will return `nil` when invoked.
+
+Given the above example, see what happens when we override the `Pet` initialize method with one that does not initialize the instance variable `@name`.
+
+```ruby
+class Pet
+  def initialize(name)
+    @name = name
+  end
+end
+
+class Dog < Pet
+  def initialize(name); end
+
+  def speak
+    puts "Arr roo roo!!! My name is #{@name}!"
+  end
+end
+
+kirree = Dog.new('Kirra')
+
+kirree.speak    # => Arr roo roo!!! My name is !
+```
+
+In the code above, our `Dog#initiailize` method overrides the `Pet#intialize` method. `Dog#initialize` never initializes the `@name` instance variable; therefore, when we invoke `#speak` on `kirree`, the call to `@name` return `nil` and the string `'Arr roo roo!!! My name is !'` is output.
+
+Instance variable can also be inherited through interface inheritance, i.e. from modules that are included within the class. However, these variables must also be initialized, or else they return a value of `nil`. Unlike classes, modules do not have the capacity for object instantiation, so if the instance variable in uqestion is initialized within a method, that method must be called to complete the initialization process.
+
+```ruby
+module Cuddleable
+  def can_cuddle
+    @cuddles = true
+  end
+end
+
+class Offspring
+  def initialize(name)
+    @name = name
+  end
+end
+
+class FirstBorn < Offspring
+  include Cuddleable
+
+  def speak
+    puts "Fire trutchs!"
+  end
+
+  def cuddle
+    if @cuddles
+      puts "Tank tu Dadd-dy"
+    else
+      puts "WAAAAHHHH!!! NOOOO!"
+    end
+  end
+end
+
+rhone = FirstBorn.new('Rhone')
+
+rhone.cuddle        # => WAAAAHHHH!!! NOOOO!
+```
+
+In the above example, the instance variable `@cuddles` is initialized in the module `Cuddleable`; however, we never invoke the method in which it is initialized `#can_cuddle`. Therefore, when we instantiate a new `FirstBorn` object `rhone` and invoke the `cuddle` method on it, the conditional inside the method will evaluate to `false` and the string `'WAAAAHHHH!!! NOOOO!'` will be output. This is because the `@cuddles` instance variable was never initialized and returns a value of `nil`, which evaluates to false.
+
+We can fix this by calling hte `#can_cuddle` method on the `rhone` `FirstBorn` instance, which initializes the `@cuddles` variable. In this case, the conditional inside `#cuddle` evaluates to `true` and the string `'Tank tu Dadd-dy'` is output.
+
+```ruby
+
+```
