@@ -200,3 +200,9 @@ p Thing.calling_object          # => Thing
 ```
 
 ## Outside any class ##
+
+Ruby still provides a reference for `self` if you utilize it outside the scope of any class. It points to `main`, which is an instance of `Object`.
+
+```ruby
+puts self.inspect     # => main
+```
