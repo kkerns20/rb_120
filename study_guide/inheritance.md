@@ -5,6 +5,8 @@
 - [Super](#super)
 - [Object Methods](#object-methods)
 - [Variable Scope with Inheritance](#variable-scope-with-inheritance)
+  - [Instance Variables](#instance-variables)
+  - [Class Variables](#class-variables)
 
 **Inheritance**
 : describes how a class can inherit the behaviors of a superclass, or parent class. This allows us to define basic classes with *large reusability* and smaller *subclasses* for more fine-tuned detailed behaviors.
@@ -500,3 +502,38 @@ rhone = FirstBorn.new('Rhone')
 rhone.can_cuddle
 rhone.cuddle        # => Tank tu Dadd-dy
 ```
+
+### Class Variables ###
+
+[Class variables](./classes_object.md#class-variables) from a superclass are available to all subclasses via inheritance. Class variables do not require methods that explicitly initialize them as instance variables do.
+
+However, only one class variable is available across all subclasses. This means that any alterations made to a class variable from a subclass can change the value of the class variable across *all* classes that inherit it, including the superclass in which it is originially defined.
+
+```ruby
+class Pet
+  @@scientific_name = 'animal domesticus'
+
+  def initialize(name)
+    @name = name
+  end
+
+  def self.scientific_name
+    @@scientific_name
+  end
+end
+
+class Dog < Pet
+  @@scientific_name = 'canis lupis familiaris'
+
+  def speak
+    puts "Arr roo rooo rooooo!"
+  end
+end
+
+puts Pet.scientific_name    # => 'canis lupis familiaris'
+puts Dog.scientific_name    # => 'canis lupis familiaris'
+```
+
+In the above code, we initialize the class variable `@@scientific_name` and assign it to the string `'animalus domesticus'` in the superclass `Pet`. Then, in the subclass `Cat` (which inherits from `Pet`) we override the value of the class variable and change it to the string 'canis lupis familiaris'`. Note that this will change the value of`@@scientific_name` regardless of whether we access it from the `Dog` subclass or the `Pet` superclass.
+
+This is shown when we output the value returned by calling the class method `scientific_name` on `Pet` and `Dog`, both of which output the string 'canis lupis familiaris'
