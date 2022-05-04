@@ -152,3 +152,21 @@ p baboon.prehesile_tail         # => false
 In the above code, we are able to define two classes both name `Monkey` due to using hierarchal namespacing. The instances of each class can exhibit distinct attributes appropriate to the class. For example, here the `Monkey` instance which is defined in the `SouthAmerica` lower level namespace will return `ture` when we call the getter method for `prehensile_tail`. Howevern the `Monkey` instance which is defined in the `Africa` lower level namespace will return `false` when we call the getter method `prehensile_tail`.
 
 ## Module Methods ##
+
+We can define **module methods** that can be called directly on the module similarly to the way we define [class methods](./classes_object.md#class-methods). When defining the method within the module, we add the keyword `self` to the front of the mehtod name, which functions as a placeholder to represent the calling module.
+
+These kinds of methods are particularly useful when you have methods that seem out of place or don't really fit nicely anywhere in your code.
+
+We call module methods directly from the module, simlilarly to the way we would call a class method.
+
+```ruby
+module Animal
+# namespace module example 1 from above, code omitted for brevity
+
+  def self.out_of_place_method(num)
+    num ** 2
+  end
+end
+
+p Animal.out_of_place_method(13)  # => 169
+```
