@@ -97,6 +97,30 @@ The success of this can be demonstrated when we use the getter method `name` wit
 
 ## Inside class methods ##
 
+Within a class method, the calling object is the class itself; therefore, `self` will reference the class that calls the method rather than an instance of that class. This is similar behavior to `self` within an instance method. Because a class in Ruby is really just another kind of object, we've just changed the calling object `self` should reference, not the behavior of `self` itself.
+
+```ruby
+class Thing
+  def self.calling_object
+    self
+  end
+end
+
+p Thing.calling_object          # => Thing
+```
+
+Modules are objects as well, so we will see this pattern repeated inside any module methods.
+
+```ruby
+module Thing
+  def self.calling_object
+    self
+  end
+end
+
+p Thing.calling_object          # => Thing
+```
+
 ## Inside class definitions ##
 
 ## Inside mixin modules ##
