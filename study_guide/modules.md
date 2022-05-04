@@ -114,7 +114,41 @@ In the above code example, we use the `Animals` module to categorize the related
 Namespacing also makes it possible for us to repeat more common class names without interfering with the rest of our codebase. This is done by implementing a hierarchal structure within our namespace, by using a combination of class definitions and lower level namespacing within the overall namespace.
 
 ```ruby
+# main overall namespace
+module RegionalFauna
 
+  # lower level namespace module
+  module SouthAmerica
+    # repeated class name
+    class Monkey
+      attr_reader :prehesile_tail
+
+      def initialize
+        @prehesile_tail = true
+      end
+    end
+  end
+
+  # lower level namespace module
+  module Africa
+    # repeated class name
+    class Monkey
+      attr_reader :prehesile_tail
+
+      def initialize
+        @prehesile_tail = false
+      end
+    end
+  end
+end
+
+spider_monkey = RegionalFauna::SouthAmerica::Monkey.new
+baboon = RegionalFauna::Africa::Monkey.new
+
+p spider_monkey.prehesile_tail  # => true
+p baboon.prehesile_tail         # => false
 ```
+
+In the above code, we are able to define two classes both name `Monkey` due to using hierarchal namespacing. The instances of each class can exhibit distinct attributes appropriate to the class. For example, here the `Monkey` instance which is defined in the `SouthAmerica` lower level namespace will return `ture` when we call the getter method for `prehensile_tail`. Howevern the `Monkey` instance which is defined in the `Africa` lower level namespace will return `false` when we call the getter method `prehensile_tail`.
 
 ## Module Methods ##
