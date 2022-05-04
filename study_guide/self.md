@@ -164,4 +164,39 @@ In the above code, we define the `Person` class method `::scientific_name`. This
 
 ## Inside mixin modules ##
 
+When you mix in methods from modules using `include`, `self` within those methods will reference the instance that calls the method, just like they would if they were instance methods defined within the class. This allows the mixin to interact with the class it has been mixed into.
+
+```ruby
+module Reflectable
+  def calling_object
+    self
+  end
+end
+
+class Thing
+  include Reflectable
+end
+
+some_shit = Thing.new
+p some_shit.calling_object      # => #<Thing:0x00007fc55755ec30>
+```
+
+In the above code, we define the method `calling_object` within the `Reflectable` module. This module is then mixed into the `Thing` class. Because `calling_object` will now be treated as an instance method of that class, `self` within it will reference the object that calls the method. In this case, that's the instance `some_shit`
+
+We can use the keyword `extend` to mix module methods in as *class methods* instead of *instance methods*. When doing so, `self` within the method will still reference the calling object; however, because the calling object in this case will be the class itself, that's what `self` will reference.
+
+```ruby
+module Reflectable
+  def calling_object
+    self
+  end
+end
+
+class Thing
+  extend Reflectable
+end
+
+p Thing.calling_object          # => Thing
+```
+
 ## Outside any class ##
