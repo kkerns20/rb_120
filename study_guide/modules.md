@@ -1,5 +1,9 @@
 # Modules #
 
+- [Mixin Modules](#mixin-modules)
+- [Namespacing](#namespacing)
+- [Module Methods](#module-methods)
+
 A **module** is a special type of container used in [interface inheritance](./inheritance.md#interface-inheritance). Modules are generally used to store behaviors we want available in some, but not all, subclasses. It is a way to avoid repeating certain code logic that doesn't make sense to pass along in a formal hierarchy as with class inheritance.
 
 A module *cannot instantiate an objedt*. Only a class can have an instance. Therefore, modules are obnly used for **namespacing** and **grouping common methods together**.
@@ -58,3 +62,59 @@ We avoid having to define `#speak` twice in both `PErson` and `Cat` by extractin
 - If there's a **has-a** relationship (as in "A Person has the ability to speak") then we use a mixin module.
 - Use mixin modules to group methods together that multiple unrelated classes will have to access.
 - Do not use a module for anything that needs to be instantiated.
+
+## Namespacing ##
+
+**Namespacing** consists of organizing similar classes under a module or using a module to group related classes. Doing so makes it easier to recognize related classes in our code. It also reduces the likelihood of classes colliding with other similarly named classes in our codebase.
+
+To work with classes and objects that are namespaced in a module, we have to call the classes in the module with the following syntax:
+> `ModuleName::ClassName.new`
+
+```ruby
+module Animal
+  class Fish
+    attr_reader :fins, :gills
+    
+    def initialize
+      @fins = true
+      @gills = true
+    end
+  end
+
+  class Mammal
+    attr_reader :warm_blooded, :fur
+
+    def initialize
+      @warm_blooded = true
+      @fur = true
+    end
+  end
+
+  class Reptile
+    attr_reader :cold_blooded, :scales
+
+    def initialize
+      @cold_blooded = true
+      @scales = true
+    end
+  end
+end
+
+salmon = Animal::Fish.new
+bear = Animal::Mammal.new
+snake = Animal::Reptile.new
+
+p salmon.fins           # => true
+p bear.fur              # => true
+p snake.cold_blooded    # => true
+```
+
+In the above code example, we use the `Animals` module to categorize the related classes `Fish`, `Mammal`, and `Reptile`. We can still instantiate new objects by accessing the classes through the module by using the **namespace resolution operator** `::`. Each class defines it's own distinctive attributes, which we can still access on the object level, that it, through the created instance of each given class.
+
+Namespacing also makes it possible for us to repeat more common class names without interfering with the rest of our codebase. This is done by implementing a hierarchal structure within our namespace, by using a combination of class definitions and lower level namespacing within the overall namespace.
+
+```ruby
+
+```
+
+## Module Methods ##
