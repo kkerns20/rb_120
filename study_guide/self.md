@@ -123,6 +123,45 @@ p Thing.calling_object          # => Thing
 
 ## Inside class definitions ##
 
+Withing a class definition, `self` will reference the class (or module) that's in the process of being defined.
+
+```ruby
+class Thing
+  self == Thing         # => true
+end
+
+class OtherThing
+  self == OtherThing         # => true
+end
+```
+
+Because `self` within the class definition references the class itself, we can use this to differentiate class methods from instance methods.
+
+```ruby
+class Person
+  def initialize(name)
+    @name = name
+  end
+
+  # instance method
+  def introduce
+    puts "Hi! My name is #{@name}"
+  end
+
+  # class method, because `self` references Person
+  def self.scientific_name
+    puts 'homo sapiens'
+  end
+end
+
+Person.scientific_name      # => homo sapiens
+
+wit = Person.new('Wit')
+wit.scientific_name         #NoMethodError
+```
+
+In the above code, we define the `Person` class method `::scientific_name`. This is distinguished from an instance method by the use of `self` in the method name. Because `self` within a class definition references the class itself (in this case `Person`), we are telling Ruby explicitly that the calling object for the `scientific_name` method should be a class object. In this case, the class `Person`.
+
 ## Inside mixin modules ##
 
 ## Outside any class ##
