@@ -158,6 +158,31 @@ This is because both symbols and integers are **immutable objects**. Though it m
 
 ### `Operators#===` ###
 
+The `===` method is an instance method that is used implicitly with case statements. When `===` compares two objects it's really asking, *if the calling object is a group, does the object passed as an argument belong in that group?*.
+
+```ruby
+a = 'hello'
+b = 'hello'
+a === b         # => true
+# essentially asking does ['hello'] include 'hello'?
+
+a = 1
+b = 1
+a === b         # => true
+# essentially asking does [1] include 1?
+
+a = 'words'
+String === a    # => true
+# does the String class include 'words'?
+
+b = 5
+(1..9) == b     # => true
+# does the Range (1..9) include 5?
+
+String === b    # => false
+# does the String class include 5?
+```
+
 ### eql? ###
 
 ## Fake Operators ##
