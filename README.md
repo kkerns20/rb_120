@@ -107,9 +107,9 @@
   - [x] Class inheritance, encapsulation, and polymorphism
   - [x] Modules
   - [x] Method lookup path
-  - [ ] self
-    - [ ] Calling methods with self
-    - [ ] More about self
+  - [x] self
+    - [x] Calling methods with self
+    - [x] More about self
   - [ ] Reading OO code
   - [ ] Fake operators and equality
   - [x] Working with collaborator objects
