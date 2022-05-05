@@ -97,6 +97,65 @@ rhone_1 != wit_1                        # => true
 
 ### equal? and object_id ###
 
+The `equal?` method is a method used to determine whether two variales not only have the same value, but whether they reference the same object.
+
+```ruby
+a = 'hey there buck'
+b = 'hey there buck'
+a == b                # => true
+a.equal? b            # => false
+
+a = [1, 2, 3, 4]
+b = [1, 2, 3, 4]
+a == b                # => true
+a.equal? b            # => false
+```
+
+Be careful not to override this method by creating your own custom `equal?`. It's much better to implement a custom `==` method as described above instead.
+
+You can also compare two object's `object_id`'s to get the same result as using `equal?`.
+
+Every object has a method called `object_id` that returns a unique identifying number for that object. This method is a good way to determine if two variable are pointing to the same obejct or if they merely hold identical values. Two different variables that are pointing to the same object will both return the same number. That number is *completely unique* so if the variable in question references a different object, `object_id` will return a different number entirely.
+
+```ruby
+# strings
+str1 = 'what the f'
+str2 = 'what the f'
+
+p str1.object_id                      # => 60 <or some randomly generated num>
+p str2.object_id                      # => 80 <or some randomly generated num>
+
+p str1.object_id == str1.object_id    # => false
+puts
+
+# arrays
+arr1 = [1, 2, 3, 4]
+arr2 = [1, 2, 3, 4]
+
+p arr1.object_id                      # => 100
+p arr2.object_id                      # => 120
+p arr1.object_id == arr2.object_id    # => false
+puts
+
+# symbols
+sym1 = :whatsit
+sym2 = :whatsit
+
+p sym1.object_id == sym2.object_id    # => true
+puts
+
+# integers
+int1 = 20
+int2 = 20
+p int1.object_id == int2.object_id    # => true
+```
+
+In the above code, we initialize two string objects and compare their distinct `object_id`'s. The object id for `str1` is different from that of `str2` so they are two separarte obejcts in memory. Similarly, for the two initialized array object `arr1` and `arr2`.
+
+Then we compare two symbol objects `sym1` and `sym2`, which are apparently the same object in memory, despite us initializing the two symbols `:whatsit`. Similarly, `int1` and `int2` both reference the same object in memory, the integer `20`.
+
+This is because both symbols and integers are **immutable objects**. Though it may look like we are initializing more than one symbol or integer, in reality, this is not the case. In Ruby, immutable objects that have the same value actually represent *the same object in memory*. Therefore, there is only ever one symbol `:whatsit` or integer `20`. Any assignment statements that involve it will cause the variable to reference the same object in memory.
+
 ### `Operators#===` ###
 
 ### eql? ###
