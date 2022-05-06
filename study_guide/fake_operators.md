@@ -408,3 +408,16 @@ The code above relies on the same classes `Gradelevel` and `Student` from above.
 We then utilize the `members` getter method to access the arrays fo students that represent the memebers of each `GradeLevel` object, and use `Array#+` to concatentate both. Returning the newly generated `GradeLevel` object allows us to complete implementation, and now when we call `+` on a `GradeLevel` instance, we will get a new `GradeLevel` value returned. This can be shown when we output the resul of `upperclassmen.inspect` (with `p`), which prints a string representation of the new `GradeLevel` objects, whose instance variable `@members` now points ot an array containing all the `Student` objects from teh `juniors` `GradeLevel` object and the `seniors` `GradeLevel` object.
 
 ### Element Setters and Getters ###
+
+If we are working with a class that represents a collection, we can also custom define element getter and setter methods. This allows us ot take advantage of Ruby's syntactical sugar with regards to the element reference and reassignment.
+
+Actual Method Call | Syntactical Sugar
+------------------ | -----------------
+`array.[](2)` | `array[2]`
+array.[]=(4, 'fifth_element') | `array[4] = 'fifth_element'`
+
+In our `GradeLevel` example class, we have defined instance variable `@members` as an array of collaboration `Student` objects. Therefore, we can define custom element setter and getter methods for `@members` that allow us to modify the collection via Ruby's syntactical sugar. Our implementation will rely on `Array#[]` and `Array#[]=`.
+
+```ruby
+
+```
