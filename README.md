@@ -74,7 +74,7 @@
   - [x] [OOP Exercises](./oop_exercises/)
     - [x] [Debugging](./oop_exercises/debugging/)
     - [x] [Medium_1](./oop_exercises/medium_1/)
-- [ ] Review OO Material and find assessment docs to practice with
+- [x] Review OO Material and find assessment docs to practice with
 - [ ] Take RB_109 Assessments
   - [ ] Pass the Written
   - [ ] Pass the Interview
