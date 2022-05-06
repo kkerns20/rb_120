@@ -207,6 +207,29 @@ The `eql?` method determines if two objects contain the same value and if they a
 
 ## Fake Operators ##
 
+Ruby's **syntactical sugar** allows us to use more natural expressions with many methods, and this make them look like operators. It's important to know which of these so called "operators" is a *method* that's acting as a *fake operator* beucase these can be custom defined for our custom classes to change their default behavior.
+
+Method | Opertator | Description
+------ | --------- | -----------
+no | `.`, `::` | Method/constant resolution operators
+yes | `[]`, `[]=` | Collection element getter and setter method
+yes | `**` | Exponential operator
+yes | `!`, `~`, `+`, `-` | Not, complement, unary plus and minus (method names for the last two are `+@` and `-@`)
+yes | `*`, `/`, `%` | Multiply, divide, and modulo
+yes | `+`, `-` | Plus, minus
+yes | `>>`, `<<` | Right and left shift
+yes | `&` | Bitwise "and"
+yes | `^`, `|` | Bitwise exclusive "or" and regular (inclusive) "or"
+yes | `<=`, `<`, `>`, `>=` | Less than/equal to, less than, greater than, greater than/equal to
+yes | `<=>`, `==`, `===`, `!=`, `=~`, `!~` | Equality and pattern matching (`!=` and `!~` cannot be directly defined)
+no | `&&` | Logical "and"
+no | `||` | Logical "or"
+no | `..`, `...` | Inclusive range, exclusive range
+no | `? :` | Ternary if-then-else
+no | `=`, `%=`, `+=`, `!=`, `&=`, `>>=`, `<<=`, `*=`, `**=`, `{}` | Assignment (and assignment shortcuts) and block delimiter
+
+Note that overriding fake operators *can* be dangerous. Since there are so many, we never *really* know what an expression like `obj1 + obj2` will do.
+
 ### Equality Methods ###
 
 ### Comparison Methods ###
