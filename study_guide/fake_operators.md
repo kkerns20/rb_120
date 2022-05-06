@@ -301,7 +301,7 @@ When implementing fake operators, choose functionality that makes sense when use
 For example, custom defining an `<<` or `>>` method can provide a good interface when working with an object that represents a collection. For a class that describes a collection like this, we can even utilize some kind of guard clause within our `<<` implementation to reject adding items unless some criteria is met.
 
 ```ruby
-class Gradelevel
+clas= GradeLevel
   attr_accessor :name, :members
 
   def initialize(name)
@@ -326,7 +326,7 @@ class Student
   end
 end
 
-juniors = Gradelevel.new('Juniors')
+juniors = GradeLevel.new('Juniors')
 jon = Student.new('Jon', 3.9)
 rory = Student.new('Rory', 3.91)
 phil = Student.new('Phil', 3.75)
@@ -341,10 +341,70 @@ p juniors.members
    #<Student:0x00007f5ac42358b8 @name="Phil", @gpa=3.75>]
 ```
 
-In the above code, we define two classes. A `Gradelevel` class, which is a collection of `Student` collaborator objects, represented by the instance variable `@members` which points to an empty array upon initialization. We define a custom left shift method `<<`, which allows us ot add `Student` collaborator objects to the `@members` array using Ruby's syntactical sugar. We rely on the `Array#push` method for implementation so that we can mirror the pattern set forward by Ruby's built in object's behavior with `<<`.
+In the above code, we define two classes. A= GradeLevel` class, which is a collection of `Student` collaborator objects, represented by the instance variable `@members` which points to an empty array upon initialization. We define a custom left shift method `<<`, which allows us ot add`Student` collaborator objects to the `@members` array using Ruby's syntactical sugar. We rely on the `Array#push` method for implementation so that we can mirror the pattern set forward by Ruby's built in object's behavior with `<<`.
 
-This is show to operate the way we want when we instantiate a new `Gradelevel` object, `juniors` and add the three `Student` objects `jon`, `rory`, and `phil` to it. We can see by inspecting the `members` attribute for our `juniors` grade level that it now consists of an array of three `Student` objects.
+This is show to operate the way we want when we instantiate a new= GradeLevel` object, `juniors` and add the three `Student` objects `jon`,`rory`, and`phil` to it. We can see by inspecting the `members` attribute for our `juniors` grade level that it now consists of an array of three `Student` objects.
 
 ### The Plus Method ###
+
+Though somewhat unintuitive, `+` and other arithmetic operators are actually methods and not operators at all. This means that we can also custom define arithmetic operations for our custom classes. As with `<<` we'll want to try to keep our implementation within the pattern of behavior that is set up by the built in Ruby classes for `+`.
+
+In this case, we notice that `+` should eb either *incrementing* or *concatenating* the calling object with an argument. Let us also notice that `+` returns a value *of the same class* of the calling object and the argument passed to it. This means that we don't necessarily want to return the value we get from whatever `#+` method we utilize in our implementation, we want to initialize a new object of the class we are defining to represetn our incremented or concatenated value.
+
+```ruby
+clas= GradeLevel
+  attr_accessor :name, :members
+
+  def initialize(name)
+    @name = name
+    @members = []
+  end
+
+  def <<(student)
+    members.push student
+  end
+
+  def +(other_grade)
+    result_group = GradeLevel.new('New Group')
+    # Use Array#+ to change the @members of the new grade to return
+    result_group.members = members + other_grade.members
+    result_group
+  end
+end
+
+# define Student class for collaborator objects
+class Student
+  attr_accessor :name, :gpa
+
+  def initialize(name, gpa)
+    @name = name
+    @gpa = gpa
+  end
+end
+
+juniors = GradeLevel.new('Juniors')
+juniors << Student.new('Jon', 3.9)
+juniors << Student.new('Rory', 3.91)
+juniors << Student.new('Phil', 3.75)
+
+seniors = GradeLevel.new('Seniors')
+seniors << Student.new('Jordan', 3.25)
+seniors << Student.new('Ernie', 3.45)
+seniors << Student.new('Jack', 3.45)
+
+upperclassmen = juniors + seniors
+p upperclassmen
+# <GradeLevel:0x00007f2e31a0cf60 @name="New Group", 
+# @members=[#<Student:0x00007f2e31a0d5f0 @name="Jon", @gpa=3.9>, 
+            #<Student:0x00007f2e31a0d4b0 @name="Rory", @gpa=3.91>, 
+            #<Student:0x00007f2e31a0d438 @name="Phil", @gpa=3.75>, 
+            #<Student:0x00007f2e31a0d258 @name="Jordan", @gpa=3.25>, 
+            #<Student:0x00007f2e31a0d190 @name="Ernie", @gpa=3.45>, 
+            #<Student:0x00007f2e31a0d0f0 @name="Jack", @gpa=3.45>]>
+```
+
+The code above relies on the same classes `Gradelevel` and `Student` from above. We further define a custom `GradeLevel#+` method so that we can combine two `GradeLevel` instances according to the pattern set up by `+` in the Ruby docs. Our implementation of `GradeLevel#+` initializes a new `GradeLevel` object to return, this will hold all the members of both the calling `Gradelevel` object, `juniors` and the argument passed, the `GradeLevel` object `seniors`.
+
+We then utilize the `members` getter method to access the arrays fo students that represent the memebers of each `GradeLevel` object, and use `Array#+` to concatentate both. Returning the newly generated `GradeLevel` object allows us to complete implementation, and now when we call `+` on a `GradeLevel` instance, we will get a new `GradeLevel` value returned. This can be shown when we output the resul of `upperclassmen.inspect` (with `p`), which prints a string representation of the new `GradeLevel` objects, whose instance variable `@members` now points ot an array containing all the `Student` objects from teh `juniors` `GradeLevel` object and the `seniors` `GradeLevel` object.
 
 ### Element Setters and Getters ###
