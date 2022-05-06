@@ -232,6 +232,8 @@ Note that overriding fake operators *can* be dangerous. Since there are so many,
 
 ### Equality Methods ###
 
+One of the most common fake operators to override is `==`. This also provides us with an `!=` method. See [equivalence](#equivalence).
+
 ### Comparison Methods ###
 
 ### Right and Left Shift ###
