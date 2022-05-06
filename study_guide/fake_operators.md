@@ -183,6 +183,24 @@ String === b    # => false
 # does the String class include 5?
 ```
 
+Behind the scenes, a case statement is using `===` to compare the value in the `when` clause with the value declared by `case`.
+
+```ruby
+num = 42
+
+case num
+when (1..25)    then puts 'first quarter'
+when (26..50)   then puts 'second quarter'
+when (51..75)   then puts 'third quarter'
+when (76..100)  then puts 'last quarter'
+else                 puts 'not in range'
+end
+
+# => second quarter
+```
+
+Note that defining a custom behavior for `===` is not often necessary, because using a custom class in a case statement is pretty unusual.
+
 ### eql? ###
 
 ## Fake Operators ##
