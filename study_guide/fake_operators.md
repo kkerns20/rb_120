@@ -296,6 +296,55 @@ end
 
 ### Right and Left Shift ###
 
+When implementing fake operators, choose functionality that makes sense when used with the operator-like syntax that you are defining.
+
+For example, custom defining an `<<` or `>>` method can provide a good interface when working with an object that represents a collection. For a class that describes a collection like this, we can even utilize some kind of guard clause within our `<<` implementation to reject adding items unless some criteria is met.
+
+```ruby
+class Gradelevel
+  attr_accessor :name, :members
+
+  def initialize(name)
+    @name = name
+    @members = []
+  end
+
+  def <<(student)
+    # guard class, assume we have a Student#passed_previous_grade? defined
+    # return unless student.passed_previous_grade?
+    members.push student
+  end
+end
+
+# define Student class for collaborator objects
+class Student
+  attr_accessor :name, :gpa
+
+  def initialize(name, gpa)
+    @name = name
+    @gpa = gpa
+  end
+end
+
+juniors = Gradelevel.new('Juniors')
+jon = Student.new('Jon', 3.9)
+rory = Student.new('Rory', 3.91)
+phil = Student.new('Phil', 3.75)
+
+juniors << jon
+juniors << rory
+juniors << phil
+
+p juniors.members
+# [#<Student:0x00007f5ac42359f8 @name="Jon", @gpa=3.9>, 
+   #<Student:0x00007f5ac4235958 @name="Rory", @gpa=3.91>, 
+   #<Student:0x00007f5ac42358b8 @name="Phil", @gpa=3.75>]
+```
+
+In the above code, we define two classes. A `Gradelevel` class, which is a collection of `Student` collaborator objects, represented by the instance variable `@members` which points to an empty array upon initialization. We define a custom left shift method `<<`, which allows us ot add `Student` collaborator objects to the `@members` array using Ruby's syntactical sugar. We rely on the `Array#push` method for implementation so that we can mirror the pattern set forward by Ruby's built in object's behavior with `<<`.
+
+This is show to operate the way we want when we instantiate a new `Gradelevel` object, `juniors` and add the three `Student` objects `jon`, `rory`, and `phil` to it. We can see by inspecting the `members` attribute for our `juniors` grade level that it now consists of an array of three `Student` objects.
+
 ### The Plus Method ###
 
 ### Element Setters and Getters ###
