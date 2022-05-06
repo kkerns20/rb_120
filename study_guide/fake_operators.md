@@ -236,6 +236,64 @@ One of the most common fake operators to override is `==`. This also provides us
 
 ### Comparison Methods ###
 
+Implementing our own custum behaior for comparison methods gives us a nice syntax we can use to copare our custom objects. By default, the comparison methods do not know how or what values to compare. We define them to tell them which values to we want to compare, again relying on specific implementations for compariosn methods within Ruby's built in classes.
+
+Note that unlike `==` and `!=`, defining `>` does **not** automatically give us `<`. If we want to use both, we have to define them both within our class.
+
+```ruby
+# this will not work
+class Athlete
+  attr_accessor :name, :height
+
+  def initialize(name, height)
+    @name = name
+    @height = height #height value is in meters
+  end
+end
+
+shaquille = Athlete.new('Shaq', 2.16)
+kobe = Athlete.new('Kobe', 1.98)
+
+puts "#{shaquille.name} is taller that #{kobe.name}" if shaquille > kobe
+# => NoMethodError: undefined method '>'
+```
+
+In the above code, we define a class `Athlete` whose instances exhibit the attributes `name` and `height`. We then initialize two new `Athlete` objects `shaquille` and `kobe`. `shaquille` is assigned an `@height` of 2.16 meters during initialization and `kobe` is assigned a `@height` of 1.98 meters during initialization. We then try to compare the two `Athlete` objects with `>` to see which one is taller.
+
+However, we have no defined `>` method in our `Athlete` class. `>` is in fact an instance method we need to define for the class so Ruby knows which values within the object to compare, and not an operator as it might appear.
+
+```ruby
+# this will not work
+class Athlete
+  attr_accessor :name, :height
+
+  def initialize(name, height)
+    @name = name
+    @height = height #height value is in meters
+  end
+
+  def >(other_athlete)
+    height > other_athlete.height # relies on float#>
+  end
+end
+
+shaquille = Athlete.new('Shaq', 2.16)
+kobe = Athlete.new('Kobe', 1.98)
+
+puts "#{shaquille.name} is taller that #{kobe.name}" if shaquille > kobe
+# => Shaq is taller that Kobe
+```
+
+In the above code, we define a custom `>` that tells Ruby what values to compare within our `Athlete` objects. In this case, it's the value referenced by the instance variable `@height`. We rely on the `Float#>` method to implement our custom `Athlete#>` method. Then when we call `Athlete#>` on the `shaquille` object and pass it the `kobe` object as an argument, Ruby executes the `Athlete#>` implementation, which compares the `@height` of each object. In this case, `shaquille` has a greater height than `kobe` so `'Shaq is taller than Kobe'` is output.
+
+Note that the above code does not automatically generate an `Athlete#<` method. If we wish to utilize this, we'll need to define it individually, which we can do quickly like:
+
+```ruby
+def <(other_athlete)
+  !self.>(other_athlete)
+end
+```
+
 ### Right and Left Shift ###
 
 ### The Plus Method ###
