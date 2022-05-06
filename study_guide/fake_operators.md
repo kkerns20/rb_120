@@ -203,6 +203,8 @@ Note that defining a custom behavior for `===` is not often necessary, because u
 
 ### eql? ###
 
+The `eql?` method determines if two objects contain the same value and if they are of the same class. It's used most frequently by hashes to determine equality among it's members (because keys must be unique). It's not used very often.
+
 ## Fake Operators ##
 
 ### Equality Methods ###
