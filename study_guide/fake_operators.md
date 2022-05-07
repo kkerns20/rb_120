@@ -419,5 +419,53 @@ array.[]=(4, 'fifth_element') | `array[4] = 'fifth_element'`
 In our `GradeLevel` example class, we have defined instance variable `@members` as an array of collaboration `Student` objects. Therefore, we can define custom element setter and getter methods for `@members` that allow us to modify the collection via Ruby's syntactical sugar. Our implementation will rely on `Array#[]` and `Array#[]=`.
 
 ```ruby
+class Gradelevel
+  attr_accessor :name, :members
 
+  def initialize(name)
+    @name = name
+    @members = []
+  end
+
+  def <<(student)
+    members.push student
+  end
+
+  def +(other_grade)
+    result_group = Gradelevel.new('New Group')
+    result_group.members = members + other_grade.members
+    result_group
+  end
+
+  def [](index)
+    # returns the element from @members at the specified index
+    members[index]
+  end
+
+  def []=(index, object)
+    # reassign the element from @members at the specified index to the object
+    # passed as argument
+    members[index] = object
+  end
+end
+
+# define Student class for collaborator objects
+class Student
+  attr_accessor :name, :gpa
+
+  def initialize(name, gpa)
+    @name = name
+    @gpa = gpa
+  end
+end
+
+juniors = Gradelevel.new('Juniors')
+juniors << Student.new('Jon', 3.9)
+juniors << Student.new('Rory', 3.91)
+juniors << Student.new('Phil', 3.75)
+
+p juniors[2]    ##<Student:0x00007f901f524e08 @name="Phil", @gpa=3.75>
+
+juniors[2] = Student.new('Angel', 2.75)
+p juniors[2]    ##<Student:0x00007f901f524958 @name="Angel", @gpa=2.75>
 ```
