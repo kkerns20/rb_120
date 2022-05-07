@@ -97,7 +97,7 @@
 - [ ] Review OOP Excercises
   - [ ] Focus on [Medium 1](./oop_exercises/medium_1/)
   - [ ] Focus on [Debugging](./oop_exercises/debugging/)
-- [ ] Create Study Guide with the following:
+- [x] Create Study Guide with the following:
   - [x] Classes and objects
   - [x] Use attr_* to create setter and getter methods
   - [x] How to call setters and getters
@@ -111,7 +111,7 @@
     - [x] Calling methods with self
     - [x] More about self
   - [ ] Reading OO code
-  - [ ] Fake operators and equality
+  - [x] Fake operators and equality
   - [x] Working with collaborator objects
 - [ ] Review all Quizzes - especially [Lesson_03](./lesson_03/)
 - [ ] [RB 129 Assessment Practice Problems](https://docs.google.com/document/d/1wB8wuF1nmaR7xkLwe54G_BoGj2yBYxoVTZO1odmyTk8/edit)
